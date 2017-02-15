@@ -1,0 +1,25 @@
+Version 1.0
+-----------
+
+ - Add support for namespaces
+ - Finish refactoring of patchxml
+ - Create a full and thorough test suite
+ - Create user guide with full, updated documentation of DUL
+
+Later versions
+--------------
+
+ - Implement xmdiff algorithm
+ - Support reversing the sense of a patch
+ - Create a "visualiser" of some sort
+ - Support other output formats such as xquery update
+ - Optimise algorithms
+ - Create an API for use with other applications
+
+Complete originally planned options:
+  - whitespace handling options
+  - tagnames in output (e.g. /book as opposed to /node()[1])
+  - support adding context elements
+  - support ignoring differences in case/comments/pis
+  - handling of external entities
+

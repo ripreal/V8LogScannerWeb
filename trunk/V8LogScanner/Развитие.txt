@@ -1,0 +1,20 @@
+1. Анализ причин роста сеансовых данных http://kb.1c.ru/articleView.jsp?id=86
+https://partners.v8.1c.ru/forum/topic/1496977
+
+Features: semi-parallel cursor, parallel multiple map-reduction, экономия памяти за счет освобождения памяти занимаемыеми переменными внутри цикла с помощью сборщика мусора
+2 режима сканирования - полупараллельный курсор максимально экономящий память и быстрая куча
+клиент и  сервер на сокетах для сканирования логов из одной утилиты на разных компах. 
+При этом с клиента на сервер передается не все, а только выбранная клиентом порция логов.  
+Клиент общается только с сервером а сервер только с клиентом. При этом клиент держит ссылку на менеджер операций и выполняет их. 
+Сервер делегирует клиенту все операции с парсингов логов, для этого он оздает локального клиента.
+
+
+Паттерны: для лан сервера: State, Observer, Singletone, Factory method (TCPConnection.create)
+          для Regular Expressions: Interpreter, Factory method 
+          для cmdApplication: Command, MVC, Observer, Singletone
+          Для HeapOp и CursorOp: Map-Reduce, Strategy
+          Для V8LogScannerClient - Proxy дял классов  RgxOpManager и LogsOpearations
+Используются также Templates для исключения boiler-plate кода при работе с сокетами (
+в основном, чтобы локализовать checked exceptions) 
+Используется Dependency injection
+

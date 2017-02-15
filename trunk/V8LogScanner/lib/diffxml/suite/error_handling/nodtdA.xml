@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!DOCTYPE dtdtest SYSTEM "nothere.DTD">
+
+<dtdtest>
+  <entity>&amp;NHLCopyright;</entity>
+</dtdtest>
+

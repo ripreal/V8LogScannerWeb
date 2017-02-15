@@ -1,0 +1,178 @@
+body { 
+  font-family: Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857142857143;
+  padding: 15px;
+  max-width: 1000px; 
+}
+
+div.paragraph-module {
+  border-bottom: 1px groove;
+  margin: 10px;
+  padding-bottom: 15px;
+}
+
+div.paragraph-caption{
+  color: rgb(66,78,90);
+  font-size: 20px;
+  border-left:5px solid transparent;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+span.paragraph-tooltip {
+  float: right;
+  padding: 0px 4px;
+  cursor: pointer;
+  color: lightslategray;
+}
+
+.paragrapTitleText {
+  color: rgb(66,78,90);
+  font-size: 20px;
+}
+
+.paragraphIcon-hover {
+  color: rgb(234, 234, 234);
+}
+
+div.paragraph-hover {
+  color: #4CAF50;
+}
+
+div.paragraph-fired {
+    border-left: 5px solid rgb(255, 149, 0);
+    padding-left: 5px;
+}
+
+div.paragraph-text {
+  padding-left: 5px;
+  padding-top: 15px;
+}
+
+th, td {
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.dtTable {
+  margin-bottom: -15px;
+  width: 100%;
+  table-layout: fixed;
+  border: 0;
+}
+
+.dtTable-heading {
+  background: rgb(206,234,207);
+  border-bottom: solid 1px #d9d9d9;
+  vertical-align: baseline;
+}
+.dtTable-headCell {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  color: #333333;
+  font-size: 0.846em;
+  vertical-align: bottom;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.dtTable-tr {
+  vertical-align: baseline;
+}
+
+.dtTable-cell {
+  padding: 10px;
+}
+
+.dtTable-cell-index {
+  text-align: right;
+  color: #bcbcbc;
+}
+
+.dtTable-field {
+  width: 100%;  
+  min-height: 30px; 
+  box-sizing: border-box;
+  
+}
+
+.dtTable-field-inactive {
+  color: lightgray;
+}
+
+a.dtTable-button:link, a.dtTable-button:visited  {
+    color: rgb(100,100,100);    
+    text-decoration: none;
+    border: 1px solid #4CAF50;
+    padding: 3px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+a.dtTable-button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+div.templates {
+  display: none;
+}
+
+div.buttonBar {
+  margin-top: 15px;
+}
+
+div.filterItem {
+  margin-top: 10px;
+}
+
+input.standart-input {
+  vertical-align: middle;
+  min-height: 25px;  
+  box-shadow: 2px 0px 2px 0px rgba(0,0,0,0.2);
+  font-size: 14px;
+  border: solid lightgray 1px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;  
+}
+
+.dropdown:hover .dropdown-content {
+    display: block !important;
+}
+.dropdown {
+    position: relative; /* <-- Added */
+    z-index: 1; /* <-- Added */
+}
+
+.alertButton {
+  background: brown !important;
+}
+
+.positiveButton {
+  background: green !important;
+}
+
+.logContainer {
+  border: solid 2px darkgray;
+  
+}
+
+.inlineBlock {
+  float: left;
+  margin-right: 5px;
+}

@@ -1,0 +1,50 @@
+Version 0.96 BETA
+-----------------
+
+Improved windows cmd files (thanks to Paul Gale).
+Fixed bug identified by Christian Oudard
+Fixed cdata handling (thanks to Bodo Bergmann)
+Refactored test suite
+Fixed bug identified by Brian Sletten
+
+Version 0.95 BETA
+-----------------
+
+Minor improvements to documentation, scripts and package.
+
+Verison 0.94 BETA
+-----------------
+
+ - Major bugfixes and refactoring
+ - Windows scripts
+ - Removed Java logging
+
+Version 0.93 ALPHA
+------------------
+
+This release focused on getting the code into a reasonable
+shape, before starting major bugfixing and adding features.
+
+- Large refactorings
+- Javadoc for most classes
+- Some bugfixes
+
+Version 0.92 ALPHA
+------------------
+
+Several fundamental changes:
+
+- Added Ant build (thanks to Eric Saunders)
+- Re-organisation and renaming of files and directories. 
+- Added jars to standard download.
+- Added automatic test suite to standard download.
+- Started javadoc and refactoring of code base.
+- Use of Java logging.
+
+Version 0.91 ALPHA
+------------------
+
+Minor update from 0.9 ALPHA 
+Fixed minor problems with scripts (thanks to Lowell Alleman) 
+Added 2 sample testfiles to download.  
+Fixed trimming whitespace problem (Brian Buesker).

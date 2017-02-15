@@ -1,0 +1,101 @@
+diffxml Version 0.96 BETA
+patchxml Version 0.96 BETA
+ 
+Install instructions for diffxml and patchxml
+=============================================
+
+Requirements:
+-------------
+
+Java >= 1.5. See http://java.sun.com/j2se/downloads.html
+
+Apache Ant >= 1.7.1 (to build or install diffxml). Other versions may work, but
+are untested. See http://ant.apache.org/
+
+The lib directory should contain the following jars:
+ 
+   junit-4.4.jar  
+   xpp3-1.1.4c.jar
+
+These files relate to JUnit (http://www.junit.org) and XPP3
+(http://www.extreme.indiana.edu/xgws/xsoap/xpp/mxp1/index.html). 
+
+Follow the following steps to build and run diffxml.
+
+1. Building diffxml:
+--------------------
+
+To just compile the classes run:
+
+   $ ant
+
+To build the jar file run:
+
+   $ ant jarDiffXML
+
+
+2. Testing diffxml:
+-------------------
+
+To do a small test to ensure correct compilation run:
+
+   $ ant quickTest
+
+For a fuller test:
+
+   $ ant fullTest
+
+
+3. Running diffxml:
+-------------------
+
+Unix:
+-----
+
+The easiest way of running the utilities is to use the diffxml.sh and 
+patchxml.sh scripts. 
+
+Verify the scripts work by running:
+ 
+   $ ./diffxml.sh test1a.xml test2a.xml > out.xml
+   $ ./patchxml.sh test1.xml out.xml > result
+   $ ./diffxml.sh -q result test2a.xml
+ 
+There should be no output, confirming the files are equivalent.
+ 
+For more information on usage, run the commands with the "--help" argument.
+
+If you have Apache Ant, you can install diffxml by running:
+ 
+   $ ant install
+
+By default this installs to "/usr/local/", to install to a different directory:
+
+   $ ant -Dinstall.dir="/my/location/" install
+   
+Windows:
+--------
+
+The easiest way of running the utilities is to use the diffxml.cmd and
+patchxml.cmd scripts from a DOS (command) prompt. 
+
+Verify the scripts work by running:
+ 
+   $ diffxml test1.xml test2.xml > out.xml
+   $ patchxml test1.xml out.xml > result
+   $ diffxml -q result test2.xml
+
+There should be no output, confirming the files are equivalent.
+
+For more information on usage, run the commands with the "--help" argument.
+
+4. Finally...
+-------------
+
+diffxml and patchxml are released under the GNU GPL Version 2.
+ 
+Send any bug reports / problems to adrian.mouat at gmail.com
+
+Adrian Mouat.
+
+16 July 2013.

@@ -1,0 +1,37 @@
+.w3-container {
+    padding: 0.01em 16px;
+}
+
+.w3schools-logo {
+    font-family: fontawesome;
+    text-decoration: none;
+    line-height: 1;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: #555555;
+    display: block;
+    position: absolute;
+
+}
+
+.w3-right {
+    float: right !important;    
+}
+
+.w3-wide {
+    letter-spacing: 3px;
+    font-size: 15px;
+}
+
+.w3schools-logo .dotcom {
+    color: #4CAF50;
+}
+
+.w3-right-top {
+    line-height: 25px
+}
+
+.w3-lang {
+    float: right;
+}
+
