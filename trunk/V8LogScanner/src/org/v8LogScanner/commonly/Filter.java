@@ -35,7 +35,7 @@ public class Filter<T1> implements Iterable<T1>, Serializable{
 	public T1 get(int index){
 		return elements.get(index);
 	}
-	
+		
 	public void set(int index, T1 element){
 		elements.set(index, element);
 	}
