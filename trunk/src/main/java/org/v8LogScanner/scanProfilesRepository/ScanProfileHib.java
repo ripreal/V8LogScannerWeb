@@ -44,16 +44,19 @@ public class ScanProfileHib implements ScanProfile {
   private DateRanges dateRange  = DateRanges.ANY;
   
   @Column(name="evlimit")
-  private int limit             = 100; // restriction up on amount of events  from
+  private int limit = 100; // restriction up on amount of events  from
   
+  @Enumerated(EnumType.STRING)
   @Column
-  private LogTypes logType      = LogTypes.ANY;
+  private LogTypes logType = LogTypes.ANY;
   
+  @Enumerated(EnumType.STRING)
   @Column
   private PropTypes sortingProp = PropTypes.ANY;
   
+  @Enumerated(EnumType.STRING)
   @Column
-  private GroupTypes groupType  = GroupTypes.BY_PROPS;
+  private GroupTypes groupType = GroupTypes.BY_PROPS;
   
   @OneToMany(fetch = FetchType.EAGER)
   @JoinTable(
@@ -63,15 +66,16 @@ public class ScanProfileHib implements ScanProfile {
   private List<RegExpHib> rgxList = new ArrayList<>();
   
   @Column
-  private String rgxExp           = "";
+  private String rgxExp = "";
   
   @Column
-  private RgxOpTypes rgxOp        = RgxOpTypes.CURSOR_OP;
+  private RgxOpTypes rgxOp = RgxOpTypes.CURSOR_OP;
   
   @Column
-  private String userStartDate    = "";
+  private String userStartDate = "";
+ 
   @Column
-  private String userEndDate      = "";
+  private String userEndDate = "";
   
   public ScanProfileHib() {}
   
@@ -104,9 +108,9 @@ public class ScanProfileHib implements ScanProfile {
     return unwrapped;
   }
   public void setRgxList(List<RegExp> rgxList) {
-    rgxList.clear();
-    //unwrapped = rgxList;
-    rgxList.forEach(rgx -> rgxList.add(rgx));
+    this.rgxList.clear();
+
+    rgxList.forEach(rgx -> this.rgxList.add(new RegExpHib(rgx)));
   }
   public void addRegExp(RegExp regExp) {rgxList.add(new RegExpHib(regExp));}
   

@@ -14,6 +14,10 @@ import org.v8LogScanner.rgx.RegExp.EventTypes;
 @Table
 public class RegExpHib{
   
+  @Id
+  @GeneratedValue(generator="increment")
+  @GenericGenerator(name="increment", strategy = "increment")
+  private int id;
   private RegExp regExp;
   @Column
   private EventTypes eventType;
@@ -26,11 +30,6 @@ public class RegExpHib{
     this.regExp = regExp;
   }
   
-  @Id
-  @GeneratedValue(generator="increment")
-  @GenericGenerator(name="increment", strategy = "increment")
-  private int id;
-  
   public RegExp unwrap() {
     return regExp;
   }
@@ -40,6 +39,5 @@ public class RegExpHib{
     regExp = new RegExp(eventType);
     this.eventType = eventType;
   }
-  
   
 }

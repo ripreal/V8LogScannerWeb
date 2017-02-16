@@ -24,4 +24,14 @@ CREATE TABLE IF NOT EXISTS regexphib (
   profile_id int NOT NULL,
   eventType VARCHAR(100),
   CONSTRAINT fk_regexp FOREIGN KEY (profile_id) REFERENCES ScanProfileHib(id)
-)
+);
+
+CREATE TABLE IF NOT EXISTS filterhib (
+  id int NOT NULL PRIMARY KEY,
+);
+
+CREATE TABLE IF NOT EXISTS filtervals (
+  filter_id int NOT NULL PRIMARY KEY,
+  filterval VARCHAR(10000) NOT NULL,
+  CONSTRAINT fk_filterhib FOREIGN KEY (filter_id) REFERENCES filterhib(id)
+);
