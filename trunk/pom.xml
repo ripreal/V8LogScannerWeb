@@ -108,7 +108,7 @@
     <repository>
       <id>v8LogScannerRepo</id>
       <name>v8LogScannerRepo</name>
-      <url>https://github.com/ripreal/V8LogScannerWeb/tree/master/trunk/V8LogScanner/repo</url>
+      <url>https://cdn.rawgit.com/ripreal/V8LogScanner/74f24180/repo/</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
