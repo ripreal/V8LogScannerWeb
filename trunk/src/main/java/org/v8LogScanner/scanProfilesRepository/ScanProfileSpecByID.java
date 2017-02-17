@@ -5,12 +5,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.v8LogScanner.genericRepository.QuerySpecification;
 
-public class ScanProfileSpecByObject implements QuerySpecification<ScanProfileHib> {
+public class ScanProfileSpecByID implements QuerySpecification<ScanProfileHib> {
   
   private int id;
   
-  public ScanProfileSpecByObject(ScanProfileHib profile) {
-    this.id = profile.getId();
+  public ScanProfileSpecByID(int id) {
+    this.id = id;
   }
   
   @Override

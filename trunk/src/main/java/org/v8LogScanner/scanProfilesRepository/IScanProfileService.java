@@ -7,5 +7,6 @@ public interface IScanProfileService {
   public void update(ScanProfileHib profile); // Think it as replace for set
   
   public ScanProfileHib find(ScanProfileHib profile);
+  public ScanProfileHib find(int id);
   
 }

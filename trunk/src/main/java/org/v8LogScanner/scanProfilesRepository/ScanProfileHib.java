@@ -2,6 +2,8 @@ package org.v8LogScanner.scanProfilesRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -19,10 +21,14 @@ import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
+import org.v8LogScanner.rgx.ScanProfile.DateRanges;
+import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
+import org.v8LogScanner.rgx.ScanProfile.LogTypes;
+import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 
 @Entity
 @Table
-public class ScanProfileHib implements ScanProfile {
+public class ScanProfileHib {
 
   private static final long serialVersionUID = -5587558849570472552L;
   
@@ -35,7 +41,8 @@ public class ScanProfileHib implements ScanProfile {
   private String name;
   
   @ElementCollection(fetch = FetchType.LAZY)
-  @CollectionTable(name="logpaths", joinColumns=@JoinColumn(name="profile_id"))
+  @CollectionTable(name="logpaths", 
+    joinColumns=@JoinColumn(name="profile_id"))
   @Column(name="path")
   private List<String> logpaths = new ArrayList<>();
   
@@ -58,13 +65,11 @@ public class ScanProfileHib implements ScanProfile {
   @Column
   private GroupTypes groupType = GroupTypes.BY_PROPS;
   
-  @OneToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-      name="regexphib",
-      joinColumns = @JoinColumn( name="profile_id"),
-      inverseJoinColumns = @JoinColumn( name="id"))
+  @OneToMany(mappedBy="profile", 
+      fetch = FetchType.EAGER, 
+      cascade={CascadeType.ALL})
   private List<RegExpHib> rgxList = new ArrayList<>();
-  
+
   @Column
   private String rgxExp = "";
   
@@ -102,17 +107,25 @@ public class ScanProfileHib implements ScanProfile {
   public GroupTypes getGroupType() {return groupType;}
   public void setGroupType(GroupTypes groupType) { this.groupType = groupType;}
   
-  public List<RegExp> getRgxList() {
-    List<RegExp>unwrapped = new ArrayList<>();
-    rgxList.forEach(rgx -> unwrapped.add(rgx.unwrap()));
-    return unwrapped;
-  }
-  public void setRgxList(List<RegExp> rgxList) {
-    this.rgxList.clear();
 
-    rgxList.forEach(rgx -> this.rgxList.add(new RegExpHib(rgx)));
+  public List<RegExpHib> getRgxList() {
+    //List<RegExp>unwrapped = new ArrayList<>();
+    //rgxList.forEach(rgx -> unwrapped.add(rgx.unwrap()));
+    //return unwrapped;
+    return rgxList;
   }
-  public void addRegExp(RegExp regExp) {rgxList.add(new RegExpHib(regExp));}
+  public void setRgxList(List<RegExpHib> rgxList) {
+   // this.rgxList.clear();
+    this.rgxList = rgxList;
+    //
+   
+  }
+
+  public void addRegExp(RegExp regExp) {
+    RegExpHib hib = new RegExpHib(regExp);
+    rgxList.add(hib);
+    hib.setProfile(this);
+  }
   
   public String getRgxExp() {return rgxExp;}
   public void setRgxExp(String rgxExp) { this.rgxExp = rgxExp;}
@@ -124,12 +137,6 @@ public class ScanProfileHib implements ScanProfile {
   public void setUserPeriod(String userStartDate, String userEndDate) {
     this.userStartDate = userStartDate;
     this.userEndDate = userEndDate;
-  }
-
-  @Override
-  public void setId() {
-    // TODO Auto-generated method stub
-    
   }
 
   

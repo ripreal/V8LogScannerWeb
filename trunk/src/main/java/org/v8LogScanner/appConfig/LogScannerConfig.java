@@ -12,7 +12,7 @@ public class LogScannerConfig {
   
   @Bean
   public ScanProfile profile(){
-    ScanProfile profile = new ScanProfileHib();
-    return profile;
+    //ScanProfile profile = new ScanProfileHib();
+    return null;
   }
 }

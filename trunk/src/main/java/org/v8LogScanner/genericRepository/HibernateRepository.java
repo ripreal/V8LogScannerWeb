@@ -55,10 +55,10 @@ public class HibernateRepository <T> implements DataRepository<T> {
     
     List<T> result = new ArrayList<>();
     
-    for (T object : cached_data) {
-      if (specification.specified(object))
-        result.add(object);
-    }
+    //for (T object : cached_data) {
+    //  if (specification.specified(object))
+    //    result.add(object);
+    //}
     
     if (result.size() == 0) {
       EntityManagerFactory entityManager = currentSession().getEntityManagerFactory();

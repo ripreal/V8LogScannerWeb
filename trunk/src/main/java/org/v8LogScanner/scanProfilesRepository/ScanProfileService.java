@@ -33,9 +33,13 @@ public class ScanProfileService implements IScanProfileService {
   public void update(ScanProfileHib profile) {
     repository.update(profile);
   }
-
+  
   public ScanProfileHib find(ScanProfileHib profile) {
-    QuerySpecification<ScanProfileHib> spec = new ScanProfileSpecByObject(profile);
+    return find(profile.getId());
+  }
+  
+  public ScanProfileHib find(int id) {
+    QuerySpecification<ScanProfileHib> spec = new ScanProfileSpecByID(id);
     List<ScanProfileHib> profiles = repository.query(spec);
     if (profiles.size() > 0)
       return profiles.get(0);

@@ -20,9 +20,8 @@ CREATE TABLE IF NOT EXISTS logpaths (
 );
 
 CREATE TABLE IF NOT EXISTS regexphib (
-  id int NOT NULL PRIMARY KEY,
   profile_id int NOT NULL,
-  eventType VARCHAR(100),
+  id int NOT NULL PRIMARY KEY,
   CONSTRAINT fk_regexp FOREIGN KEY (profile_id) REFERENCES ScanProfileHib(id)
 );
 
