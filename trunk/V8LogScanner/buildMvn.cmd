@@ -1,2 +1,0 @@
-C:\programm\apache-maven-3.3.9\bin\mvn.cmd deploy:deploy-file -Durl=file://C:/Users/kudakov_r/workspaceSTS/V8LogScanner/repo -Dfile=v8LogScanner.jar -DgroupId=org.v8LogScanner -DartifactId=v8LogScanner -Dpackaging=jar -Dversion=1.0
-pause&exit
