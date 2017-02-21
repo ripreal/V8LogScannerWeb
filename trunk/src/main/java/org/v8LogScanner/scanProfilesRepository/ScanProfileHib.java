@@ -28,7 +28,7 @@ import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 
 @Entity
 @Table
-public class ScanProfileHib {
+public class ScanProfileHib implements ScanProfile {
 
   private static final long serialVersionUID = -5587558849570472552L;
   
@@ -91,7 +91,10 @@ public class ScanProfileHib {
   public void setLogPaths(List<String> logpaths) {this.logpaths = logpaths;}
   
   public int getId() {return id;}
-
+  public void setId() {
+    // intentionally left blank
+  }
+  
   public DateRanges getDateRange() {return dateRange;}
   public void setDateRange(DateRanges dateRange) {this.dateRange = dateRange;}
   
@@ -107,18 +110,14 @@ public class ScanProfileHib {
   public GroupTypes getGroupType() {return groupType;}
   public void setGroupType(GroupTypes groupType) { this.groupType = groupType;}
   
-
-  public List<RegExpHib> getRgxList() {
-    //List<RegExp>unwrapped = new ArrayList<>();
-    //rgxList.forEach(rgx -> unwrapped.add(rgx.unwrap()));
-    //return unwrapped;
-    return rgxList;
+  public List<RegExp> getRgxList() {
+    List<RegExp>unwrapped = new ArrayList<>();
+    rgxList.forEach(rgx -> unwrapped.add(rgx.unwrap()));
+    return unwrapped;
   }
-  public void setRgxList(List<RegExpHib> rgxList) {
-   // this.rgxList.clear();
-    this.rgxList = rgxList;
-    //
-   
+  public void setRgxList(List<RegExp> rgxList) {
+    this.rgxList.clear();
+    rgxList.forEach(rgx -> this.rgxList.add(new RegExpHib(rgx)));
   }
 
   public void addRegExp(RegExp regExp) {

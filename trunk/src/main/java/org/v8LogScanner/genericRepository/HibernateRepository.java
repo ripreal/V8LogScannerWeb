@@ -32,33 +32,29 @@ public class HibernateRepository <T> implements DataRepository<T> {
     return sessionFactory.getCurrentSession();
   }
   
-  @Override
   public void add(T data) {
     currentSession().save(data);
     updateCache(data);
   }
-
-  @Override
+  
   public void remove(T data) {
     currentSession().remove(data);
     removeCache(data);
   }
-
-  @Override
+  
   public void update(T data) {
     currentSession().update(data);
     updateCache(data);
   }
-
-  @Override
+  
   public List<T> query(QuerySpecification<T> specification) {
     
     List<T> result = new ArrayList<>();
     
-    //for (T object : cached_data) {
-    //  if (specification.specified(object))
-    //    result.add(object);
-    //}
+    for (T object : cached_data) {
+      if (specification.specified(object))
+        result.add(object);
+    }
     
     if (result.size() == 0) {
       EntityManagerFactory entityManager = currentSession().getEntityManagerFactory();
@@ -73,6 +69,10 @@ public class HibernateRepository <T> implements DataRepository<T> {
     }
 
     return result;
+  }
+  
+  public void resetCache() {
+    cached_data.clear();
   }
   
   private void saveCache(List<T> data) {
@@ -92,4 +92,5 @@ public class HibernateRepository <T> implements DataRepository<T> {
     if (cached_data.size() < CACHE_LIMIT)
       cached_data.add(data);
   }
+
 }

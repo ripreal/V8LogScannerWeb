@@ -8,6 +8,6 @@ public interface DataRepository<T> {
   public void remove(T object);
   public void update(T object); // Think it as replace for set
   
-  List<T> query(QuerySpecification<T> specification);
+  public List<T> query(QuerySpecification<T> specification);
   
 }

@@ -5,6 +5,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -14,8 +21,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -38,7 +51,6 @@ import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
 LogScannerConfig.class,
 RootConfig.class})
 @ActiveProfiles(profiles = "test")
-
 public class DataSourceTest {
   
   @Autowired
@@ -50,8 +62,27 @@ public class DataSourceTest {
   @Autowired
   private IScanProfileService scanProfileService;
   
+  @Value(value = "classpath:schema.sql")
+  private Resource schemasql;
+  
   @Before
-  public void setup() {
+  public void setup() throws IOException {
+    /* FOR PRODUCTION PROFILE
+    InputStream in =  schemasql.getInputStream();
+    InputStreamReader inputreader = new InputStreamReader(in);
+    BufferedReader stringReader= new BufferedReader (inputreader);
+    StringBuilder sb = new StringBuilder(); 
+    CharBuffer buffer = CharBuffer.allocate(3096);
+    stringReader.read(buffer);
+    sb.append(buffer.array());
+    
+    JdbcTemplate template = new JdbcTemplate(datasource);
+    
+    String s = sb.toString();
+    s = s.trim();
+    
+    template.execute(s);
+    */
   }
   
   @Test
@@ -110,11 +141,14 @@ public class DataSourceTest {
     profile.setUserPeriod("16010123", "16020224");
     profile.addRegExp(new RegExp(EventTypes.CONN));
     profile.addRegExp(new RegExp(EventTypes.DBMSSQL));
-    
     scanProfileService.add(profile);
     
-    // 2. check finding
-    ScanProfileHib persistentProfile = scanProfileService.find(profile);
+    // 2/ check finding
+    // we use native query because of caching
+    Query<ScanProfileHib> queryProf= sessionFactory.getCurrentSession().createNativeQuery("SELECT TOP 1 * FROM ScanProfileHib ORDER BY ID DESC", 
+      ScanProfileHib.class);
+    ScanProfileHib persistentProfile = queryProf.getResultList().get(0);
+   
     assertArrayEquals(profile.getLogPaths().toArray(new String[0]), persistentProfile.getLogPaths().toArray(new String[0]));
     assertEquals(DateRanges.LAST_HOUR, persistentProfile.getDateRange());
     assertEquals(10, persistentProfile.getLimit());
@@ -125,29 +159,14 @@ public class DataSourceTest {
     assertEquals(RgxOpTypes.USER_OP, persistentProfile.getRgxOp());
     assertArrayEquals(new String[]{"16010123", "16020224"}, persistentProfile.getUserPeriod());
     
-    RegExpHib rgx = persistentProfile.getRgxList().get(0);
-   // assertEquals(EventTypes.CONN, rgx.getEventType());
+    RegExp rgx = persistentProfile.getRgxList().get(0);
+    assertEquals(EventTypes.CONN, rgx.getEventType());
     
-    scanProfileService.find(profile);
-    // 3. check caching
-    
-    // 4. check deleting
-    //scanProfileService.remove(persistentProfile);
-    //Query query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id");
-    //query.setParameter("id", profile.getId());
-    //assertEquals(query.getResultList().size(), 0);
-    
-  }
-  
-  @Test
-  @Transactional
-  public void testMethod() {
-    JdbcTemplate template = new JdbcTemplate(datasource);
-    
-    ScanProfileHib persistentProfile = scanProfileService.find(1);
-    String testVal = template.queryForObject("SELECT id AS id FROM RegExpHib", (rs, rowNum) -> {
-      return rs.getString("id");
-    });
+    //3. Check removing 
+    scanProfileService.remove(persistentProfile);
+    Query query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id");
+    query.setParameter("id", profile.getId());
+    assertEquals(query.getResultList().size(), 0);
     
   }
   

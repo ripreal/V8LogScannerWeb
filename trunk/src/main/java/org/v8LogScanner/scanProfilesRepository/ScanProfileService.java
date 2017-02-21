@@ -18,13 +18,11 @@ public class ScanProfileService implements IScanProfileService {
     this.repository = repository;
   }
   
-  @Override
   @Transactional
   public void add(ScanProfileHib profile) {
     repository.add(profile);
   }
-
-  @Override
+  
   public void remove(ScanProfileHib profile) {
     repository.remove(profile);
   }
