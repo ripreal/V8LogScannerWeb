@@ -1,5 +1,6 @@
 package org.v8LogScanner.genericRepository;
 
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
+
+import ch.qos.logback.core.subst.Token.Type;
+import net.bytebuddy.description.type.TypeDescription.Generic;
 
 @Repository
 @EnableTransactionManagement
@@ -19,46 +24,36 @@ public class HibernateRepository <T> implements DataRepository<T> {
   
   @Autowired
   private SessionFactory sessionFactory;
-  
   private List<T> cached_data = new ArrayList<T>();
-  
   private final int CACHE_LIMIT = 10;
   
   public HibernateRepository(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
-  
-  private Session currentSession() {
-    return sessionFactory.getCurrentSession();
-  }
-  
-  @Override
+    
   public void add(T data) {
     currentSession().save(data);
     updateCache(data);
   }
 
-  @Override
   public void remove(T data) {
     currentSession().remove(data);
     removeCache(data);
   }
 
-  @Override
   public void update(T data) {
     currentSession().update(data);
     updateCache(data);
   }
 
-  @Override
   public List<T> query(QuerySpecification<T> specification) {
     
     List<T> result = new ArrayList<>();
     
-    //for (T object : cached_data) {
-    //  if (specification.specified(object))
-    //    result.add(object);
-    //}
+    for (T object : cached_data) {
+      if (specification.specified(object))
+        result.add(object);
+    }
     
     if (result.size() == 0) {
       EntityManagerFactory entityManager = currentSession().getEntityManagerFactory();
@@ -73,6 +68,10 @@ public class HibernateRepository <T> implements DataRepository<T> {
     }
 
     return result;
+  }
+  
+  public void resetCache() {
+    cached_data.clear();
   }
   
   private void saveCache(List<T> data) {
@@ -92,4 +91,8 @@ public class HibernateRepository <T> implements DataRepository<T> {
     if (cached_data.size() < CACHE_LIMIT)
       cached_data.add(data);
   }
+  
+  private Session currentSession() {
+    return sessionFactory.getCurrentSession();
+  }  
 }

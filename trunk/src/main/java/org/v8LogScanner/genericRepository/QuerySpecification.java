@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 public interface QuerySpecification<T> {
   
-  boolean specified(T profile);
+  boolean specified(T object);
   
   public CriteriaQuery<T> toCriteria(CriteriaBuilder builder);
   

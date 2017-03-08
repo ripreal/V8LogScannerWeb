@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.rgx.RegExp;
+import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.rgx.ScanProfile.DateRanges;
@@ -28,57 +29,44 @@ import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 
 @Entity
 @Table
-public class ScanProfileHib {
+public class ScanProfileHib implements ScanProfile{
 
   private static final long serialVersionUID = -5587558849570472552L;
-  
   @Id
   @GeneratedValue(generator="increment")
   @GenericGenerator(name="increment", strategy = "increment")
   private int id;
-  
   @Column
   private String name;
-  
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name="logpaths", 
     joinColumns=@JoinColumn(name="profile_id"))
   @Column(name="path")
   private List<String> logpaths = new ArrayList<>();
-  
   @Enumerated(EnumType.STRING)
   @Column
   private DateRanges dateRange  = DateRanges.ANY;
-  
   @Column(name="evlimit")
   private int limit = 100; // restriction up on amount of events  from
-  
   @Enumerated(EnumType.STRING)
   @Column
   private LogTypes logType = LogTypes.ANY;
-  
   @Enumerated(EnumType.STRING)
   @Column
   private PropTypes sortingProp = PropTypes.ANY;
-  
   @Enumerated(EnumType.STRING)
   @Column
   private GroupTypes groupType = GroupTypes.BY_PROPS;
-  
   @OneToMany(mappedBy="profile", 
       fetch = FetchType.EAGER, 
       cascade={CascadeType.ALL})
   private List<RegExpHib> rgxList = new ArrayList<>();
-
   @Column
   private String rgxExp = "";
-  
   @Column
   private RgxOpTypes rgxOp = RgxOpTypes.CURSOR_OP;
-  
   @Column
   private String userStartDate = "";
- 
   @Column
   private String userEndDate = "";
   
@@ -107,24 +95,21 @@ public class ScanProfileHib {
   public GroupTypes getGroupType() {return groupType;}
   public void setGroupType(GroupTypes groupType) { this.groupType = groupType;}
   
-
-  public List<RegExpHib> getRgxList() {
-    //List<RegExp>unwrapped = new ArrayList<>();
-    //rgxList.forEach(rgx -> unwrapped.add(rgx.unwrap()));
-    //return unwrapped;
-    return rgxList;
+  public List<RegExp> getRgxList() {
+    List<RegExp>unwrapped = new ArrayList<>();
+    rgxList.forEach(rgx -> unwrapped.add(rgx));
+        
+    return unwrapped;
   }
-  public void setRgxList(List<RegExpHib> rgxList) {
-   // this.rgxList.clear();
-    this.rgxList = rgxList;
-    //
-   
+  public void setRgxList(List<RegExp> rgxList) {
+    this.rgxList.clear();
+    rgxList.forEach(rgx -> this.rgxList.add((RegExpHib)rgx));
   }
 
   public void addRegExp(RegExp regExp) {
-    RegExpHib hib = new RegExpHib(regExp);
-    rgxList.add(hib);
-    hib.setProfile(this);
+    RegExpHib rgx = new RegExpHib(regExp.getEventType());
+    rgxList.add(rgx);
+    rgx.setProfile(this);
   }
   
   public String getRgxExp() {return rgxExp;}
@@ -139,5 +124,9 @@ public class ScanProfileHib {
     this.userEndDate = userEndDate;
   }
 
-  
+  @Override
+  public void setId() {
+    // TODO Auto-generated method stub
+    
+  }
 }

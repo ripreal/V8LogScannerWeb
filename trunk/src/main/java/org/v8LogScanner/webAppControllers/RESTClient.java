@@ -16,6 +16,7 @@ import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
+import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
 import org.v8LogScanner.logs.LogsOperations;
 
 @RestController
@@ -23,12 +24,24 @@ import org.v8LogScanner.logs.LogsOperations;
 public class RESTClient {
   
   @Autowired
+  private IScanProfileService scanProfileService;
+  @Autowired
   private ScanProfile profile;
   
   public RESTClient(ScanProfile profile){
     this.profile = profile;
   }
-
+  
+  @RequestMapping(value="/setProfile", method = RequestMethod.POST)
+  public ResponseEntity<Integer> setProfile(@RequestBody ScanProfile profile) {
+    
+    scanProfileService.add(profile);
+    
+    ResponseEntity<Integer> response = new ResponseEntity<>(profile.getId(), HttpStatus.OK);
+    
+    return response;
+  }
+  
   @RequestMapping(value="/groupTypes", method = RequestMethod.GET)
   public GroupTypes[] getAllGroupTypes() {
       return GroupTypes.values();
@@ -67,9 +80,9 @@ public class RESTClient {
     
     return new ResponseEntity<>(rgx.getPropsForFiltering(), HttpStatus.OK);
   }
-
+  
   @RequestMapping(value = "/startRgxOp", method = RequestMethod.POST)
   public void startRgxOp(@RequestBody String eventData ){
   }
-
+  
 }

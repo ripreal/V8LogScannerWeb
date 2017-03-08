@@ -1,12 +1,15 @@
 package org.v8LogScanner.scanProfilesRepository;
 
+import org.v8LogScanner.rgx.ScanProfile;
+
 public interface IScanProfileService {
   
-  public void add(ScanProfileHib profile);
-  public void remove(ScanProfileHib profile);
-  public void update(ScanProfileHib profile); // Think it as replace for set
+  public void add(ScanProfile profile);
+  public void remove(ScanProfile profile);
+  public void update(ScanProfile profile);
+  public void resetCache();
   
-  public ScanProfileHib find(ScanProfileHib profile);
-  public ScanProfileHib find(int id);
+  public ScanProfile find(ScanProfile profile);
+  public ScanProfile find(int id);
   
 }

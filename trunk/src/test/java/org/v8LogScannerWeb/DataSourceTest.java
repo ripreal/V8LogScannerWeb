@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,7 @@ import org.v8LogScanner.appConfig.RootConfig;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
+import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.rgx.ScanProfile.DateRanges;
 import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 import org.v8LogScanner.rgx.ScanProfile.LogTypes;
@@ -43,16 +45,10 @@ public class DataSourceTest {
   
   @Autowired
   private DataSource datasource;
-
   @Autowired
   private SessionFactory sessionFactory;
-  
   @Autowired
   private IScanProfileService scanProfileService;
-  
-  @Before
-  public void setup() {
-  }
   
   @Test
   public void dataSourceShouldNotBeNull() {
@@ -90,13 +86,12 @@ public class DataSourceTest {
     }
   }
   
-  @SuppressWarnings("rawtypes")
   @Test
   @Transactional
   public void testScanProfilePersistence() {
     
     // 1. check adding 
-    ScanProfileHib profile = new ScanProfileHib();
+    ScanProfile profile = new ScanProfileHib();
     profile.setName("test profile");
     profile.getLogPaths().add("c://share");
     profile.getLogPaths().add("c://share2");
@@ -114,7 +109,9 @@ public class DataSourceTest {
     scanProfileService.add(profile);
     
     // 2. check finding
-    ScanProfileHib persistentProfile = scanProfileService.find(profile);
+    scanProfileService.resetCache();
+    ScanProfile persistentProfile = scanProfileService.find(profile);
+   
     assertArrayEquals(profile.getLogPaths().toArray(new String[0]), persistentProfile.getLogPaths().toArray(new String[0]));
     assertEquals(DateRanges.LAST_HOUR, persistentProfile.getDateRange());
     assertEquals(10, persistentProfile.getLimit());
@@ -125,29 +122,15 @@ public class DataSourceTest {
     assertEquals(RgxOpTypes.USER_OP, persistentProfile.getRgxOp());
     assertArrayEquals(new String[]{"16010123", "16020224"}, persistentProfile.getUserPeriod());
     
-    RegExpHib rgx = persistentProfile.getRgxList().get(0);
-   // assertEquals(EventTypes.CONN, rgx.getEventType());
+    RegExp rgx = persistentProfile.getRgxList().get(0);
+    assertEquals(EventTypes.CONN, rgx.getEventType());
     
-    scanProfileService.find(profile);
-    // 3. check caching
-    
-    // 4. check deleting
-    //scanProfileService.remove(persistentProfile);
-    //Query query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id");
-    //query.setParameter("id", profile.getId());
-    //assertEquals(query.getResultList().size(), 0);
-    
-  }
-  
-  @Test
-  @Transactional
-  public void testMethod() {
-    JdbcTemplate template = new JdbcTemplate(datasource);
-    
-    ScanProfileHib persistentProfile = scanProfileService.find(1);
-    String testVal = template.queryForObject("SELECT id AS id FROM RegExpHib", (rs, rowNum) -> {
-      return rs.getString("id");
-    });
+    // 3. check deleting
+    scanProfileService.remove(persistentProfile);
+    Query<ScanProfileHib> query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id", 
+        ScanProfileHib.class);
+    query.setParameter("id", profile.getId());
+    assertEquals(0, query.getResultList().size());
     
   }
   

@@ -24,7 +24,6 @@ public class FilterHib {
   @GeneratedValue(generator="increment")
   @GenericGenerator(name="increment", strategy = "increment")
   private int id;
-  
   private Filter<String> filter;
   
   public FilterHib() {

@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS logpaths (
 CREATE TABLE IF NOT EXISTS regexphib (
   profile_id int NOT NULL,
   id int NOT NULL PRIMARY KEY,
+  eventtype VARCHAR(100) NULL,
   CONSTRAINT fk_regexp FOREIGN KEY (profile_id) REFERENCES ScanProfileHib(id)
 );
 

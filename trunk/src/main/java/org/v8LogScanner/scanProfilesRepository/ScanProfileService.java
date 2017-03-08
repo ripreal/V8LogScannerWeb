@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.v8LogScanner.genericRepository.DataRepository;
 import org.v8LogScanner.genericRepository.QuerySpecification;
+import org.v8LogScanner.rgx.ScanProfile;
 
 @Service
 @Transactional
@@ -18,32 +19,32 @@ public class ScanProfileService implements IScanProfileService {
     this.repository = repository;
   }
   
-  @Override
-  @Transactional
-  public void add(ScanProfileHib profile) {
-    repository.add(profile);
+  public void add(ScanProfile profile) {
+    repository.add((ScanProfileHib) profile);
   }
 
-  @Override
-  public void remove(ScanProfileHib profile) {
-    repository.remove(profile);
+  public void remove(ScanProfile profile) {
+    repository.remove((ScanProfileHib)profile);
   }
 
-  @Override
-  public void update(ScanProfileHib profile) {
-    repository.update(profile);
+  public void update(ScanProfile profile) {
+    repository.update((ScanProfileHib)profile);
   }
   
-  public ScanProfileHib find(ScanProfileHib profile) {
-    return find(profile.getId());
+  public ScanProfile find(ScanProfile profile) {
+    return (ScanProfile) find(profile.getId());
   }
   
-  public ScanProfileHib find(int id) {
+  public ScanProfile find(int id) {
     QuerySpecification<ScanProfileHib> spec = new ScanProfileSpecByID(id);
     List<ScanProfileHib> profiles = repository.query(spec);
     if (profiles.size() > 0)
-      return profiles.get(0);
+      return (ScanProfile) profiles.get(0);
     else
       return null;
+  }
+  
+  public void resetCache() {
+    repository.resetCache();
   }
 }
