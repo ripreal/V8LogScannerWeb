@@ -29,7 +29,11 @@ import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 
 @Entity
 @Table
+<<<<<<< HEAD
 public class ScanProfileHib implements ScanProfile{
+=======
+public class ScanProfileHib implements ScanProfile {
+>>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
 
   private static final long serialVersionUID = -5587558849570472552L;
   @Id
@@ -79,7 +83,10 @@ public class ScanProfileHib implements ScanProfile{
   public void setLogPaths(List<String> logpaths) {this.logpaths = logpaths;}
   
   public int getId() {return id;}
-
+  public void setId() {
+    // intentionally left blank
+  }
+  
   public DateRanges getDateRange() {return dateRange;}
   public void setDateRange(DateRanges dateRange) {this.dateRange = dateRange;}
   
@@ -97,13 +104,21 @@ public class ScanProfileHib implements ScanProfile{
   
   public List<RegExp> getRgxList() {
     List<RegExp>unwrapped = new ArrayList<>();
+<<<<<<< HEAD
     rgxList.forEach(rgx -> unwrapped.add(rgx));
         
+=======
+    rgxList.forEach(rgx -> unwrapped.add(rgx.unwrap()));
+>>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
     return unwrapped;
   }
   public void setRgxList(List<RegExp> rgxList) {
     this.rgxList.clear();
+<<<<<<< HEAD
     rgxList.forEach(rgx -> this.rgxList.add((RegExpHib)rgx));
+=======
+    rgxList.forEach(rgx -> this.rgxList.add(new RegExpHib(rgx)));
+>>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
   }
 
   public void addRegExp(RegExp regExp) {
