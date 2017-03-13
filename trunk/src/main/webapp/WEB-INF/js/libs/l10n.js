@@ -1367,6 +1367,7 @@
 
   function loadINI(url, callback) {
     var ctx = this.ctx;
+    // ripreal: fix problem with sync requests
     io.load(url, function(err, source) {
       var pos = ctx.resLinks.indexOf(url);
 

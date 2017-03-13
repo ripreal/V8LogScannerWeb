@@ -33,12 +33,9 @@ public class RESTClient {
   }
   
   @RequestMapping(value="/setProfile", method = RequestMethod.POST)
-  public ResponseEntity<Integer> setProfile(@RequestBody ScanProfile profile) {
-    
-    scanProfileService.add(profile);
-    
-    ResponseEntity<Integer> response = new ResponseEntity<>(profile.getId(), HttpStatus.OK);
-    
+  public ResponseEntity<Integer> setProfile(@RequestBody TestProfile profile) {
+    //scanProfileService.add(profile);
+    ResponseEntity<Integer> response = new ResponseEntity<>(1, HttpStatus.OK);
     return response;
   }
   
@@ -81,8 +78,9 @@ public class RESTClient {
     return new ResponseEntity<>(rgx.getPropsForFiltering(), HttpStatus.OK);
   }
   
-  @RequestMapping(value = "/startRgxOp", method = RequestMethod.POST)
-  public void startRgxOp(@RequestBody String eventData ){
+  @RequestMapping(value = "/startRgxOp", method = RequestMethod.GET)
+  public ResponseEntity<Boolean>  startRgxOp(){
+    return new ResponseEntity<>(true, HttpStatus.OK);
   }
   
 }

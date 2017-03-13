@@ -20,7 +20,9 @@ import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
 import org.v8LogScanner.webAppControllers.RESTClient;
+import org.v8LogScanner.webAppControllers.TestProfile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -76,18 +78,34 @@ public class RESTClientTest {
   @Test
   public void testStartRgxOp() throws Exception {
     
-    ScanProfileHib profile = new ScanProfileHib();
+    RESTClient client = new RESTClient(profile);
+    
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
+    mockMvc.perform(get("/startRgxOp")
+      .accept(MediaType.APPLICATION_JSON))
+      .andExpect(status().isOk());
+    
+  }
+  
+  @Test
+  public void testSetProfile() throws Exception {
+    
+    TestProfile tprofile = new TestProfile();
+    tprofile.id = 2;
     
     ObjectMapper mapper = new ObjectMapper();
     mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
     ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-    String requestJson=ow.writeValueAsString(profile);
+    String requestJson=ow.writeValueAsString(tprofile);
     
-    RESTClient client = mock(RESTClient.class);
+    RESTClient client = new RESTClient(profile);
+    
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
-    mockMvc.perform(post("/startRgxOp")
-        .contentType(MediaType.APPLICATION_JSON).content(requestJson)
-        .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+    mockMvc.perform(post("/setProfile")
+      .contentType(MediaType.APPLICATION_JSON)
+      .content(requestJson)      
+      .accept(MediaType.APPLICATION_JSON))
+      .andExpect(status().isOk());
     
   }
 }

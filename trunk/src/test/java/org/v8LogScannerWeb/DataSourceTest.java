@@ -62,8 +62,6 @@ public class DataSourceTest {
   @Autowired
   private IScanProfileService scanProfileService;
   
-<<<<<<< HEAD
-=======
   @Value(value = "classpath:schema.sql")
   private Resource schemasql;
   
@@ -86,8 +84,7 @@ public class DataSourceTest {
     template.execute(s);
     */
   }
-  
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
+
   @Test
   public void dataSourceShouldNotBeNull() {
     assertNotNull(datasource);
@@ -145,17 +142,9 @@ public class DataSourceTest {
     profile.addRegExp(new RegExp(EventTypes.DBMSSQL));
     scanProfileService.add(profile);
     
-<<<<<<< HEAD
     // 2. check finding
     scanProfileService.resetCache();
     ScanProfile persistentProfile = scanProfileService.find(profile);
-=======
-    // 2/ check finding
-    // we use native query because of caching
-    Query<ScanProfileHib> queryProf= sessionFactory.getCurrentSession().createNativeQuery("SELECT TOP 1 * FROM ScanProfileHib ORDER BY ID DESC", 
-      ScanProfileHib.class);
-    ScanProfileHib persistentProfile = queryProf.getResultList().get(0);
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
    
     assertArrayEquals(profile.getLogPaths().toArray(new String[0]), persistentProfile.getLogPaths().toArray(new String[0]));
     assertEquals(DateRanges.LAST_HOUR, persistentProfile.getDateRange());
@@ -169,24 +158,14 @@ public class DataSourceTest {
     
     RegExp rgx = persistentProfile.getRgxList().get(0);
     assertEquals(EventTypes.CONN, rgx.getEventType());
-    
-<<<<<<< HEAD
+
     // 3. check deleting
     scanProfileService.remove(persistentProfile);
     Query<ScanProfileHib> query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id", 
         ScanProfileHib.class);
     query.setParameter("id", profile.getId());
     assertEquals(0, query.getResultList().size());
-=======
-    //3. Check removing 
-    scanProfileService.remove(persistentProfile);
-    Query query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id");
-    query.setParameter("id", profile.getId());
-    assertEquals(query.getResultList().size(), 0);
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
-    
   }
-  
 }
 
 

@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function() {
     constructor(){
       this._currentPage = "";
       this._pageFrame = $("#frame-content");    
-      this._lang = "en-US";      
+      this._lang = "en-GB";      
     }
 
     set currentPage(firedMenuItem) {

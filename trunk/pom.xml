@@ -55,7 +55,7 @@
       <artifactId>hsqldb</artifactId>
     </dependency>
   </dependencies>
-    
+      
   <build>
     <plugins>
       <plugin>
@@ -98,7 +98,7 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
-    <!--   
+        <!--   
     <repository>
       <id>v8LogScannerRepo</id>
       <name>v8LogScannerRepo</name>

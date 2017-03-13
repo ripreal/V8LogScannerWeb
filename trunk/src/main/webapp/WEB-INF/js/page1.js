@@ -133,6 +133,17 @@ $(window).ready(() => {
   })
   .css("height", "27px");  
     
+  test$ = $("#testButton");
+  test$.click(function()  {
+    let t2 = JSON.stringify({id: 345});
+    $.ajax(
+    {
+      url: "/setProfile",
+      data: "{id:345"}",
+      contentType: "application/json", 
+      complete: function(xhr, status) { alert("ok!");}      
+    }
+  
 });
 
 

@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.v8LogScanner.rgx.ScanProfile;
+import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
 
 @Configuration
@@ -12,7 +13,8 @@ public class LogScannerConfig {
   
   @Bean
   public ScanProfile profile(){
-    //ScanProfile profile = new ScanProfileHib();
-    return null;
+    ScanProfile profile = new ScanProfileHib();
+    profile.setRgxOp(RgxOpTypes.CURSOR_OP);
+    return profile;
   }
 }

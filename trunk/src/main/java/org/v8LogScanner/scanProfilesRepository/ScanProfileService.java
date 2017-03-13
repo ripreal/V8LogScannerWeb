@@ -19,24 +19,14 @@ public class ScanProfileService implements IScanProfileService {
     this.repository = repository;
   }
   
-<<<<<<< HEAD
   public void add(ScanProfile profile) {
     repository.add((ScanProfileHib) profile);
   }
 
   public void remove(ScanProfile profile) {
     repository.remove((ScanProfileHib)profile);
-=======
-  @Transactional
-  public void add(ScanProfileHib profile) {
-    repository.add(profile);
   }
-  
-  public void remove(ScanProfileHib profile) {
-    repository.remove(profile);
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
-  }
-
+    
   public void update(ScanProfile profile) {
     repository.update((ScanProfileHib)profile);
   }

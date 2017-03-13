@@ -1,10 +1,8 @@
 package org.v8LogScanner.genericRepository;
 
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,10 +11,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
-
-import ch.qos.logback.core.subst.Token.Type;
-import net.bytebuddy.description.type.TypeDescription.Generic;
 
 @Repository
 @EnableTransactionManagement
@@ -30,42 +24,22 @@ public class HibernateRepository <T> implements DataRepository<T> {
   public HibernateRepository(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
-<<<<<<< HEAD
-    
-=======
-  
-  private Session currentSession() {
-    return sessionFactory.getCurrentSession();
-  }
-  
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
+
   public void add(T data) {
     currentSession().save(data);
     updateCache(data);
   }
-<<<<<<< HEAD
-
-=======
   
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
   public void remove(T data) {
     currentSession().remove(data);
     removeCache(data);
   }
-<<<<<<< HEAD
-
-=======
   
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
   public void update(T data) {
     currentSession().update(data);
     updateCache(data);
   }
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
   public List<T> query(QuerySpecification<T> specification) {
     
     List<T> result = new ArrayList<>();
@@ -111,12 +85,9 @@ public class HibernateRepository <T> implements DataRepository<T> {
     if (cached_data.size() < CACHE_LIMIT)
       cached_data.add(data);
   }
-<<<<<<< HEAD
   
   private Session currentSession() {
     return sessionFactory.getCurrentSession();
   }  
-=======
 
->>>>>>> 84e0f952ef4134359f3a7cb6a5598a9e918a653f
 }
