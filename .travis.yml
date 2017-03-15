@@ -1,5 +1,6 @@
 language: java
 jdk:
   - oraclejdk8
+before_script: cd trunk
 before_install: cd trunk
 script: mvn test -B

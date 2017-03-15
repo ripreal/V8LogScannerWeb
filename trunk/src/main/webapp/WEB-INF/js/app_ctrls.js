@@ -599,10 +599,8 @@ $.fn.eventFilter = function() {
   });
   
   buildDefault();
-    
+
 };
-  
-}
 
 
 

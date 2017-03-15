@@ -137,7 +137,6 @@ $(window).ready(() => {
   test$.click(function()  {
     let profile = new ScanProfile();
     profile.id = 2;
-    
     let t2 = JSON.stringify({"id": 345});
     $.ajax({
       url: "/setProfile",
