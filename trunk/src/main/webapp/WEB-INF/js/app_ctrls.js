@@ -601,8 +601,8 @@ $.fn.eventFilter = function() {
   buildDefault();
     
 };
-
-
+  
+}
 
 
 

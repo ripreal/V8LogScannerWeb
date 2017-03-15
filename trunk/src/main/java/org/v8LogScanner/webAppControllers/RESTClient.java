@@ -17,6 +17,7 @@ import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
+import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
 import org.v8LogScanner.logs.LogsOperations;
 
 @RestController
@@ -33,7 +34,7 @@ public class RESTClient {
   }
   
   @RequestMapping(value="/setProfile", method = RequestMethod.POST)
-  public ResponseEntity<Integer> setProfile(@RequestBody TestProfile profile) {
+  public ResponseEntity<Integer> setProfile(@RequestBody ScanProfileHib profile) {
     //scanProfileService.add(profile);
     ResponseEntity<Integer> response = new ResponseEntity<>(1, HttpStatus.OK);
     return response;

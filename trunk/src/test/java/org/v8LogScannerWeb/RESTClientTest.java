@@ -19,6 +19,7 @@ import org.v8LogScanner.appConfig.RootConfig;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
+import org.v8LogScanner.webAppControllers.ITestProfile;
 import org.v8LogScanner.webAppControllers.RESTClient;
 import org.v8LogScanner.webAppControllers.TestProfile;
 
@@ -90,13 +91,13 @@ public class RESTClientTest {
   @Test
   public void testSetProfile() throws Exception {
     
-    TestProfile tprofile = new TestProfile();
-    tprofile.id = 2;
+    ScanProfile tPtofile = new ScanProfileHib();
+    
     
     ObjectMapper mapper = new ObjectMapper();
     mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
     ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-    String requestJson=ow.writeValueAsString(tprofile);
+    String requestJson = ow.writeValueAsString(tPtofile);
     
     RESTClient client = new RESTClient(profile);
     

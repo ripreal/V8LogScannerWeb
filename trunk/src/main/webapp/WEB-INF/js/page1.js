@@ -135,15 +135,21 @@ $(window).ready(() => {
     
   test$ = $("#testButton");
   test$.click(function()  {
-    let t2 = JSON.stringify({id: 345});
-    $.ajax(
-    {
+    let profile = new ScanProfile();
+    profile.id = 2;
+    
+    let t2 = JSON.stringify({"id": 345});
+    $.ajax({
       url: "/setProfile",
-      data: "{id:345"}",
+      data: profile,
       contentType: "application/json", 
-      complete: function(xhr, status) { alert("ok!");}      
-    }
-  
+      complete: function(xhr, status) { 
+        alert("ok!");
+      },
+      method: "POST"
+    });
+    
+  });  
 });
 
 

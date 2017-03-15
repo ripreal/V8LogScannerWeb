@@ -36,7 +36,8 @@ window.addEventListener('DOMContentLoaded', function() {
     constructor(){
       this._currentPage = "";
       this._pageFrame = $("#frame-content");    
-      this._lang = "en-GB";      
+      this._lang = "en-US";   
+      
     }
 
     set currentPage(firedMenuItem) {
@@ -70,7 +71,8 @@ window.addEventListener('DOMContentLoaded', function() {
     translateContent(){
       // Delay firing translation after elements refreshing  
       window.setTimeout(() => {
-        $("*[data-text]").translate();      
+        let elements$ = $("*[data-text]");
+        elements$.translate();      
         $(this._pageFrame).
           contents().
           find("*[data-text]").
