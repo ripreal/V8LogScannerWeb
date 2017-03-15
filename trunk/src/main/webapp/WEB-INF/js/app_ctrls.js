@@ -48,8 +48,7 @@ $.fn.loadOptions = function(queryParams,  callback) {
     
   $.get(path, queryParams, (data, status) => {
     let optionsList = [];
-    for (let i = 0; i < data.length; i++){
-      
+    for (let i = 0; i < data.length; i++){      
       optionsList[i] = `<option>${data[i]}</option>`;
     }
     let optionsLine = optionsList.join("\n");
@@ -77,7 +76,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
   updateSourceAsLink(source, request_data, isInitialize = false){
     
     if (typeof source != "string"){
-      throw new Error("source cannot be a other than string!");
+      throw new Error("source cannot be other than string!");
     }
     
     let resp = $.get(source, (data, status) => {
@@ -448,6 +447,8 @@ $.widget( "custom.dtTable", {
   }
 });   
 
+// WIDGET FOR REF BUTTON
+
 $.fn.refButton = function(name, width) {  
   this.attr("href", "#").attr("class", "dtTable-button").html(name);  
   if (width) {
@@ -455,6 +456,9 @@ $.fn.refButton = function(name, width) {
   };
   return this;
 }
+
+
+// WIDGET FOR DROP DOWN MENU
 
 $.fn.dropdownMenu = function(path, width, select_callback) {
   
@@ -478,6 +482,9 @@ $.fn.dropdownMenu = function(path, width, select_callback) {
   });
   return this;
 };
+
+
+// WIDGET FOR EVENT FILTER MENU
 
 $.fn.eventFilter = function() {
   
@@ -600,6 +607,58 @@ $.fn.eventFilter = function() {
   
   buildDefault();
 
+};
+
+// WIDGET FOR DIALOG
+
+$.modalDialog = function(options) {
+  
+  var settings = $.extend ({
+    title: "Default title",
+    inputName: "default input",
+    inputMenu: ["default item"],
+    tip: "input value",
+    click_ok: null,    
+  }, options || {});    
+  
+  var element = $('<div id="modalDialog" title=""></div>');
+  
+  let t1 = element
+  .attr("title", settings.title)
+  .append("<p>")  
+  .html(`${settings.inputName}:<input id='dialogInput1'/>`)
+  
+  element.find("#dialogInput1")  
+  .autocomplete({          
+    minLength: 0,
+    options: {minLength: 0}})
+  .autocomplete("build", settings.tip, settings.inputMenu);
+    
+  var dialog = element.dialog({
+	autoOpen: false,
+	width: 330,
+	buttons: [
+		{
+			text: "Ok",
+			click: function(event) {
+        event.preventDefault();
+        let this$ = $(this);
+        let val = this$.find("#dialogInput1").val();
+        if (settings.click_ok != null) {
+          settings.click_ok.call(this, event, val);
+        }
+        dialog.dialog("close");
+			}
+		},
+		{
+			text: "Cancel",
+			click: function(event) {
+        event.preventDefault();
+				$( this ).dialog( "close" );
+			}
+		}
+	]})  
+  dialog.dialog( "open" ); 
 };
 
 

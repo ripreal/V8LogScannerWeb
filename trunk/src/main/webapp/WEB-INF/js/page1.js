@@ -41,21 +41,14 @@ $(window).ready(() => {
     $(currRow.Path).autocomplete("updateSourceAsLink", $.createLink(currRow.Server.val(), "/scanLogPaths"),{});    
   })
   .dtTable("addCommand", "Add All logs from cfg file", () => {	
-    let dil = $( "#cfg_dialog" );
-    dil.dialog( "open" );
-  });
-  
-  // DIALOG FOR ADDING ALL LOGS FROM CFG
-  $( "#cfg_dialog" ).dialog({
-	autoOpen: false,
-	width: 330,
-	buttons: [
-		{
-			text: "Ok",
-			click: function(event) {
+    $.modalDialog({
+      title: "Adding ogs from *.logcfg file",
+      inputName: "server",
+      inputMenu: ["127.0.0.1"],
+      click_ok: function(event, value) {
         event.preventDefault();
         let this$ = $(this);
-        let inputServer = this$.find("#cfg_dialog_server").val();
+        let inputServer = value;
         logPathsTable$.dtTable("removeAll");
         $.get($.createLink(inputServer, "/scanLogPaths"), (data, status) => {
           for (let i = 0; i < data.length; i++){
@@ -65,24 +58,11 @@ $(window).ready(() => {
           };	
         })
         .always(() => this$.dialog("close"));        
-			}
-		},
-		{
-			text: "Cancel",
-			click: function(event) {
-        event.preventDefault();
-				$( this ).dialog( "close" );
-			}
-		}
-	]})
-  .find("#cfg_dialog_server")
-  .autocomplete({          
-    minLength: 0,
-    options: {minLength: 0},
-  })
-  .autocomplete("build", "IP or computer name", [localhost]);
-  
-  // 2. ADD EVENT FILTERS
+			}       
+    });
+  });
+
+  // 2. BUTTONS
   
   $( "#AddEvent" ).button({
     icon: "ui-icon-plusthick",
@@ -106,6 +86,29 @@ $(window).ready(() => {
   .click( function(event){
     $(".event-filter-block:last").remove();    
   });  
+  
+  //   
+  $( "#SaveProfile" ).button({
+    icon: "ui-icon-caret-1-n",
+    showLabel: true
+  })
+  .click( function(event){
+    $.modalDialog({
+      title: "Saving current profile",
+      inputName: "profile name",
+      inputMenu: ["my profile1"],
+      click_ok: function(){alert("ok");}        
+    });     
+  })
+  .find("span.ui-icon")  
+  .css({"background-image": "url(\"/img/icons/save.png\")"});
+  
+  $( "#ResetAll" ).button({
+    showLabel: true
+  })
+  .click( function(event){
+    $.modalDialog();     
+  })
   
   // 3. START
   

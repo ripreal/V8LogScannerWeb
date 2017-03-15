@@ -23,7 +23,7 @@ div.paragraph-caption{
 span.paragraph-tooltip {
   float: right;
   padding: 0px 4px;
-  cursor: pointer;
+  cursor: help;
   color: lightslategray;
 }
 
@@ -167,9 +167,12 @@ input.standart-input {
   background: green !important;
 }
 
+.ordinaryButton {
+  background: cadetblue !important;
+}
+
 .logContainer {
-  border: solid 2px darkgray;
-  
+  border: solid 2px darkgray;  
 }
 
 .inlineBlock {
@@ -177,11 +180,12 @@ input.standart-input {
   margin-right: 5px;
 }
 
-.testimg {
-  background-image: url(/img/icons/save.png);
-  background-repeat: no-repeat;
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  min-height: 48px;
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.buttonPanel {
+  height: 40px;
+  border-bottom: 1px groove
 }

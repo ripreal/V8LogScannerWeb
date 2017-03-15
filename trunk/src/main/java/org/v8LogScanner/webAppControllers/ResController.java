@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ResController {
+  
   //////////////
   // CSS FILES 
   //////////////
@@ -19,6 +20,7 @@ public class ResController {
   //////////////
   // JS FILES 
   //////////////
+  
   @RequestMapping(value="/js/libs/jquery-3.1.1.js", method = RequestMethod.GET)
   public String jqueryJS(){
     return "/js/libs/jquery-3.1.1.js";
@@ -48,6 +50,12 @@ public class ResController {
   public String page1JS(){
     return "/js/page1.js";
   }
+  
+  @RequestMapping(value="/js/profiles.js", method = RequestMethod.GET)
+  public String profilesJS(){
+    return "/js/profiles.js";
+  }
+  
   //////////////
   // IMG FILES 
   //////////////
@@ -60,6 +68,11 @@ public class ResController {
   @RequestMapping(value="/css/images/{filename:.+}", method = RequestMethod.GET)
   public String cssImg(@PathVariable String filename){
     return "/css/images/" + filename;
+  }
+  
+  @RequestMapping(value="/img/icons/{filename:.+}", method = RequestMethod.GET)
+  public String iconsImg(@PathVariable String filename){
+    return "/img/icons/" + filename;
   }
 
   //////////////

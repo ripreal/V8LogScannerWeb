@@ -106,3 +106,7 @@ a.active {
     color: #ffffff;
 }
 
+button:active {
+    opacity: .7;
+    transition-duration: 0.2s;
+}

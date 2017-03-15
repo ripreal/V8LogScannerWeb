@@ -272,8 +272,9 @@
 .ui-button,
 .ui-button:link,
 .ui-button:visited,
+.ui-button:active,
 .ui-button:hover,
-.ui-button:active {
+ {
 	text-decoration: none;
 }
 
@@ -946,14 +947,14 @@ a:visited.ui-button,
 	color: #ffffff;
 	text-decoration: none;
 }
+
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
 .ui-widget-header .ui-state-hover,
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus,
-.ui-button:hover,
-.ui-button:focus {
+.ui-button:hover {
 	border: 1px solid #59b4d4;
 	background: #0078a3 url("images/ui-bg_glass_40_0078a3_1x400.png") 50% 50% repeat-x !important;;
 	font-weight: bold;
@@ -979,8 +980,6 @@ a.ui-button:focus {
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active,
-a.ui-button:active,
-.ui-button:active,
 .ui-button.ui-state-active:hover {
 	border: 1px solid #ffaf0f;
 	background: #f58400 url("images/ui-bg_inset-soft_30_f58400_1x100.png") 50% 50% repeat-x;
@@ -1075,11 +1074,9 @@ a.ui-button:active,
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon,
 .ui-button:hover .ui-icon,
-.ui-button:focus .ui-icon {
-	background-image: url("images/ui-icons_ffffff_256x240.png");
-}
+
 .ui-state-active .ui-icon,
-.ui-button:active .ui-icon {
+.ui-icon {
 	background-image: url("images/ui-icons_222222_256x240.png");
 }
 .ui-state-highlight .ui-icon,
