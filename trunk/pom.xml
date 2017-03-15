@@ -98,13 +98,15 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
-        <!--   
+    
+    <!--  if you want a local repo  
     <repository>
       <id>v8LogScannerRepo</id>
       <name>v8LogScannerRepo</name>
       <url>file:///${project.basedir}/v8LogScanner/repo</url>
     </repository>
     -->
+    
     <repository>
       <id>v8LogScannerRepo</id>
       <name>v8LogScannerRepo</name>
