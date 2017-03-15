@@ -1,6 +1,6 @@
 language: java
 jdk:
   - oraclejdk8
-before_script: cd trunk
 before_install: cd trunk
+- chmod +x mvnw
 script: mvn test -B
