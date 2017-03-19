@@ -39,7 +39,7 @@ $.fn.translate = function(){
   return this;
 };
 
-// Applicable only for <select> tags
+// Applicable only for <select> tags with 'data-path param'
 $.fn.loadOptions = function(queryParams,  callback) {
   
   let path = this.attr("data-path");
@@ -623,7 +623,7 @@ $.modalDialog = function(options) {
   
   var element = $('<div id="modalDialog" title=""></div>');
   
-  let t1 = element
+  element
   .attr("title", settings.title)
   .append("<p>")  
   .html(`${settings.inputName}:<input id='dialogInput1'/>`)
@@ -645,7 +645,7 @@ $.modalDialog = function(options) {
         let this$ = $(this);
         let val = this$.find("#dialogInput1").val();
         if (settings.click_ok != null) {
-          settings.click_ok.call(this, event, val);
+          settings.click_ok.call(window, event, val);
         }
         dialog.dialog("close");
 			}
@@ -660,6 +660,77 @@ $.modalDialog = function(options) {
 	]})  
   dialog.dialog( "open" ); 
 };
+
+// WIDGET FOR DATE RANGE SET
+$.fn.dateRangeSet = function() {
+  
+    this.css("padding-bottom", "20px");
+    
+    $("<span>Period filter:</span>")
+    .addClass("ui-widget")
+    .addClass("betweenSpace")
+    .css("vertical-align", "middle")
+    .appendTo(this);
+  
+    // date range select
+    $('div.template.dateRangeMatcher')
+    .children()
+    .clone()
+    .appendTo(this)
+    .filter('select[name="selectorMatchType"]')         
+    .selectmenu({
+    width: "10em",
+    change: function(){
+      let t1 = $(this).siblings('input[name="dateRange1"]');
+      
+      autocomplete("inputMask");
+      
+    }})
+    .loadOptions(null, (this$) => {this$.selectmenu().selectmenu("refresh");})
+    .next()
+    .css("margin-right", "10px");
+    
+    // start date select
+    $('div.template.dateRange')
+    .children()
+    .clone()
+    .appendTo(this)
+  
+    // START & END DATE FIELDS
+    this.find('input[name="dateRange1"]').dateField({tip : "start of period"});
+    this.find('input[name="dateRange2"]').dateField({tip : "end of period"});
+
+};
+
+$.fn.dateField = function(options) {
+  
+  var settings = $.extend({
+    tip: "input date",
+  }, options || {});
+  
+  let this$ = this;
+  this$
+  .addClass("betweenSpace")
+  .addClass("standart-input");
+  
+  this$.on("focus", {"tip" : settings.tip}, function(event) {  
+    if (this$.hasClass("dtTable-field-inactive")){
+      this$.val("");
+      this$.removeClass("dtTable-field-inactive");
+      this$.trigger("focus");
+    }    
+  });
+  
+  this$.on("blur",{"tip" : settings.tip}, function(event) {
+    if (this$.val() == ""){
+      this$.addClass("dtTable-field-inactive");
+      this$.val(event.data.tip);
+    }
+  });
+  
+  this$.trigger("blur");
+  
+}
 
 
 

@@ -20,12 +20,13 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // Page initialization 
     window.project = new Project();
-    project.prepareOnResize();    
+    window.project.prepareOnResize();    
  
     // Build elements
-    $("#left-menu-list").leftMenu().leftMenu("buildLeftMenu");
-    $(".w3-lang > button").langButton().langButton("build");
-   
+    window.project.pageFrame.ready(() => {
+      $("#left-menu-list").leftMenu().leftMenu("buildLeftMenu");
+      $(".w3-lang > button").langButton().langButton("build");
+    });
     // Subscription to the events
     $(window).resize(() => window.project.prepareOnResize());
   }
@@ -34,10 +35,9 @@ window.addEventListener('DOMContentLoaded', function() {
   class Project {
 
     constructor(){
-      this._currentPage = "";
+      this._currentPage = "page1.html";
       this._pageFrame = $("#frame-content");    
-      this._lang = "en-US";   
-      
+      this._lang = "en-US";
     }
 
     set currentPage(firedMenuItem) {
@@ -54,10 +54,11 @@ window.addEventListener('DOMContentLoaded', function() {
         this.translateContent();
       } 
       
+      let firedMenuOp = firedMenuItem.attr("data-rgxOp");
       $(this._pageFrame)
         .contents()
          .find("article")
-         .attr("data-rgxOp", firedMenuId);     
+         .attr("data-rgxOp", firedMenuOp);     
     }
 
     set lang(lang) {
@@ -65,9 +66,10 @@ window.addEventListener('DOMContentLoaded', function() {
       navigator.mozL10n.language.code = lang;     
       this.translateContent();
     }
-
     get lang() {return this._lang;}
-
+    
+    get pageFrame() {return this._pageFrame;} 
+    
     translateContent(){
       // Delay firing translation after elements refreshing  
       window.setTimeout(() => {

@@ -1,7 +1,8 @@
+'use strict'
 
 $(window).ready(() => {
   
-  function getAttributesForServer() {
+  this.formData = function formData() {
     return {
       get logPaths() { return $("#LogPathsTable").dtTable("values", "Path");},
       get servers() { return $("#LogPathsTable").dtTable("values", "Server").removeClones();},
@@ -11,15 +12,18 @@ $(window).ready(() => {
           rgxList.push(this.eventData.eventType);
         });    
       return rgxList;
-      }
+      },
+      get rgxOp() { return $("article").attr("data-rgxOp");},
+      
     };
   };
   
   // PARAGRAPHS
   $("[id^=Paragraph]").pageParagraph().pageParagraph("build");
-  $("#Paragraph3 .paragraph-caption").trigger("click");
+  $("#Paragraph1 .paragraph-caption").trigger("click");
  
   // 1. SET LOG LOCATIONS
+  $("#LogDateRange").dateRangeSet();
   // LOG TABLE
   let logPathsTable$ = $("#LogPathsTable").dtTable();  
   logPathsTable$.dtTable("build", 
@@ -97,7 +101,10 @@ $(window).ready(() => {
       title: "Saving current profile",
       inputName: "profile name",
       inputMenu: ["my profile1"],
-      click_ok: function(){alert("ok");}        
+      click_ok: function(event, profileName){
+        let profile = new ScanProfile();
+        profile.fill(profileName, this.formData());
+      }        
     });     
   })
   .find("span.ui-icon")  
@@ -136,7 +143,7 @@ $(window).ready(() => {
   })
   .css("height", "27px");  
     
-  test$ = $("#testButton");
+  let test$ = $("#testButton");
   test$.click(function()  {
     let profile = new ScanProfile();
     profile.id = 2;

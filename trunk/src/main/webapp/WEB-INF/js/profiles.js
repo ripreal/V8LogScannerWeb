@@ -1,3 +1,4 @@
+'use strict'
 
 class ScanProfile {
     
@@ -9,7 +10,7 @@ class ScanProfile {
     this._logType     = "ANY";
     this._sortingProp = "ANY";
     this._groupType   = "BY_PROPS";
-    this.rgxList      = [];
+    this._rgxList     = [];
     this._rgxExp      = "";
     this._rgxOp       = "CURSOR_OP";
     this._userPeriod  = ["", ""];
@@ -50,6 +51,18 @@ class ScanProfile {
   get userPeriod() {return this._userPeriod}
   
   set logPaths(logPaths) {this._logPaths = logPaths;}
-  get logPaths() {return this._logPaths;}
+  get logPaths() {return this._logPaths;} 
+  
+  fill(profileName, formData) {
+    
+    this.name     = profileName;
+    this.rgxOp    = formData.rgxOp;
+    this.logPaths = formData.logPaths;
+    this.rgxList  = formData.rgxList;
+    
+  }
   
 }
+
+
+

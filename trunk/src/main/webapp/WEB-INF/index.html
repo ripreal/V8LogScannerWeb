@@ -58,16 +58,16 @@
         <div id="sideLeft" class="sidebar" style="left: 0px">
             <div class="control left-menu">
                 <ul id="left-menu-list">
-                    <li data-page="page1.html"><div>Cursor Log Scanning</div></li>
-                    <li data-page="page1.html"><div>Heap Log Scanning</div></li>
-                    <li data-page="page1.html"><div>Own rgx Scanning</div>
-                    <li data-page="page1.html"><div>Auto profiles</div></li>
+                    <li data-page="page1.html" data-rgxOp="CURSOR_OP"><div>Cursor Log Scanning</div></li>
+                    <li data-page="page1.html" data-rgxOp="HEAP_OP"><div>Heap Log Scanning</div></li>
+                    <li data-page="page1.html" data-rgxOp="USER_OP"><div>Own rgx log Scanning</div>
+                    <li data-page="page2.html"><div>Auto profiles</div></li>
                     <li data-page="page2.html"><div>Options</div></li>
                 </ul>
             </div>
         </div>       
         <div class="content">            
-            <iframe id="frame-content" class="frameborder" tabindex="-1" style="width: 100%;" frameborder="0">
+            <iframe id="frame-content" class="frameborder" tabindex="-1" style="width: 100%;" frameborder="0" src="page1.html"> 
             </iframe>       
     </body>
 </html>

@@ -125,4 +125,10 @@ public class ScanProfileHib implements ScanProfile{
     this.userStartDate = userStartDate;
     this.userEndDate = userEndDate;
   }
+
+  @Override
+  public void addLogPath(String logPath) {
+    // TODO Auto-generated method stub
+    
+  }
 }
