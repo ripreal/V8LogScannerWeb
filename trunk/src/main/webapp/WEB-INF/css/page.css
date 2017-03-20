@@ -189,3 +189,7 @@ input.standart-input {
   height: 40px;
   border-bottom: 1px groove
 }
+
+.betweenSpace {
+  margin-right: 10px;
+}

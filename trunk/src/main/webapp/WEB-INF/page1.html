@@ -25,7 +25,8 @@
                 <span class="paragrapTitleText">1. SET LOG LOCATIONS</span>
                 <span class="paragraph-tooltip">bla bla bla bla</span>
            </div>
-            <div class="paragraph-text">               
+            <div class="paragraph-text">
+                <div id="LogDateRange"></div>
                 <table id="LogPathsTable"></table> 
             </div>
         </div>
@@ -111,6 +112,13 @@
                     <option value="viewed2">Duration</option>
                 </select>      
             </div>
+            
+            <div class="template dateRangeMatcher">
+                <select name="selectorMatchType" data-path = "/dateRanges">
+                    <option value="viewed" >ANY</option>
+                    <option value="viewed" >DEFAULT</option>
+                </select>      
+            </div>
 
             <div class="template stringMatch">
                 <select name="stringMatchType">
@@ -128,7 +136,7 @@
             </div>
 
             <div class="template dateRange">
-                <input type="text" name="dateRange1" class="dateValue"/> <span>through</span>
+                <input type="text" name="dateRange1" class="dateValue"/> <span class = "betweenSpace">-</span>
                 <input type="text" name="dateRange2" class="dateValue"/>
             </div>
 
