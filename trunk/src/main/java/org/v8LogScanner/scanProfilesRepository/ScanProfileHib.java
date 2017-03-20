@@ -107,12 +107,6 @@ public class ScanProfileHib implements ScanProfile{
     this.rgxList.clear();
     rgxList.forEach(rgx -> this.rgxList.add((RegExpHib)rgx));
   }
-
-  public void addRegExp(RegExp regExp) {
-    RegExpHib rgx = new RegExpHib(regExp.getEventType());
-    rgxList.add(rgx);
-    rgx.setProfile(this);
-  }
   
   public String getRgxExp() {return rgxExp;}
   public void setRgxExp(String rgxExp) { this.rgxExp = rgxExp;}
@@ -124,5 +118,18 @@ public class ScanProfileHib implements ScanProfile{
   public void setUserPeriod(String userStartDate, String userEndDate) {
     this.userStartDate = userStartDate;
     this.userEndDate = userEndDate;
+  }
+  
+  public void addRegExp(RegExp regExp) {
+    RegExpHib rgx = new RegExpHib(regExp.getEventType());
+    rgxList.add(rgx);
+    rgx.setProfile(this);
+  }
+  
+  public void addLogPath(String logPath) {
+    boolean logExist = logpaths.stream().anyMatch(n -> n.compareTo(logPath) == 0);
+    if (!logExist){
+      logpaths.add(logPath);
+    }
   }
 }
