@@ -4,32 +4,18 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.util.List;
-
 import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.init.DataSourceInitializer;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -45,7 +31,6 @@ import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 import org.v8LogScanner.rgx.ScanProfile.LogTypes;
 import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
-import org.v8LogScanner.scanProfilesRepository.RegExpHib;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
 
 @RunWith(SpringJUnit4ClassRunner.class)

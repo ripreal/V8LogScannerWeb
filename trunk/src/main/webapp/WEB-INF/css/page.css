@@ -103,7 +103,7 @@ table {
 }
 
 .dtTable-field-inactive {
-  color: lightgray;
+  color: gray;
 }
 
 a.dtTable-button:link, a.dtTable-button:visited  {
@@ -139,7 +139,7 @@ input.standart-input {
   min-height: 25px;  
   box-shadow: 2px 0px 2px 0px rgba(0,0,0,0.2);
   font-size: 14px;
-  border: solid lightgray 1px;
+  border: solid gray 1px;
 }
 
 .dropdown-content {
@@ -192,4 +192,8 @@ input.standart-input {
 
 .betweenSpace {
   margin-right: 10px;
+}
+
+.forbidden {
+  opacity: 0.3;
 }

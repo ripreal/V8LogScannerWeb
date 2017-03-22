@@ -115,8 +115,6 @@
             
             <div class="template dateRangeMatcher">
                 <select name="selectorMatchType" data-path = "/dateRanges">
-                    <option value="viewed" >ANY</option>
-                    <option value="viewed" >DEFAULT</option>
                 </select>      
             </div>
 
@@ -127,7 +125,6 @@
                     <option value="$">ends with</option>
                     <option value="=">is exactly</option>
                 </select>
-                <input type="text" class="standart-input" name="term"/>
             </div>
 
             <div class="template numberRange">
@@ -136,8 +133,10 @@
             </div>
 
             <div class="template dateRange">
-                <input type="text" name="dateRange1" class="dateValue"/> <span class = "betweenSpace">-</span>
-                <input type="text" name="dateRange2" class="dateValue"/>
+                <div class ="dateRangesInput" style="display: inline">
+                  <input type="text" name="dateRange1" class="dateValue"/> <span class = "betweenSpace">-</span>
+                  <input type="text" name="dateRange2" class="dateValue"/>
+                </div>
             </div>
 
             <div class="template boolean">

@@ -663,43 +663,71 @@ $.modalDialog = function(options) {
 
 // WIDGET FOR DATE RANGE SET
 $.fn.dateRangeSet = function() {
+
+  var this$ = this;
   
-    this.css("padding-bottom", "20px");
-    
-    $("<span>Period filter:</span>")
+  var dateRange = function(range) {
+    // START & END DATE FIELDS
+   var dateRangesInput$ = this$.find("div.dateRangesInput");
+   var dateRange1 = this$.find('input[name="dateRange1"]').dateField({tip : "any period"});
+   var dateRange2 = this$.find('input[name="dateRange2"]').dateField({tip : "any period"});
+  
+   if (range == "SET_OWN") {
+     dateRangesInput$.removeClass("forbidden");
+     dateRange1.removeAttr("disabled");
+     dateRange2.removeAttr("disabled");
+     //dateRangesInput.show();     
+     //dateRange1.show();
+     //dateRange2.show();     
+   }
+    else {
+      dateRangesInput$.addClass("forbidden");
+      dateRange1.attr("disabled", "true");
+      dateRange2.attr("disabled", "true");
+      //dateRangesInput.hide();
+     //dateRange1.hide();
+     //dateRange2.hide();
+   }    
+  }
+  
+  this$.css("padding-bottom", "20px");
+
+  $("<span>Period filter:</span>")
     .addClass("ui-widget")
     .addClass("betweenSpace")
     .css("vertical-align", "middle")
-    .appendTo(this);
-  
-    // date range select
-    $('div.template.dateRangeMatcher')
+    .appendTo(this$);
+
+  // date range select
+  $('div.template.dateRangeMatcher')
     .children()
     .clone()
-    .appendTo(this)
+    .appendTo(this$)
     .filter('select[name="selectorMatchType"]')         
     .selectmenu({
     width: "10em",
-    change: function(){
-      let t1 = $(this).siblings('input[name="dateRange1"]');
-      
-      autocomplete("inputMask");
-      
+    change: function(element){
+      dateRange(element.currentTarget.textContent);
+      //let t1 = $(this).siblings('input[name="dateRange1"]');
+
+      // autocomplete("inputMask");
+
     }})
-    .loadOptions(null, (this$) => {this$.selectmenu().selectmenu("refresh");})
+    .loadOptions(null, (this$) => {
+      dateRange(this$.val());
+      this$.selectmenu().selectmenu("refresh");
+    }) 
     .next()
     .css("margin-right", "10px");
-    
-    // start date select
-    $('div.template.dateRange')
+
+  // start date select
+  $('div.template.dateRange')
     .children()
     .clone()
-    .appendTo(this)
+    .appendTo(this$);   
   
-    // START & END DATE FIELDS
-    this.find('input[name="dateRange1"]').dateField({tip : "start of period"});
-    this.find('input[name="dateRange2"]').dateField({tip : "end of period"});
-
+  return this$;
+  
 };
 
 $.fn.dateField = function(options) {
@@ -729,6 +757,8 @@ $.fn.dateField = function(options) {
   });
   
   this$.trigger("blur");
+  
+  return this$;
   
 }
 

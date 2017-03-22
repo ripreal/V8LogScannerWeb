@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.commonly.Filter;
 import org.v8LogScanner.commonly.Filter.ComparisonTypes;
+import org.v8LogScanner.rgx.StrokeFilter;
 
 @Entity
 @Table
@@ -27,7 +28,7 @@ public class FilterHib {
   private Filter<String> filter;
   
   public FilterHib() {
-    this.filter = new Filter<>();
+    this.filter = new StrokeFilter();
   }
   
   public FilterHib(Filter<String> filter) {
@@ -40,7 +41,7 @@ public class FilterHib {
   public List<String> getElements() {return filter.getElements();}
   public void setElements(List<String> elements) {this.setElements(elements);}
   
-  public void setComparisonType(ComparisonTypes comparisonType) {filter.comparisonType = comparisonType;}
-  public ComparisonTypes getComparisonType(ComparisonTypes comparisonType) { return filter.comparisonType;}
+  public void setComparisonType(ComparisonTypes comparisonType) {filter.comparisonType(comparisonType);}
+  public ComparisonTypes getComparisonType(ComparisonTypes comparisonType) { return filter.comparisonType();}
   
 }

@@ -27,6 +27,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Documents/workspace-sts-3.8.2.RELEASE/V8Git/V8LogScanner/repo/org/v8LogScanner/v8LogScanner/1.0/v8LogScanner-1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

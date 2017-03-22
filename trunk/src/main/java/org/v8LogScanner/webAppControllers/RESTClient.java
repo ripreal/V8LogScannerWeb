@@ -1,5 +1,6 @@
 package org.v8LogScanner.webAppControllers;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
+import org.v8LogScanner.rgx.ScanProfile.DateRanges;
 import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
@@ -62,7 +64,32 @@ public class RESTClient {
   public @ResponseBody EventTypes[] eventTypes(){
     return EventTypes.values();
   }
-
+  
+  @RequestMapping(value = "/dateRanges", method = RequestMethod.GET,
+      produces = "application/json")
+  public ResponseEntity<DateRanges[]> dateRanges() {
+    return new ResponseEntity<>(DateRanges.values(), HttpStatus.OK);
+  }
+  
+  @RequestMapping(value = "/startDateByDateRange", method = RequestMethod.GET,
+      produces = "application/json")
+  public ResponseEntity<Date> startDateByDateRange(@RequestParam(value= "dateRange") String dateRange) {
+    
+    
+    DateRanges dateRangeType = null;
+    try { 
+      dateRangeType = DateRanges.valueOf(dateRange);
+    }
+    catch (Exception e){
+      return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+    
+    Date date = LogsOperations.getStartDate(profile);
+    
+    return new ResponseEntity<>(date, HttpStatus.OK);
+  }
+  
   @RequestMapping(value = "/propTypes", method = RequestMethod.GET,
       produces = "application/json")
   public ResponseEntity<List<PropTypes>> propTypes(@RequestParam(value= "event")String event){
@@ -80,7 +107,7 @@ public class RESTClient {
   }
   
   @RequestMapping(value = "/startRgxOp", method = RequestMethod.GET)
-  public ResponseEntity<Boolean>  startRgxOp(){
+  public ResponseEntity<Boolean> startRgxOp(){
     return new ResponseEntity<>(true, HttpStatus.OK);
   }
   

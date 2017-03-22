@@ -1,7 +1,6 @@
 package org.v8LogScannerWeb;
 
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,11 +18,7 @@ import org.v8LogScanner.appConfig.RootConfig;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
-import org.v8LogScanner.webAppControllers.ITestProfile;
 import org.v8LogScanner.webAppControllers.RESTClient;
-import org.v8LogScanner.webAppControllers.TestProfile;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;

@@ -2,8 +2,6 @@ package org.v8LogScanner.genericRepository;
 
 import java.util.List;
 
-import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
-
 public interface DataRepository<T> {
   
   public void add(T object);

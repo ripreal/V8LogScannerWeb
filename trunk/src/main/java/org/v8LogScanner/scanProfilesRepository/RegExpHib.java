@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.rgx.RegExp;
-import org.v8LogScanner.rgx.RegExp.EventTypes;
 
 @Entity
 @Table 
@@ -34,6 +33,7 @@ public class RegExpHib extends RegExp{
   }
   
   public ScanProfileHib getProfile() {return profile;}
+  
   public void setProfile(ScanProfileHib profile) {this.profile = profile;}
   
   @Column

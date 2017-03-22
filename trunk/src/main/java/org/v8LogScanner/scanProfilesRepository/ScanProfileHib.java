@@ -14,18 +14,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.rgx.RegExp;
-import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
-import org.v8LogScanner.rgx.ScanProfile.DateRanges;
-import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
-import org.v8LogScanner.rgx.ScanProfile.LogTypes;
-import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
+
 
 @Entity
 @Table
@@ -124,5 +119,11 @@ public class ScanProfileHib implements ScanProfile{
   public void setUserPeriod(String userStartDate, String userEndDate) {
     this.userStartDate = userStartDate;
     this.userEndDate = userEndDate;
+  }
+
+  @Override
+  public void addLogPath(String logPath) {
+    // TODO Auto-generated method stub
+    
   }
 }
