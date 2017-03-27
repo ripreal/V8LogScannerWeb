@@ -684,6 +684,11 @@ $.fn.dateRangeSet = function() {
       dateRangesInput$.addClass("forbidden");
       dateRange1.attr("disabled", "true");
       dateRange2.attr("disabled", "true");
+      
+      $.get("/startDateByDateRange", {dateRange: range}, (data, status) => {
+        dateRange1.val(data);
+      });
+            
       //dateRangesInput.hide();
      //dateRange1.hide();
      //dateRange2.hide();
