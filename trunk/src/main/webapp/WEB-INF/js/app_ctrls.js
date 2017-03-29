@@ -23,6 +23,30 @@ Array.prototype.removeClones = function (element) {
   return result;
 };
 
+window.rest = function(options) {
+  
+  var settings = $.extend({
+    accept: "application/json",
+    url: "",
+    type: "GET",
+    param: "",
+    onreadystatechange: null,
+  }, options || {});
+  
+  var request = new XMLHttpRequest();      
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      if (settings.onreadystatechange != null) {
+        settings.onreadystatechange.call(request, this.responseText);
+      }
+    }  
+  };
+  request.open(settings.type, settings.url, true);
+  request.setRequestHeader("Accept", settings.accept);
+  request.send();  
+  
+}
+
 // EXTENDING JQUERY
 $.createLink = function(server, query){
   return `http://${server}:${port}${query}`;
@@ -676,23 +700,18 @@ $.fn.dateRangeSet = function() {
      dateRangesInput$.removeClass("forbidden");
      dateRange1.removeAttr("disabled");
      dateRange2.removeAttr("disabled");
-     //dateRangesInput.show();     
-     //dateRange1.show();
-     //dateRange2.show();     
    }
     else {
       dateRangesInput$.addClass("forbidden");
       dateRange1.attr("disabled", "true");
-      dateRange2.attr("disabled", "true");
+      dateRange2.attr("disabled", "true"); 
       
-      $.get("/startDateByDateRange", {dateRange: range}, (data, status) => {
-        dateRange1.val(data);
+      window.rest({
+        url: `/startDateByDateRange?dateRange=${range}`,
+        param: "",
+        onreadystatechange: function() {alert("ok");},
       });
-            
-      //dateRangesInput.hide();
-     //dateRange1.hide();
-     //dateRange2.hide();
-   }    
+    }    
   }
   
   this$.css("padding-bottom", "20px");

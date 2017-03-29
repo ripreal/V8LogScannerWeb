@@ -42,6 +42,11 @@ public class RESTClient {
     return response;
   }
   
+  @RequestMapping(value="/getProfile", method = RequestMethod.GET)
+  public ScanProfile getProfile() {
+      return profile;
+  }
+  
   @RequestMapping(value="/groupTypes", method = RequestMethod.GET)
   public GroupTypes[] getAllGroupTypes() {
       return GroupTypes.values();
@@ -73,18 +78,18 @@ public class RESTClient {
   
   @RequestMapping(value = "/startDateByDateRange", method = RequestMethod.GET,
       produces = "application/json")
-  public ResponseEntity<String> startDateByDateRange(@RequestParam(value= "dateRange") String dateRange) {
+  public @ResponseBody String startDateByDateRange(@RequestParam(value= "dateRange") String dateRange) {
     DateRanges dateRangeType = null;
     try { 
       dateRangeType = DateRanges.valueOf(dateRange);
     }
     catch (Exception e){
-      return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    //  return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }    
     
     String date = LogsOperations.getStartDate(dateRangeType, "");
     
-    return new ResponseEntity<>(date, HttpStatus.OK);
+    return date;
   }
   
   @RequestMapping(value = "/propTypes", method = RequestMethod.GET,
