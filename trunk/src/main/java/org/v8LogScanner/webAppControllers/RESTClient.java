@@ -78,18 +78,30 @@ public class RESTClient {
   
   @RequestMapping(value = "/startDateByDateRange", method = RequestMethod.GET,
       produces = "application/json")
-  public @ResponseBody String startDateByDateRange(@RequestParam(value= "dateRange") String dateRange) {
+  public ResponseEntity<String> startDateByDateRange(@RequestParam(value= "dateRange") String dateRange) {
     DateRanges dateRangeType = null;
     try { 
       dateRangeType = DateRanges.valueOf(dateRange);
     }
     catch (Exception e){
-    //  return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }    
-    
+      return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
     String date = LogsOperations.getStartDate(dateRangeType, "");
-    
-    return date;
+    return new ResponseEntity<>(date, HttpStatus.OK);
+  }
+  
+  @RequestMapping(value = "/endDateByDateRange", method = RequestMethod.GET,
+      produces = "application/json")
+  public ResponseEntity<String> endDateByDateRange(@RequestParam(value= "dateRange") String dateRange) {
+    DateRanges dateRangeType = null;
+    try { 
+      dateRangeType = DateRanges.valueOf(dateRange);
+    }
+    catch (Exception e){
+      return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    String date = LogsOperations.getEndDate(dateRangeType, "");
+    return new ResponseEntity<>(date, HttpStatus.OK);
   }
   
   @RequestMapping(value = "/propTypes", method = RequestMethod.GET,

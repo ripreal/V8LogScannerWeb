@@ -14,7 +14,7 @@ $(window).ready(() => {
       return rgxList;
       },
       get rgxOp() { return $("article").attr("data-rgxOp");},
-      
+      get dateRange {return $("#LogDateRange").dateRangeSet("getDateRange");}.
     };
   };
   

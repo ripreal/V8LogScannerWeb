@@ -29,7 +29,7 @@ window.rest = function(options) {
     accept: "application/json",
     url: "",
     type: "GET",
-    param: "",
+    params: new Map(),
     onreadystatechange: null,
   }, options || {});
   
@@ -41,7 +41,17 @@ window.rest = function(options) {
       }
     }  
   };
-  request.open(settings.type, settings.url, true);
+  
+  if (settings.type == "GET") {
+    let parameterString = "";
+    let count = 1;
+    for (let [ key, val ] of settings.params.entries()) {      
+      parameterString = key + "=" + val + (settings.params.size < count ? "&" : ""); 
+      count++;      
+    }
+    parameterString = (parameterString == "" ? "" : "?" + parameterString);
+    request.open(settings.type, settings.url + parameterString, true);    
+  }  
   request.setRequestHeader("Accept", settings.accept);
   request.send();  
   
@@ -686,15 +696,17 @@ $.modalDialog = function(options) {
 };
 
 // WIDGET FOR DATE RANGE SET
-$.fn.dateRangeSet = function() {
+$.fn.dateRangeSet = function(functionName) {
 
+  let func = this[functionName];
+  
   var this$ = this;
   
   var dateRange = function(range) {
     // START & END DATE FIELDS
    var dateRangesInput$ = this$.find("div.dateRangesInput");
-   var dateRange1 = this$.find('input[name="dateRange1"]').dateField({tip : "any period"});
-   var dateRange2 = this$.find('input[name="dateRange2"]').dateField({tip : "any period"});
+   var dateRange1 = this$.find('input[name="dateRange1"]').dateField({tip : "yyyy.mm.dd"});
+   var dateRange2 = this$.find('input[name="dateRange2"]').dateField({tip : "yyyy.mm.dd"});
   
    if (range == "SET_OWN") {
      dateRangesInput$.removeClass("forbidden");
@@ -706,11 +718,20 @@ $.fn.dateRangeSet = function() {
       dateRange1.attr("disabled", "true");
       dateRange2.attr("disabled", "true"); 
       
+      let params = new Map();
+      params.set("dateRange", range);
       window.rest({
-        url: `/startDateByDateRange?dateRange=${range}`,
-        param: "",
-        onreadystatechange: function() {alert("ok");},
-      });
+        url: `/startDateByDateRange`,
+        params: params,
+        onreadystatechange: function(data) {
+         dateRange1.val(data);
+      }});       
+      window.rest({
+        url: `/endDateByDateRange`,
+        params: params,
+        onreadystatechange: function(data) {
+          dateRange2.val(data);
+      }});  
     }    
   }
   
@@ -732,10 +753,6 @@ $.fn.dateRangeSet = function() {
     width: "10em",
     change: function(element){
       dateRange(element.currentTarget.textContent);
-      //let t1 = $(this).siblings('input[name="dateRange1"]');
-
-      // autocomplete("inputMask");
-
     }})
     .loadOptions(null, (this$) => {
       dateRange(this$.val());
@@ -749,6 +766,10 @@ $.fn.dateRangeSet = function() {
     .children()
     .clone()
     .appendTo(this$);   
+  
+  this$.getDateRange = function() {
+    alert("ok");
+  };
   
   return this$;
   
