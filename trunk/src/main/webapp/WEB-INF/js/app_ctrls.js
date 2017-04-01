@@ -36,7 +36,7 @@ window.rest = function(options) {
   var request = new XMLHttpRequest();      
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      if (settings.onreadystatechange != null) {
+      if (typeof settings.onreadystatechange == 'function') {
         settings.onreadystatechange.call(request, this.responseText);
       }
     }  
@@ -698,7 +698,10 @@ $.modalDialog = function(options) {
 // WIDGET FOR DATE RANGE SET
 $.fn.dateRangeSet = function(functionName) {
 
-  let func = this[functionName];
+  let func = $.fn.dateRangeSet[functionName];  
+  if (typeof func == 'function' ) {
+    return func.call(this);
+  }  
   
   var this$ = this;
   
@@ -767,11 +770,20 @@ $.fn.dateRangeSet = function(functionName) {
     .clone()
     .appendTo(this$);   
   
-  this$.getDateRange = function() {
-    alert("ok");
+  $.fn.dateRangeSet.getDateRange = function() {
+    return $("select :selected", this$).val();
   };
   
   return this$;
+  
+  $.fn.dateRangeSet.getUserPeriod = function() {    
+    let startDate = this$.find('input[name="dateRange2"]').val();
+    let endDate = this$.find('input[name="dateRange1"]').val();
+    return [startDate, endDate];    
+  };
+  
+  return this$;
+  
   
 };
 

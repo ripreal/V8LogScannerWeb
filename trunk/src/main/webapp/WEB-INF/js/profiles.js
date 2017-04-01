@@ -23,8 +23,8 @@ class ScanProfile {
   set name(name) {this._name = name;}
   get name() {return this._name;}
   
-  set dataRange(dataRange) {this._dataRange = dataRange}
-  get dataRange() {return this._dataRange}
+  set dateRange(dateRange) {this._dateRange = dateRange}
+  get dateRange() {return this._dateRange}
   
   set limit(limit) {this._limit = limit;}
   get limit() {return this._limit;}
@@ -59,6 +59,7 @@ class ScanProfile {
     this.rgxOp    = formData.rgxOp;
     this.logPaths = formData.logPaths;
     this.rgxList  = formData.rgxList;
+    this.dateRange = formData.dateRange;
     
   }
   
