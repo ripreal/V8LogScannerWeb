@@ -55,11 +55,12 @@ class ScanProfile {
   
   fill(profileName, formData) {
     
-    this.name     = profileName;
-    this.rgxOp    = formData.rgxOp;
-    this.logPaths = formData.logPaths;
-    this.rgxList  = formData.rgxList;
-    this.dateRange = formData.dateRange;
+    this.name         = profileName;
+    this.rgxOp        = formData.rgxOp;
+    this.logPaths     = formData.logPaths;
+    this.rgxList      = formData.rgxList;
+    this.dateRange    = formData.dateRange;
+    this._userPeriod  = formData.userPeriod;
     
   }
   

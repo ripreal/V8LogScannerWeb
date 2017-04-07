@@ -15,6 +15,7 @@ $(window).ready(() => {
       },
       get rgxOp() { return $("article").attr("data-rgxOp");},
       get dateRange() {return $("#LogDateRange").dateRangeSet("getDateRange");},
+      get userPeriod() {return $("#LogDateRange").dateRangeSet("getUserPeriod");},
     };
   };
   
@@ -24,6 +25,7 @@ $(window).ready(() => {
  
   // 1. SET LOG LOCATIONS
   $("#LogDateRange").dateRangeSet();
+  $("#LogLimit").inputField({tip:"log events limit", label: "log events limit"});
   // LOG TABLE
   let logPathsTable$ = $("#LogPathsTable").dtTable();  
   logPathsTable$.dtTable("build", 

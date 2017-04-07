@@ -26,6 +26,7 @@
                 <span class="paragraph-tooltip">bla bla bla bla</span>
            </div>
             <div class="paragraph-text">
+                <div id="LogLimit"></div>
                 <div id="LogDateRange"></div>
                 <table id="LogPathsTable"></table> 
             </div>
@@ -134,9 +135,14 @@
 
             <div class="template dateRange">
                 <div class ="dateRangesInput" style="display: inline">
-                  <input type="text" name="dateRange1" class="dateValue"/> <span class = "betweenSpace">-</span>
-                  <input type="text" name="dateRange2" class="dateValue"/>
+                  <div name="dateRange1"></div> 
+                  <span class = "betweenSpace">-</span>
+                  <div name="dateRange2"></div>
                 </div>
+            </div>
+            
+             <div class="template inputField" style="display: inline">
+                  <input type="text" name="inputBlock" class="dateValue"/>
             </div>
 
             <div class="template boolean">
