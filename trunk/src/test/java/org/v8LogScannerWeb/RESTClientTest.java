@@ -4,6 +4,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ import org.v8LogScanner.appConfig.LogScannerConfig;
 import org.v8LogScanner.appConfig.RootConfig;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
+import org.v8LogScanner.scanProfilesRepository.LogsPathHib;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
 import org.v8LogScanner.webAppControllers.RESTClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,7 +93,6 @@ public class RESTClientTest {
     
     ScanProfile tPtofile = new ScanProfileHib();
     
-    
     ObjectMapper mapper = new ObjectMapper();
     mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
     ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
@@ -102,6 +106,35 @@ public class RESTClientTest {
       .content(requestJson)      
       .accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk());
+  }
+  
+  @Test
+  public void testSetLogs() throws Exception {
     
+    List<LogsPathHib> logsPathTable = new ArrayList<>();
+    
+    LogsPathHib logsPath1 = new LogsPathHib();
+    logsPath1.setPath("c:\\fakePath1");
+    logsPath1.setServer("127.0.0.1");
+    logsPathTable.add(logsPath1);
+    
+    LogsPathHib logsPath2 = new LogsPathHib();
+    logsPath2.setPath("c:\\fakePath2");
+    logsPath2.setServer("192.168.0.1");
+    logsPathTable.add(logsPath2);
+    
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+    ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+    String requestJson = ow.writeValueAsString(logsPathTable);
+    
+    RESTClient client = new RESTClient(profile);
+    
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
+    mockMvc.perform(post("/setLogs")
+      .contentType(MediaType.APPLICATION_JSON)
+      .content(requestJson)      
+      .accept(MediaType.APPLICATION_JSON))
+      .andExpect(status().isBadRequest());
   }
 }

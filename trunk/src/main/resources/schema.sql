@@ -12,10 +12,12 @@ CREATE TABLE IF NOT EXISTS ScanProfileHib (
    userenddate VARCHAR(100) NULL,
 );
 
-CREATE TABLE IF NOT EXISTS logpaths (
+CREATE TABLE IF NOT EXISTS LOGSPATHHIB (
    profile_id int NOT NULL,
-   path VARCHAR(10000) NOT NULL,
-   CONSTRAINT pk_idpath PRIMARY KEY (profile_id, path),
+   id int NOT NULL,
+   Path VARCHAR(10000) NOT NULL,
+   Server VARCHAR(10000) NOT NULL,
+   CONSTRAINT pk_id PRIMARY KEY (id),
    CONSTRAINT fk_path FOREIGN KEY (profile_id) REFERENCES ScanProfileHib(id)
 );
 

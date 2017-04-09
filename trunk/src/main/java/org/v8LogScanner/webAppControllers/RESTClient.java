@@ -1,5 +1,6 @@
 package org.v8LogScanner.webAppControllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.v8LogScanner.rgx.AbstractOp;
+import org.v8LogScanner.rgx.IRgxOp;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
@@ -19,7 +22,13 @@ import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.rgx.ScanProfile.DateRanges;
 import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
+import org.v8LogScanner.scanProfilesRepository.LogsPathHib;
 import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
+import org.v8LogScanner.LocalTCPLogScanner.ClientsManager;
+import org.v8LogScanner.LocalTCPLogScanner.LanScanProfile;
+import org.v8LogScanner.LocalTCPLogScanner.V8LogScannerClient;
+import org.v8LogScanner.LocalTCPLogScanner.ClientsManager.LogScannerClientNotFoundServer;
+import org.v8LogScanner.commonly.ProcessEvent;
 import org.v8LogScanner.logs.LogsOperations;
 
 @RestController
@@ -30,9 +39,18 @@ public class RESTClient {
   private IScanProfileService scanProfileService;
   @Autowired
   private ScanProfile profile;
+  private final ClientsManager clientsManager;
+  private final ProcessEvent procEvent = new ProcessEvent(){
+    public void invoke(List<String> info) {
+      log.addAll(info);
+    }
+  };
+  private List<String> log = new ArrayList<>();
   
   public RESTClient(ScanProfile profile){
     this.profile = profile;
+    clientsManager = new ClientsManager();
+    clientsManager.localClient().setProfile(profile);
   }
   
   @RequestMapping(value="/setProfile", method = RequestMethod.POST)
@@ -122,7 +140,28 @@ public class RESTClient {
   
   @RequestMapping(value = "/startRgxOp", method = RequestMethod.GET)
   public ResponseEntity<Boolean> startRgxOp(){
+    clientsManager.forEach(client -> {
+      LanScanProfile lanProfile = (LanScanProfile) profile;
+      ScanProfile cloned = lanProfile.clone();
+      cloned.setLogPaths(client.getProfile().getLogPaths());
+      client.setProfile(cloned);
+    });
+    clientsManager.forEach(client -> client.startRgxOp());
+    
     return new ResponseEntity<>(true, HttpStatus.OK);
   }
   
+  @RequestMapping(value = "/setLogs", method = RequestMethod.POST)
+  public ResponseEntity<String> setLogs(@RequestBody List<LogsPathHib> logsPath){
+    for(LogsPathHib path : logsPath) {
+      try {
+        V8LogScannerClient client = clientsManager.addClient(path.getServer(), procEvent);
+        client.getProfile().addLogPath(path.getPath());
+      }
+      catch (ClientsManager.LogScannerClientNotFoundServer e) {
+        return new ResponseEntity<>(e.getStackTrace().toString(), HttpStatus.BAD_REQUEST);
+      }
+    }
+    return new ResponseEntity<>("", HttpStatus.OK);
+  }
 }

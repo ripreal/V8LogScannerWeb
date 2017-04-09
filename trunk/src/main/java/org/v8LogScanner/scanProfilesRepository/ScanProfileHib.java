@@ -21,7 +21,6 @@ import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
 
-
 @Entity
 @Table
 public class ScanProfileHib implements ScanProfile{
@@ -33,11 +32,10 @@ public class ScanProfileHib implements ScanProfile{
   private int id;
   @Column
   private String name;
-  @ElementCollection(fetch = FetchType.LAZY)
-  @CollectionTable(name="logpaths", 
-    joinColumns=@JoinColumn(name="profile_id"))
-  @Column(name="path")
-  private List<String> logpaths = new ArrayList<>();
+  @OneToMany(mappedBy="profile", 
+      fetch = FetchType.LAZY, 
+      cascade={CascadeType.ALL})
+  private List<LogsPathHib> logpathsHib = new ArrayList<>();
   @Enumerated(EnumType.STRING)
   @Column
   private DateRanges dateRange  = DateRanges.ANY;
@@ -65,13 +63,51 @@ public class ScanProfileHib implements ScanProfile{
   @Column
   private String userEndDate = "";
   
+  // Mapping for simple collections
+  //@ElementCollection(fetch = FetchType.LAZY)
+  //@CollectionTable(name="logpaths", 
+  //  joinColumns=@JoinColumn(name="profile_id"))
+  //@Column(name="path")
+  //private List<String> logpaths = new ArrayList<>();
+  
   public ScanProfileHib() {}
   
   public String getName() {return name;}
   public void setName(String name) {this.name = name;}
   
-  public List<String> getLogPaths() {return this.logpaths;}
-  public void setLogPaths(List<String> logpaths) {this.logpaths = logpaths;}
+  public List<String> getLogPaths() {
+    List<String> paths = new ArrayList<>();
+    for (LogsPathHib pathHib : logpathsHib) {
+      paths.add(pathHib.getPath());
+    }
+    return paths;
+  }
+  @Override
+  public void setLogPaths(List<String> logpaths) {
+    logpathsHib = new ArrayList<>(); 
+    for(String path : logpaths) {
+      LogsPathHib pathHib = new LogsPathHib();
+      pathHib.setServer("127.0.0.1");
+      pathHib.setPath(path);
+      pathHib.setProfile(this);
+      logpathsHib.add(pathHib);
+    }
+  }
+  @Override
+  public void addLogPath(String logPath) {
+    List<String> logpaths = getLogPaths();
+    boolean logExist = logpaths.stream().anyMatch(n -> n.compareTo(logPath) == 0);
+    if (!logExist){
+      LogsPathHib logPathHib = new LogsPathHib();
+      logPathHib.setPath(logPath);
+      logPathHib.setServer("127.0.0.1");
+      logPathHib.setProfile(this);
+      logpathsHib.add(logPathHib);
+    }
+  }
+  
+  public List<LogsPathHib> getLogPathsHib() {return logpathsHib;}
+  public void setLogsPathHib(List<LogsPathHib> logsPathHib) { this.logpathsHib = logsPathHib; }
   
   public int getId() {return id;}
   public void setId() {
@@ -102,7 +138,7 @@ public class ScanProfileHib implements ScanProfile{
     this.rgxList.clear();
     rgxList.forEach(rgx -> this.rgxList.add((RegExpHib)rgx));
   }
-
+  
   public void addRegExp(RegExp regExp) {
     RegExpHib rgx = new RegExpHib(regExp.getEventType());
     rgxList.add(rgx);
@@ -120,10 +156,20 @@ public class ScanProfileHib implements ScanProfile{
     this.userStartDate = userStartDate;
     this.userEndDate = userEndDate;
   }
-
-  @Override
-  public void addLogPath(String logPath) {
-    // TODO Auto-generated method stub
+  
+  public ScanProfile clone() {
+    ScanProfile cloned = new ScanProfileHib();
+    cloned.setRgxOp(rgxOp);
+    cloned.setDateRange(dateRange);
+    cloned.setLimit(limit);
+    cloned.setLogType(logType);
+    cloned.setSortingProp(sortingProp);
+    cloned.setGroupType(groupType);
+    cloned.setRgxList(getRgxList());
+    cloned.setRgxExp(rgxExp);
+    cloned.setUserPeriod(userStartDate, userEndDate);
     
+    return cloned;
   }
+    
 }
