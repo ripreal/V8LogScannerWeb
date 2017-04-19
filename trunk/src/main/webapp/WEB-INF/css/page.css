@@ -197,3 +197,7 @@ input.standart-input {
 .forbidden {
   opacity: 0.3;
 }
+
+.standartPadding {
+  padding-bottom: 20px;
+}

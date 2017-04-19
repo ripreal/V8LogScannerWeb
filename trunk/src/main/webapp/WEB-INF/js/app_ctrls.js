@@ -704,12 +704,13 @@ $.fn.dateRangeSet = function(functionName) {
   }  
   
   var this$ = this;
+  this.css("display", "ruby");
   
   var dateRange = function(range) {
     // START & END DATE FIELDS
    var dateRangesInput$ = this$.find("div.dateRangesInput");
-   var dateRange1 = this$.find('input[name="dateRange1"]').dateField({tip : "yyyy.mm.dd"});
-   var dateRange2 = this$.find('input[name="dateRange2"]').dateField({tip : "yyyy.mm.dd"});
+   var dateRange1 = this$.find('input[name="dateRange1"]');
+   var dateRange2 = this$.find('input[name="dateRange2"]');
   
    if (range == "SET_OWN") {
      dateRangesInput$.removeClass("forbidden");
@@ -738,8 +739,6 @@ $.fn.dateRangeSet = function(functionName) {
     }    
   }
   
-  this$.css("padding-bottom", "20px");
-
   $("<span>Period filter:</span>")
     .addClass("ui-widget")
     .addClass("betweenSpace")
@@ -770,41 +769,54 @@ $.fn.dateRangeSet = function(functionName) {
     .clone()
     .appendTo(this$);   
   
+  this$.find('div[name="dateRange1"]').inputField({tip : "yyyy.mm.dd"});
+  this$.find('div[name="dateRange2"]').inputField({tip : "yyyy.mm.dd"});
+  
   $.fn.dateRangeSet.getDateRange = function() {
     return $("select :selected", this$).val();
   };
   
-  return this$;
-  
   $.fn.dateRangeSet.getUserPeriod = function() {    
-    let startDate = this$.find('input[name="dateRange2"]').val();
-    let endDate = this$.find('input[name="dateRange1"]').val();
+    let startDate = this$.find('input[name="dateRange1"]').val();
+    let endDate = this$.find('input[name="dateRange2"]').val();
     return [startDate, endDate];    
   };
   
   return this$;
   
-  
 };
 
-$.fn.dateField = function(options) {
-  
+$.fn.inputField = function(options) {
+    
   var settings = $.extend({
-    tip: "input date",
+    tip: "input value",
+    label: null,
   }, options || {});
   
   let this$ = this;
-  this$
-  .addClass("betweenSpace")
-  .addClass("standart-input");
   
-  this$.on("focus", {"tip" : settings.tip}, function(event) {  
-    if (this$.hasClass("dtTable-field-inactive")){
+  this$
+  .addClass("standartPadding");
+    
+  let input$ = $('<input>')
+  .attr("type", "text")
+  .addClass("betweenSpace")
+  .addClass("standart-input")  
+  .addClass("dtTable-field-inactive")
+  .appendTo(this$);
+  
+  input$.on("focus", {"tip" : settings.tip}, function(event) {  
+    if (input$.hasClass("dtTable-field-inactive")){
       this$.val("");
       this$.removeClass("dtTable-field-inactive");
       this$.trigger("focus");
     }    
   });
+  
+  if (settings.label != null) {
+    $(`<span>${settings.label}</span>`)
+      .prependTo(this$);    
+  }
   
   this$.on("blur",{"tip" : settings.tip}, function(event) {
     if (this$.val() == ""){
@@ -818,13 +830,6 @@ $.fn.dateField = function(options) {
   return this$;
   
 }
-
-
-
-
-
-
-
 
 
 
