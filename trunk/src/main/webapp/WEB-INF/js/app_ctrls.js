@@ -665,7 +665,7 @@ $.fn.eventFilter = function(functionName) {
   
   buildDefault();
 
-  $.fn.addEvent = function() {
+  $.fn.eventFilter.addEvent = function() {
     let divFilter$ = $("<div>", {
       class: "event-filter-block"   
     })

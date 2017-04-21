@@ -84,8 +84,7 @@ $(window).ready(() => {
     showLabel: true
   })
   .addClass("positiveButton")
-  .click( $.eventFilter("addEvent");
-  })
+  .click(() => $.fn.eventFilter("addEvent"))
   .trigger("click");
   
   $( "#RemoveEvent" ).button({
