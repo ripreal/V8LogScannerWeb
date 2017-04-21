@@ -25,7 +25,11 @@ $(window).ready(() => {
  
   // 1. SET LOG LOCATIONS
   $("#LogDateRange").dateRangeSet();
+<<<<<<< HEAD
   $("#LogLimit").inputField("log events limit");
+=======
+  $("#LogLimit").inputField({tip:"log events limit", label: "log events limit"});
+>>>>>>> d11a3260d996125203dc20ba0adebcf2ee005130
   // LOG TABLE
   let logPathsTable$ = $("#LogPathsTable").dtTable();  
   logPathsTable$.dtTable("build", 

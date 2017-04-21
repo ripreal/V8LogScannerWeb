@@ -113,8 +113,8 @@ public class DataSourceTest {
     // 1. check adding 
     ScanProfile profile = new ScanProfileHib();
     profile.setName("test profile");
-    profile.getLogPaths().add("c://share");
-    profile.getLogPaths().add("c://share2");
+    profile.addLogPath("c://share");
+    profile.addLogPath("c://share2");
     profile.setDateRange(DateRanges.LAST_HOUR);
     profile.setLimit(10);
     profile.setLogType(LogTypes.CLIENT);

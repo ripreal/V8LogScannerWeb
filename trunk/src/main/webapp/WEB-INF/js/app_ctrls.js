@@ -706,6 +706,8 @@ $.fn.dateRangeSet = function(functionName) {
   var this$ = this;
   this.css("display", "ruby");
   
+  this$.addClass("standartPadding");
+  
   var dateRange = function(range) {
     // START & END DATE FIELDS
    var dateRangesInput$ = this$.find("div.dateRangesInput");
@@ -769,8 +771,13 @@ $.fn.dateRangeSet = function(functionName) {
     .clone()
     .appendTo(this$);   
   
+<<<<<<< HEAD
   this$.find('div[name="dateRange1"]').inputField({tip : "yyyy.mm.dd"});
   this$.find('div[name="dateRange2"]').inputField({tip : "yyyy.mm.dd"});
+=======
+  this$.find('div[name="dateRange1"]').inputField({tip : "yyyy.mm.dd"}).css("display","inline");;
+  this$.find('div[name="dateRange2"]').inputField({tip : "yyyy.mm.dd"}).css("display","inline");;
+>>>>>>> d11a3260d996125203dc20ba0adebcf2ee005130
   
   $.fn.dateRangeSet.getDateRange = function() {
     return $("select :selected", this$).val();
@@ -795,13 +802,22 @@ $.fn.inputField = function(options) {
   
   let this$ = this;
   
+<<<<<<< HEAD
   this$
   .addClass("standartPadding");
+=======
+  this$.addClass("standartPadding");
+
+>>>>>>> d11a3260d996125203dc20ba0adebcf2ee005130
     
   let input$ = $('<input>')
   .attr("type", "text")
   .addClass("betweenSpace")
+<<<<<<< HEAD
   .addClass("standart-input")  
+=======
+  .addClass("standart-input")
+>>>>>>> d11a3260d996125203dc20ba0adebcf2ee005130
   .addClass("dtTable-field-inactive")
   .appendTo(this$);
   
