@@ -1,4 +1,4 @@
-package org.v8LogScanner.scanProfilesRepository;
+package org.v8LogScanner.dbLayer.scanProfilesPersistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class ScanProfileHib implements ScanProfile{
   @OneToMany(mappedBy="profile", 
       fetch = FetchType.LAZY, 
       cascade={CascadeType.ALL})
-  private List<LogsPathHib> logpathsHib = new ArrayList<>();
+  private List<LogsPathHib> logPaths = new ArrayList<>();
   @Enumerated(EnumType.STRING)
   @Column
   private DateRanges dateRange  = DateRanges.ANY;
@@ -77,20 +77,20 @@ public class ScanProfileHib implements ScanProfile{
   
   public List<String> getLogPaths() {
     List<String> paths = new ArrayList<>();
-    for (LogsPathHib pathHib : logpathsHib) {
+    for (LogsPathHib pathHib : this.logPaths) {
       paths.add(pathHib.getPath());
     }
     return paths;
   }
   @Override
   public void setLogPaths(List<String> logpaths) {
-    logpathsHib = new ArrayList<>(); 
+    this.logPaths = new ArrayList<>(); 
     for(String path : logpaths) {
       LogsPathHib pathHib = new LogsPathHib();
       pathHib.setServer("127.0.0.1");
       pathHib.setPath(path);
       pathHib.setProfile(this);
-      logpathsHib.add(pathHib);
+      this.logPaths.add(pathHib);
     }
   }
   @Override
@@ -102,12 +102,12 @@ public class ScanProfileHib implements ScanProfile{
       logPathHib.setPath(logPath);
       logPathHib.setServer("127.0.0.1");
       logPathHib.setProfile(this);
-      logpathsHib.add(logPathHib);
+      this.logPaths.add(logPathHib);
     }
   }
   
-  public List<LogsPathHib> getLogPathsHib() {return logpathsHib;}
-  public void setLogsPathHib(List<LogsPathHib> logsPathHib) { this.logpathsHib = logsPathHib; }
+  public List<LogsPathHib> getLogPathsHib() {return this.logPaths;}
+  public void setLogPathsHib(List<LogsPathHib> logPathHib) { this.logPaths = logPathHib; }
   
   public int getId() {return id;}
   public void setId() {

@@ -1,4 +1,4 @@
-package org.v8LogScanner.scanProfilesRepository;
+package org.v8LogScanner.dbLayer.scanProfilesPersistence;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.rgx.RegExp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table 
 public class RegExpHib extends RegExp{
@@ -21,7 +23,7 @@ public class RegExpHib extends RegExp{
   @GeneratedValue(generator="increment")
   @GenericGenerator(name="increment", strategy = "increment")
   private int id;
-  //transient private RegExp regExp; 
+  @JsonIgnore
   @ManyToOne(targetEntity=ScanProfileHib.class)
   @JoinColumn(name="profile_id", referencedColumnName="id")
   private ScanProfileHib profile;

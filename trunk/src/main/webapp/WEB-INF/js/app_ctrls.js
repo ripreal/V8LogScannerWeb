@@ -469,8 +469,8 @@ $.widget( "custom.dtTable", {
   addListener: function(collumnName, eventName, handler){
     this.element.on(eventName, `#${collumnName}` , handler);
   },
-  values: function(col){
-    let result = []; 
+  getColValues: function(col){    
+    let result = [];    
     $(`[id='${col}']`, this.element)
       .filter(":not([class~='dtTable-field-inactive'])")
       .each(function() {
@@ -478,7 +478,26 @@ $.widget( "custom.dtTable", {
        }
     );       
     return result;
-  }
+  },
+  getValues: function() {
+    let result = [];
+    for(let i = 0; i < this.rows.length; i++){
+      let resultRow = {};
+      for(let j = 0; j < this.collumns.length; j++) {
+        resultRow[this.collumns[j]] = this.rows[this.collumns[j]].val();        
+      }
+      result.push(resultRow);
+    }  
+  },
+  setValues: function(row_data) {
+    this.removeAll();
+    for (let i = 0; i < row_data.length; i++){
+      let currRow = this.addRow();
+      for (let col in row_data[i]) {
+        currRow[col].val(row_data[i][col]);  
+      }     
+    };	
+  } 
 });   
 
 // WIDGET FOR REF BUTTON
@@ -520,7 +539,12 @@ $.fn.dropdownMenu = function(path, width, select_callback) {
 
 // WIDGET FOR EVENT FILTER MENU
 
-$.fn.eventFilter = function() {
+$.fn.eventFilter = function(functionName) {
+  
+  let func = $.fn.eventFilter[functionName];  
+  if (typeof func == 'function' ) {
+    return func.call(this);
+  }  
   
   // public members
   this.each(function() {
@@ -641,6 +665,13 @@ $.fn.eventFilter = function() {
   
   buildDefault();
 
+  $.fn.addEvent = function() {
+    let divFilter$ = $("<div>", {
+      class: "event-filter-block"   
+    })
+    .appendTo($(this).parents(".paragraph-text"));  
+    divFilter$.eventFilter();
+  }  
 };
 
 // WIDGET FOR DIALOG
@@ -710,8 +741,8 @@ $.fn.dateRangeSet = function(functionName) {
   var dateRange = function(range) {
     // START & END DATE FIELDS
    var dateRangesInput$ = this$.find("div.dateRangesInput");
-   var dateRange1 = this$.find('input[name="dateRange1"]');
-   var dateRange2 = this$.find('input[name="dateRange2"]');
+   var dateRange1 = this$.find('div[name="dateRange1"] > input');
+   var dateRange2 = this$.find('div[name="dateRange2"] > input');
   
    if (range == "SET_OWN") {
      dateRangesInput$.removeClass("forbidden");
@@ -778,8 +809,8 @@ $.fn.dateRangeSet = function(functionName) {
   };
   
   $.fn.dateRangeSet.getUserPeriod = function() {    
-    let startDate = this$.find('input[name="dateRange1"]').val();
-    let endDate = this$.find('input[name="dateRange2"]').val();
+    let startDate = this$.find('div[name="dateRange1"] > input').val();
+    let endDate = this$.find('div[name="dateRange2"] > input').val();
     return [startDate, endDate];    
   };
   
@@ -787,6 +818,7 @@ $.fn.dateRangeSet = function(functionName) {
   
 };
 
+// WIDGET FOR INPUT FIELD
 $.fn.inputField = function(options) {
     
   var settings = $.extend({
@@ -797,7 +829,6 @@ $.fn.inputField = function(options) {
   let this$ = this;
   
   this$.addClass("standartPadding");
-
     
   let input$ = $('<input>')
   .attr("type", "text")
@@ -808,25 +839,26 @@ $.fn.inputField = function(options) {
   
   input$.on("focus", {"tip" : settings.tip}, function(event) {  
     if (input$.hasClass("dtTable-field-inactive")){
-      this$.val("");
-      this$.removeClass("dtTable-field-inactive");
-      this$.trigger("focus");
+      input$.val("");
+      input$.removeClass("dtTable-field-inactive");
+      input$.trigger("focus");
     }    
   });
   
+  input$.on("blur",{"tip" : settings.tip}, function(event) {
+    if (this$.val() == ""){
+      input$.addClass("dtTable-field-inactive");
+      input$.val(event.data.tip);
+    }
+  });  
+  
+  input$.trigger("blur");
+      
   if (settings.label != null) {
     $(`<span>${settings.label}</span>`)
-      .prependTo(this$);    
+    .addClass("betweenSpace")
+    .prependTo(this$);    
   }
-  
-  this$.on("blur",{"tip" : settings.tip}, function(event) {
-    if (this$.val() == ""){
-      this$.addClass("dtTable-field-inactive");
-      this$.val(event.data.tip);
-    }
-  });
-  
-  this$.trigger("blur");
   
   return this$;
   

@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     set currentPage(firedMenuItem) {
-  
+      
       let firedMenuId = firedMenuItem
         .text()
         .replace(/\s/gi, "_")

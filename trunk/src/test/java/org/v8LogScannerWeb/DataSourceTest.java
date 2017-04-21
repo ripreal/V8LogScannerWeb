@@ -22,6 +22,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.v8LogScanner.appConfig.LogScannerConfig;
 import org.v8LogScanner.appConfig.RootConfig;
+import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
@@ -30,8 +32,6 @@ import org.v8LogScanner.rgx.ScanProfile.DateRanges;
 import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 import org.v8LogScanner.rgx.ScanProfile.LogTypes;
 import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
-import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
-import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
@@ -45,8 +45,7 @@ public class DataSourceTest {
   @Autowired
   private SessionFactory sessionFactory;
   @Autowired
-  private IScanProfileService scanProfileService;
-  
+  private ScanProfileService scanProfileService;
   @Value(value = "classpath:schema.sql")
   private Resource schemasql;
   

@@ -1,11 +1,14 @@
 'use strict'
 
 $(window).ready(() => {
-  
-  this.formData = function formData() {
+  window.formData = function formData() {
     return {
-      get logPaths() { return $("#LogPathsTable").dtTable("values", "Path");},
-      get servers() { return $("#LogPathsTable").dtTable("values", "Server").removeClones();},
+      get logPathsHib() { 
+        return $("#LogPathsTable").dtTable("getValues");
+      },
+      set logPathsHib(val) {
+        $("#LogPathsTable").dtTable("setValues", val);
+      },      
       get rgxList() { 
         let rgxList = [];
         $(".event-filter-block").each(function(){
@@ -13,9 +16,15 @@ $(window).ready(() => {
         });    
       return rgxList;
       },
+      set rgxList(val) {},
       get rgxOp() { return $("article").attr("data-rgxOp");},
+      set rgxOp(val) {},
       get dateRange() {return $("#LogDateRange").dateRangeSet("getDateRange");},
+      set dateRange(val){},
       get userPeriod() {return $("#LogDateRange").dateRangeSet("getUserPeriod");},
+      set userPeriod(val) {},
+      get limit() {return $("#LogLimit > input").val()},
+      set limit(val){},
     };
   };
   
@@ -25,26 +34,26 @@ $(window).ready(() => {
  
   // 1. SET LOG LOCATIONS
   $("#LogDateRange").dateRangeSet();
-  $("#LogLimit").inputField({tip:"log events limit", label: "log events limit"});
+  $("#LogLimit").inputField({tip:"100", label: "Log level limit"});
   // LOG TABLE
   let logPathsTable$ = $("#LogPathsTable").dtTable();  
   logPathsTable$.dtTable("build", 
     {
-      id: "Server", 
+      id: "server", 
       width: "200px", 
       title: "IP or computer name", 
       source: [localhost]
     }, 
     {
-      id: "Path", 
+      id: "path", 
       width: "500px", 
       title: "directory with *.log files or path to scan",
       source: $.createLink(localhost, "/scanLogPaths"),
     }
   )
-  .dtTable("addListener", "Server", "change", function( event ){
+  .dtTable("addListener", "server", "change", function( event ){
     let currRow = logPathsTable$.dtTable("getRowByCell", event.target);    
-    $(currRow.Path).autocomplete("updateSourceAsLink", $.createLink(currRow.Server.val(), "/scanLogPaths"),{});    
+    $(currRow.Path).autocomplete("updateSourceAsLink", $.createLink(currRow.server.val(), "/scanLogPaths"),{});    
   })
   .dtTable("addCommand", "Add All logs from cfg file", () => {	
     $.modalDialog({
@@ -59,8 +68,8 @@ $(window).ready(() => {
         $.get($.createLink(inputServer, "/scanLogPaths"), (data, status) => {
           for (let i = 0; i < data.length; i++){
             let currRow = logPathsTable$.dtTable("addRow", i);
-            currRow.Server.val(inputServer);
-            currRow.Path.val(data[i]);                       
+            currRow.server.val(inputServer);
+            currRow.path.val(data[i]);                       
           };	
         })
         .always(() => this$.dialog("close"));        
@@ -75,12 +84,7 @@ $(window).ready(() => {
     showLabel: true
   })
   .addClass("positiveButton")
-  .click( function(event){
-    let divFilter$ = $("<div>", {
-      class: "event-filter-block"   
-    })
-    .appendTo($(this).parents(".paragraph-text"));  
-    divFilter$.eventFilter();
+  .click( $.eventFilter("addEvent");
   })
   .trigger("click");
   
@@ -104,13 +108,22 @@ $(window).ready(() => {
       inputName: "profile name",
       inputMenu: ["my profile1"],
       click_ok: function(event, profileName){
-        let profile = new ScanProfile();
         profile.fill(profileName, this.formData());
       }        
     });     
   })
   .find("span.ui-icon")  
   .css({"background-image": "url(\"/img/icons/save.png\")"});
+  
+  $( "#LoadProfile" ).button({
+    icon: "ui-icon-caret-1-n",
+    showLabel: true
+  })
+  .click( function(event){
+    $.modalDialog();     
+  })
+  .find("span.ui-icon")  
+  .css({"background-image": "url(\"/img/icons/open.png\")"});
   
   $( "#ResetAll" ).button({
     showLabel: true
@@ -160,7 +173,15 @@ $(window).ready(() => {
       method: "POST"
     });
     
-  });  
+  }); 
+  
+  window.rest({
+    url: "/getProfile", 
+    onreadystatechange(data) { 
+      let t1 = "";
+      window.profile = ScanProfile.create(data, window.formData());
+  }});
+  
 });
 
 

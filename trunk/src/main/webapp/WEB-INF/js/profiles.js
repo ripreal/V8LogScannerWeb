@@ -6,7 +6,7 @@ class ScanProfile {
     this._id          = 0;
     this._name        = "";
     this._dateRange   = "ANY";
-    this.limit        = 100;
+    this._limit        = 20;
     this._logType     = "ANY";
     this._sortingProp = "ANY";
     this._groupType   = "BY_PROPS";
@@ -15,6 +15,7 @@ class ScanProfile {
     this._rgxOp       = "CURSOR_OP";
     this._userPeriod  = ["", ""];
     this._logPaths    = [];
+    this._logPathsHib = [];
   }
   
   set id (id) { this._id = id;}
@@ -53,7 +54,11 @@ class ScanProfile {
   set logPaths(logPaths) {this._logPaths = logPaths;}
   get logPaths() {return this._logPaths;} 
   
-  fill(profileName, formData) {
+  set logPathsHib(logPathsHib) {this._logPathsHib = logPathsHib;} 
+  get logPathsHib() {return this._logPathsHib;} 
+  
+  // UTIL FUNCTIONS
+  fillProfile(profileName, formData) {
     
     this.name         = profileName;
     this.rgxOp        = formData.rgxOp;
@@ -61,7 +66,16 @@ class ScanProfile {
     this.rgxList      = formData.rgxList;
     this.dateRange    = formData.dateRange;
     this._userPeriod  = formData.userPeriod;
+    this.limit        = formData.limit;
     
+  }
+  
+  static create(jsonData, formData ) {     
+    let profile = JSON.parse(jsonData);
+    profile.prototype = new ScanProfile();
+    for (let prop in profile) {
+      formData[prop] = profile[prop];
+    }    
   }
   
 }

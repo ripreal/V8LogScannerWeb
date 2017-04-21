@@ -1,4 +1,4 @@
-package org.v8LogScanner.scanProfilesRepository;
+package org.v8LogScanner.dbLayer.scanProfilesPersistence;
 
 import java.util.List;
 

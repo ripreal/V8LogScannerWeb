@@ -19,11 +19,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.v8LogScanner.appConfig.LogScannerConfig;
 import org.v8LogScanner.appConfig.RootConfig;
+import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.LogsPathHib;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
 import org.v8LogScanner.rgx.ScanProfile;
-import org.v8LogScanner.scanProfilesRepository.IScanProfileService;
-import org.v8LogScanner.scanProfilesRepository.LogsPathHib;
-import org.v8LogScanner.scanProfilesRepository.ScanProfileHib;
-import org.v8LogScanner.webAppControllers.RESTClient;
+import org.v8LogScanner.webLayer.webAppControllers.RESTClient;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -38,7 +39,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class RESTClientTest {
   
   @Autowired
-  private IScanProfileService scanProfileService;
+  private ScanProfileService scanProfileService;
   @Autowired
   private ScanProfile profile;
   
@@ -51,7 +52,7 @@ public class RESTClientTest {
   @Test
   public void testScanLogInCfg() throws Exception{
       
-    RESTClient client = new RESTClient(profile);
+    RESTClient client = new RESTClient(scanProfileService);
     // MockMVC test
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
     mockMvc.
@@ -63,7 +64,7 @@ public class RESTClientTest {
   @Test
   public void testGetAllGroupTypes(){
       
-    RESTClient client = new RESTClient(profile);
+    RESTClient client = new RESTClient(scanProfileService);
     // MockMVC test
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
     try {
@@ -79,7 +80,7 @@ public class RESTClientTest {
   @Test
   public void testStartRgxOp() throws Exception {
     
-    RESTClient client = new RESTClient(profile);
+    RESTClient client = new RESTClient(scanProfileService);
     
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
     mockMvc.perform(get("/startRgxOp")
@@ -98,7 +99,7 @@ public class RESTClientTest {
     ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
     String requestJson = ow.writeValueAsString(tPtofile);
     
-    RESTClient client = new RESTClient(profile);
+    RESTClient client = new RESTClient(scanProfileService);
     
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
     mockMvc.perform(post("/setProfile")
@@ -128,7 +129,7 @@ public class RESTClientTest {
     ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
     String requestJson = ow.writeValueAsString(logsPathTable);
     
-    RESTClient client = new RESTClient(profile);
+    RESTClient client = new RESTClient(scanProfileService);
     
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
     mockMvc.perform(post("/setLogs")

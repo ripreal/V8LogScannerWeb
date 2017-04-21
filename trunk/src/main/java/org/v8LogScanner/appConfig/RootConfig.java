@@ -15,7 +15,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @Configuration
-@ComponentScan({"org.v8LogScanner.scanProfilesRepository", "org.v8LogScanner.genericRepository"})
+@ComponentScan({"org.v8LogScanner.dbLayer.scanProfilesPersistence", "org.v8LogScanner.dbLayer.genericRepository"})
 public class RootConfig {
   
   @Bean
@@ -54,7 +54,7 @@ public class RootConfig {
     //SessionFactory factory = sessionBuilder.buildSessionFactory();
     LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
     sfb.setDataSource(dataSource);
-    sfb.setPackagesToScan(new String[] { "org.v8LogScanner.scanProfilesRepository" });
+    sfb.setPackagesToScan(new String[] { "org.v8LogScanner.dbLayer.scanProfilesPersistence"});
     Properties props = new Properties();
     props.setProperty("dialect", "org.hibernate.dialect.HSQLDialect");
     props.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:hsqlbase/db_data");
