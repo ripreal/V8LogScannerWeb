@@ -168,12 +168,11 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
     this._inputMask = rgx;
   },
   keydown: function() {
-    let t1= "";
+
   }
 });
 
 // WIDGET FOR LEFT MENU PANEL
-
 $.widget( "custom.leftMenu", $.ui.menu, { 
   
   buildLeftMenu: function(){
@@ -252,7 +251,6 @@ $.widget( "custom.leftMenu", $.ui.menu, {
 });
 
 // WIDGET FOR LANG BUTTONS
-
 $.widget( "custom.langButton", $.ui.button, { 
   build: function(){
     this.element.css("padding", "0px");
@@ -281,7 +279,6 @@ $.widget( "custom.langButton", $.ui.button, {
 });
 
 // WIDGET FOR PARAGRAPH TITLE
-
 $.widget( "custom.pageParagraph", { 
   
   build: function(){
@@ -336,7 +333,6 @@ $.widget( "custom.pageParagraph", {
 });
 
 // WIDGET FOR TABLE
-
 $.widget( "custom.dtTable", { 
   
   _col_options: {
@@ -501,7 +497,6 @@ $.widget( "custom.dtTable", {
 });   
 
 // WIDGET FOR REF BUTTON
-
 $.fn.refButton = function(name, width) {  
   this.attr("href", "#").attr("class", "dtTable-button").html(name);  
   if (width) {
@@ -510,9 +505,7 @@ $.fn.refButton = function(name, width) {
   return this;
 }
 
-
 // WIDGET FOR DROP DOWN MENU
-
 $.fn.dropdownMenu = function(path, width, select_callback) {
   
   let divMenu$ = this.wrap('<div class="dropdown">').parent();
@@ -536,24 +529,33 @@ $.fn.dropdownMenu = function(path, width, select_callback) {
   return this;
 };
 
-
 // WIDGET FOR EVENT FILTER MENU
-
 $.fn.eventFilter = function(functionName) {
+  
+  //static functions
+  if (typeof $.fn.eventFilter.addEvent != 'function') {
+    $.fn.eventFilter.addEvent = function() {
+      let divFilter$ = $("<div>", {
+        class: "event-filter-block"   
+      })
+      .appendTo(this);  
+      divFilter$.eventFilter();
+    }
+  };
   
   let func = $.fn.eventFilter[functionName];  
   if (typeof func == 'function' ) {
     return func.call(this);
-  }  
+  };  
   
-  // public members
-  this.each(function() {
-    let outer = this;
-    this.eventData = {
-      get eventType() {return $("#eventButton", outer).text();},
-      
-    };    
-  });
+  $.fn.eventFilter.getValues = function() {
+    let eventTypes = this.eventFilter("eventType");
+    let t1 = "";
+  };
+  
+  $.fn.eventFilter.eventType = function() {
+    return $("#eventButton", this).text();
+  };
   
   // private members
   let filterCount = 0;
@@ -577,8 +579,8 @@ $.fn.eventFilter = function(functionName) {
     .children().clone().addClass('qualifier')
     .appendTo(filterItem);
 
-    let _eventName = $(this).closest(".event-filter-block")[0].eventData.eventType;
-    
+    let _eventName = $.fn.eventFilter.eventType.call($(this).closest(".event-filter-block"));
+
     // property menu
     filterVariant
       .filter('select[name="selectorMatchType"]')         
@@ -588,15 +590,15 @@ $.fn.eventFilter = function(functionName) {
         $(this).siblings('input[name="term"]').autocomplete("inputMask");      
       }})
       .loadOptions({event: _eventName}, (this$) => {this$.selectmenu().selectmenu("refresh");});
-            
-    // equality matcher menu
+
+      // equality matcher menu
     filterVariant
       .filter('select[name="stringMatchType"]')
       .selectmenu({
       width: "8em",
       change: function(){alert("ok");}});
 
-    // term autocomplete menu
+      // term autocomplete menu
     filterVariant
       .filter('input[name="term"]')
       .autocomplete({
@@ -606,7 +608,7 @@ $.fn.eventFilter = function(functionName) {
       .addClass("standart-input");
 
     $('option[value=""]', this).remove();
-    
+
     $(this).selectmenu().selectmenu("refresh");
   };
   
@@ -664,18 +666,10 @@ $.fn.eventFilter = function(functionName) {
   });
   
   buildDefault();
-
-  $.fn.eventFilter.addEvent = function() {
-    let divFilter$ = $("<div>", {
-      class: "event-filter-block"   
-    })
-    .appendTo($(this).parents(".paragraph-text"));  
-    divFilter$.eventFilter();
-  }  
+  
 };
 
 // WIDGET FOR DIALOG
-
 $.modalDialog = function(options) {
   
   var settings = $.extend ({

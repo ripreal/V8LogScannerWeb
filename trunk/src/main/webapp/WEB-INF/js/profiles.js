@@ -59,15 +59,10 @@ class ScanProfile {
   
   // UTIL FUNCTIONS
   fillProfile(profileName, formData) {
-    
     this.name         = profileName;
-    this.rgxOp        = formData.rgxOp;
-    this.logPaths     = formData.logPaths;
-    this.rgxList      = formData.rgxList;
-    this.dateRange    = formData.dateRange;
-    this._userPeriod  = formData.userPeriod;
-    this.limit        = formData.limit;
-    
+    for (let formProp in formData) {
+      this[formProp] = formData;
+    }
   }
   
   static create(jsonData, formData ) {     

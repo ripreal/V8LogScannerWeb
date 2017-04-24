@@ -11,12 +11,15 @@ $(window).ready(() => {
       },      
       get rgxList() { 
         let rgxList = [];
-        $(".event-filter-block").each(function(){
+        $("#Paragraph2 div.event-filter-block").each(function(){
           rgxList.push(this.eventData.eventType);
         });    
       return rgxList;
       },
-      set rgxList(val) {},
+      set rgxList(val) {
+        $('#Paragraph2 div.event-filter-block')
+        .eventFilter("getValues");
+      },
       get rgxOp() { return $("article").attr("data-rgxOp");},
       set rgxOp(val) {},
       get dateRange() {return $("#LogDateRange").dateRangeSet("getDateRange");},
@@ -34,15 +37,8 @@ $(window).ready(() => {
  
   // 1. SET LOG LOCATIONS
   $("#LogDateRange").dateRangeSet();
-<<<<<<< HEAD
   $("#LogLimit").inputField({tip:"100", label: "Log level limit"});
-=======
-<<<<<<< HEAD
-  $("#LogLimit").inputField("log events limit");
-=======
-  $("#LogLimit").inputField({tip:"log events limit", label: "log events limit"});
->>>>>>> d11a3260d996125203dc20ba0adebcf2ee005130
->>>>>>> e9af51c6c0196c344a465fad6cda8c807287012d
+  
   // LOG TABLE
   let logPathsTable$ = $("#LogPathsTable").dtTable();  
   logPathsTable$.dtTable("build", 
@@ -87,12 +83,12 @@ $(window).ready(() => {
 
   // 2. BUTTONS
   
-  $( "#AddEvent" ).button({
+  let addButton$ = $( "#AddEvent" ).button({
     icon: "ui-icon-plusthick",
     showLabel: true
   })
   .addClass("positiveButton")
-  .click(() => $.fn.eventFilter("addEvent"))
+  .click(function() {$(this).parents(".paragraph-text").eventFilter("addEvent");})
   .trigger("click");
   
   $( "#RemoveEvent" ).button({

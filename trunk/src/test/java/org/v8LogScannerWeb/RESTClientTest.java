@@ -22,6 +22,8 @@ import org.v8LogScanner.appConfig.RootConfig;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.LogsPathHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
+import org.v8LogScanner.rgx.RegExp;
+import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.webLayer.webAppControllers.RESTClient;
 
@@ -93,6 +95,8 @@ public class RESTClientTest {
   public void testSetProfile() throws Exception {
     
     ScanProfile tPtofile = new ScanProfileHib();
+    RegExp rgx = new RegExp(EventTypes.CONN);
+    tPtofile.addRegExp(rgx);
     
     ObjectMapper mapper = new ObjectMapper();
     mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
