@@ -3,22 +3,11 @@
 $(window).ready(() => {
   window.formData = function formData() {
     return {
-      get logPathsHib() { 
-        return $("#LogPathsTable").dtTable("getValues");
-      },
-      set logPathsHib(val) {
-        $("#LogPathsTable").dtTable("setValues", val);
-      },      
-      get rgxList() { 
-        let rgxList = [];
-        $("#Paragraph2 div.event-filter-block").each(function(){
-          rgxList.push(this.eventData.eventType);
-        });    
-      return rgxList;
-      },
+      get logPathsHib() {return $("#LogPathsTable").dtTable("getValues");},
+      set logPathsHib(val) {$("#LogPathsTable").dtTable("setValues", val);},      
+      get rgxList() {return $('#Paragraph2 div.event-filter-block').eventFilter("getValues");},
       set rgxList(val) {
-        $('#Paragraph2 div.event-filter-block')
-        .eventFilter("getValues");
+        $('#Paragraph2 div.event-filter-block').eventFilter("getValues");
       },
       get rgxOp() { return $("article").attr("data-rgxOp");},
       set rgxOp(val) {},
@@ -111,9 +100,28 @@ $(window).ready(() => {
       inputName: "profile name",
       inputMenu: ["my profile1"],
       click_ok: function(event, profileName){
-        profile.fill(profileName, this.formData());
-      }        
-    });     
+        ScanProfile.fill(window.profile, profileName, this.formData());
+        let profileData = JSON.stringify(window.profile);
+        window.rest({
+          url: "/setProfile",
+          type: "POST",
+          data: profileData,
+          onreadystatechange(data) { 
+            alert("ok!");
+        }});
+        
+        /*
+        $.ajax({
+          url: "/setProfile",
+          data: profileData,
+          contentType: "application/json", 
+          complete: function(xhr, status) { 
+            alert("ok!");
+          },
+          method: "POST"
+        });
+        */
+    }});     
   })
   .find("span.ui-icon")  
   .css({"background-image": "url(\"/img/icons/save.png\")"});

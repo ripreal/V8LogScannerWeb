@@ -96,6 +96,8 @@ public class RESTClientTest {
     
     ScanProfile tPtofile = new ScanProfileHib();
     RegExp rgx = new RegExp(EventTypes.CONN);
+    tPtofile.addLogPath("c:\test");
+    tPtofile.addLogPath("c:\test2");
     tPtofile.addRegExp(rgx);
     
     ObjectMapper mapper = new ObjectMapper();

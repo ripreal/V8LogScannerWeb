@@ -65,7 +65,6 @@ public class RESTClient {
         profile = new ScanProfileHib();
       }
       profile.addRegExp(new RegExp(EventTypes.CONN));
-      profile.setLogPaths(scanLogsInCfgFile());
       return profile;      
   }
   

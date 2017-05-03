@@ -23,14 +23,25 @@ Array.prototype.removeClones = function (element) {
   return result;
 };
 
+Map.prototype.merge = function(key, value) {
+  let arr = this.get(key);
+  if (arr == null){
+    arr = new Array();
+  }
+  arr.push(value);
+  this.set(key, arr);
+}
+
 window.rest = function(options) {
   
   var settings = $.extend({
     accept: "application/json",
+    contentType: "application/json", 
     url: "",
     type: "GET",
     params: new Map(),
     onreadystatechange: null,
+    data: null,
   }, options || {});
   
   var request = new XMLHttpRequest();      
@@ -42,7 +53,7 @@ window.rest = function(options) {
     }  
   };
   
-  if (settings.type == "GET") {
+ // if (settings.type == "GET") {
     let parameterString = "";
     let count = 1;
     for (let [ key, val ] of settings.params.entries()) {      
@@ -51,10 +62,10 @@ window.rest = function(options) {
     }
     parameterString = (parameterString == "" ? "" : "?" + parameterString);
     request.open(settings.type, settings.url + parameterString, true);    
-  }  
-  request.setRequestHeader("Accept", settings.accept);
-  request.send();  
-  
+ // }  
+  request.setRequestHeader('Accept', settings.accept);
+  request.setRequestHeader('Content-type', settings.contentType);
+  request.send(settings.data);
 }
 
 // EXTENDING JQUERY
@@ -479,11 +490,13 @@ $.widget( "custom.dtTable", {
     let result = [];
     for(let i = 0; i < this.rows.length; i++){
       let resultRow = {};
+      let currRow = this.rows[i];
       for(let j = 0; j < this.collumns.length; j++) {
-        resultRow[this.collumns[j]] = this.rows[this.collumns[j]].val();        
+        resultRow[this.collumns[j].id] = currRow[this.collumns[j].id].val();        
       }
       result.push(resultRow);
-    }  
+    }
+    return result;
   },
   setValues: function(row_data) {
     this.removeAll();
@@ -549,8 +562,37 @@ $.fn.eventFilter = function(functionName) {
   };  
   
   $.fn.eventFilter.getValues = function() {
-    let eventTypes = this.eventFilter("eventType");
-    let t1 = "";
+   
+    let rgxList = new Array();
+    
+    this.each(function() {
+      
+      let result = {
+        eventType: "ANY",
+        filters: [],
+      }
+      
+      result.eventType = $("#eventButton", this).text();
+      
+      let filters = new Map();
+      $("div.filterItem", this)
+      .each((index, filterItem) => {
+        // WHERE, GROUP BY etc.
+        let filterType = $('select[name="filter"]', filterItem).find(':selected').val();
+        // VALUE OF WHERE, GROUP BY, etc
+        let filterVal = $('select[name="selectorMatchType"]', filterItem).find(':selected').val();
+        // INPUT VAL OF WHERE FILTER
+        if (filterType == "where") {
+          let filterMatcher = $('select[name="stringMatchType"]', filterItem).find(':selected').val();
+          let filterInput = $('input[name="term"]', filterItem).inputField("getValue");
+          filters.merge(filterType, {"comparisonType": filterMatcher, "val": filterInput});
+        }});
+      
+      result.filters =  [...filters];
+      rgxList.push(result);
+      
+    });
+    return rgxList;
   };
   
   $.fn.eventFilter.eventType = function() {
@@ -591,21 +633,14 @@ $.fn.eventFilter = function(functionName) {
       }})
       .loadOptions({event: _eventName}, (this$) => {this$.selectmenu().selectmenu("refresh");});
 
-      // equality matcher menu
+    // equality matcher menu
     filterVariant
       .filter('select[name="stringMatchType"]')
       .selectmenu({
-      width: "8em",
-      change: function(){alert("ok");}});
-
-      // term autocomplete menu
-    filterVariant
-      .filter('input[name="term"]')
-      .autocomplete({
-      width: "8em",
-      change: function(){let t1 = "";}})
-      .autocomplete("build", "input value")
-      .addClass("standart-input");
+        width: "8em",
+        change: function(){  }})
+      .parents('.filterItem')
+      .inputField({name:"term", padding:false});
 
     $('option[value=""]', this).remove();
 
@@ -815,17 +850,26 @@ $.fn.dateRangeSet = function(functionName) {
 // WIDGET FOR INPUT FIELD
 $.fn.inputField = function(options) {
     
+  let func = $.fn.inputField[options];  
+  if (typeof func == 'function' ) {
+    return func.call(this);
+  }  
+  
   var settings = $.extend({
     tip: "input value",
     label: null,
+    name: null,
+    padding: true,
   }, options || {});
   
   let this$ = this;
   
-  this$.addClass("standartPadding");
+  if (settings.padding)
+    this$.addClass("standartPadding");
     
   let input$ = $('<input>')
   .attr("type", "text")
+  .attr("name", settings.name)
   .addClass("betweenSpace")
   .addClass("standart-input")
   .addClass("dtTable-field-inactive")
@@ -840,9 +884,9 @@ $.fn.inputField = function(options) {
   });
   
   input$.on("blur",{"tip" : settings.tip}, function(event) {
-    if (this$.val() == ""){
+    if (this.value == ""){
       input$.addClass("dtTable-field-inactive");
-      input$.val(event.data.tip);
+      this.value = event.data.tip;
     }
   });  
   
@@ -853,6 +897,13 @@ $.fn.inputField = function(options) {
     .addClass("betweenSpace")
     .prependTo(this$);    
   }
+
+  $.fn.inputField.getValue = function() {
+    if (input$.hasClass("dtTable-field-inactive"))
+      return "";
+    else
+      return input$.val();  
+  };
   
   return this$;
   

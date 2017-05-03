@@ -27,9 +27,9 @@
                 <span class="paragraph-tooltip">bla bla bla bla</span>
            </div>
             <div class="paragraph-text">                
-                <table id="LogPathsTable"></table> 
                 <div id="LogLimit"></div>
                 <div id="LogDateRange"></div>
+                <table id="LogPathsTable"></table>                
             </div>
         </div>
         
@@ -91,12 +91,10 @@
                 <select name="selectorMatchType" data-path = "/propTypes">                   
                 </select>
                 <select name="stringMatchType">
-                    <option value="=">is exactly</option>
-                    <option value="*">contains</option>
-                    <option value="^">starts with</option>
-                    <option value="$">ends with</option>                           
+                    <option value="equal">contains</option>
+                    <option value="greater">greater</option>
+                    <option value="less">less</option>                           
                 </select>
-                <input type="text" name="term"/>
             </div>
 
             <div class="template groupMatcher">
