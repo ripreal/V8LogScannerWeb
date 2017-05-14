@@ -60,12 +60,13 @@ public class RESTClient {
   @RequestMapping(value="/getProfile", method = RequestMethod.GET)
   @Transactional
   public ScanProfile getProfile(@RequestParam(value="id", defaultValue="0")int id) {
-      ScanProfile profile = scanProfileService.find(id); 
-      if (profile == null) {
-        profile = new ScanProfileHib();
-      }
-      profile.addRegExp(new RegExp(EventTypes.CONN));
-      return profile;      
+    ScanProfile profile = scanProfileService.find(id); 
+    if (profile == null) {
+      profile = new ScanProfileHib();
+    }
+    RegExp rgx = new RegExp(EventTypes.CONN);
+    profile.addRegExp(rgx);
+    return profile;      
   }
   
   @RequestMapping(value="/groupTypes", method = RequestMethod.GET)

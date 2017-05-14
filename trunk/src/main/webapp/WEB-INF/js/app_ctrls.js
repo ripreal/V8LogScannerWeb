@@ -223,13 +223,13 @@ $.widget( "custom.leftMenu", $.ui.menu, {
   },
   
   blur: function( event, fromFocus ){
-   if ( !fromFocus ) {
-			clearTimeout( this.timer );
-		}
+    if ( !fromFocus ) {
+      clearTimeout( this.timer );
+    }
 
-		if ( !this.active ) {
-			return;
-		}
+    if ( !this.active ) {
+      return;
+    }
 
 		this._removeClass( this.active.children( ".ui-menu-item-wrapper" ),
 			null, "left-menu-state-active" );
@@ -575,6 +575,7 @@ $.fn.eventFilter = function(functionName) {
       result.eventType = $("#eventButton", this).text();
       
       let filters = new Map();
+      filters.merge("where", {"Event": {"elements": [result.eventType]}}); // predefined prop
       $("div.filterItem", this)
       .each((index, filterItem) => {
         // WHERE, GROUP BY etc.
@@ -585,7 +586,7 @@ $.fn.eventFilter = function(functionName) {
         if (filterType == "where") {
           let filterMatcher = $('select[name="stringMatchType"]', filterItem).find(':selected').val();
           let filterInput = $('input[name="term"]', filterItem).inputField("getValue");
-          filters.merge(filterType, {"comparisonType": filterMatcher, "val": filterInput});
+          filters.merge(filterVal, {"comparisonType": filterMatcher, "elements": [filterInput]});
         }});
       
       result.filters =  [...filters];

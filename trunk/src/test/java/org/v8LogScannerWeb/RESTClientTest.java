@@ -19,11 +19,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.v8LogScanner.appConfig.LogScannerConfig;
 import org.v8LogScanner.appConfig.RootConfig;
+import org.v8LogScanner.commonly.Filter;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.LogsPathHib;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.RegExpHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.EventTypes;
+import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.webLayer.webAppControllers.RESTClient;
 
@@ -96,6 +99,10 @@ public class RESTClientTest {
     
     ScanProfile tPtofile = new ScanProfileHib();
     RegExp rgx = new RegExp(EventTypes.CONN);
+    
+    Filter<String> filter = rgx.getFilter(PropTypes.Time);
+    filter.add("2342");
+    
     tPtofile.addLogPath("c:\test");
     tPtofile.addLogPath("c:\test2");
     tPtofile.addRegExp(rgx);

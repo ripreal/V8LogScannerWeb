@@ -1,8 +1,10 @@
 package org.v8LogScanner.dbLayer.scanProfilesPersistence;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
 import javax.persistence.Column;
@@ -14,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.commonly.Filter;
 import org.v8LogScanner.commonly.Filter.ComparisonTypes;
@@ -34,6 +38,8 @@ public class RegExpHib extends RegExp{
   @ManyToOne(targetEntity=ScanProfileHib.class)
   @JoinColumn(name="profile_id", referencedColumnName="id")
   private ScanProfileHib profile;
+  @Transient
+  private Map<PropTypes, FilterHib> filters = new HashMap<>();
   
   public RegExpHib() { super(); }
   
@@ -52,11 +58,21 @@ public class RegExpHib extends RegExp{
   
   @Override
   public Map<PropTypes, Filter<String>> getFilters() {
-    Map<PropTypes, Filter<String>> t1 = super.getFilters();
-    return t1;
+    Map<PropTypes, Filter<String>> unwrapped = new HashMap<>();
+    Set<PropTypes> props = filters.keySet();
+    for(PropTypes prop : props) {
+      unwrapped.put(prop, filters.get(prop));
+    }
+    return unwrapped;
   }
+  
+  @Override
   public void setFilters(Map<PropTypes, Filter<String>> filters) {
-    super.setFilters(filters);
+    this.filters.clear();
+    Set<PropTypes> props = filters.keySet();
+    for(PropTypes prop : props) {
+      this.filters.put(prop, new FilterHib(filters.get(prop)));
+    }
   }
   
   @JsonIgnore

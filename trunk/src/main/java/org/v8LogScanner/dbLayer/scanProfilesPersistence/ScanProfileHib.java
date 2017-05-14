@@ -130,7 +130,7 @@ public class ScanProfileHib implements ScanProfile{
   public void setGroupType(GroupTypes groupType) { this.groupType = groupType;}
   
   public List<RegExp> getRgxList() {
-    List<RegExp>unwrapped = new ArrayList<>();
+    List<RegExp> unwrapped = new ArrayList<>();
     rgxList.forEach(rgx -> unwrapped.add(rgx));
     return unwrapped;
   }
@@ -141,8 +141,9 @@ public class ScanProfileHib implements ScanProfile{
   
   public void addRegExp(RegExp regExp) {
     RegExpHib rgx = new RegExpHib(regExp.getEventType());
-    rgxList.add(rgx);
-    rgx.setProfile(this);
+    rgx.setFilters(regExp.getFilters());
+    rgx.setProfile(this);    
+    rgxList.add(rgx);    
   }
   
   public String getRgxExp() {return rgxExp;}
