@@ -516,7 +516,7 @@ $.fn.refButton = function(name, width) {
     this.css({width: width});
   };
   return this;
-}
+  }
 
 // WIDGET FOR DROP DOWN MENU
 $.fn.dropdownMenu = function(path, width, select_callback) {
@@ -900,10 +900,10 @@ $.fn.inputField = function(options) {
   }
 
   $.fn.inputField.getValue = function() {
-    if (input$.hasClass("dtTable-field-inactive"))
+    if (this.hasClass("dtTable-field-inactive"))
       return "";
     else
-      return input$.val();  
+      return this.val();  
   };
   
   return this$;

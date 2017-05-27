@@ -19,6 +19,10 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.v8LogScanner.rgx.ScanProfile;
 
 @Entity
@@ -32,6 +36,7 @@ public class ScanProfileHib implements ScanProfile{
   private int id;
   @Column
   private String name;
+  @JsonIgnore
   @OneToMany(mappedBy="profile", 
       fetch = FetchType.LAZY, 
       cascade={CascadeType.ALL})
@@ -106,6 +111,7 @@ public class ScanProfileHib implements ScanProfile{
     }
   }
   
+  @JsonProperty("logPaths")
   public List<LogsPathHib> getLogPathsHib() {return this.logPaths;}
   public void setLogPathsHib(List<LogsPathHib> logPathHib) { this.logPaths = logPathHib; }
   

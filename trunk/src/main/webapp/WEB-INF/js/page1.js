@@ -3,9 +3,11 @@
 $(window).ready(() => {
   window.formData = function formData() {
     return {
-      get logPathsHib() {return $("#LogPathsTable").dtTable("getValues");},
-      set logPathsHib(val) {$("#LogPathsTable").dtTable("setValues", val);},      
-      get rgxList() {return $('#Paragraph2 div.event-filter-block').eventFilter("getValues");},
+      get logPaths() {return $("#LogPathsTable").dtTable("getValues");},
+      set logPaths(val) {$("#LogPathsTable").dtTable("setValues", val);},      
+      get rgxList() {
+        return $('#Paragraph2 div.event-filter-block').eventFilter("getValues");
+      },
       set rgxList(val) {
         $('#Paragraph2 div.event-filter-block').eventFilter("getValues");
       },
@@ -171,6 +173,11 @@ $(window).ready(() => {
     
   let test$ = $("#testButton");
   test$.click(function()  {
+    let items$ = $(".event-filter-block .filterItem:first");
+    let inputItem$ = $('input[name="term"]', items$);
+    let filterInput = inputItem$.inputField("getValue");
+    let t1 = "";
+    /*
     let profile = new ScanProfile();
     profile.id = 2;
     let t2 = JSON.stringify({"id": 345});
@@ -183,7 +190,7 @@ $(window).ready(() => {
       },
       method: "POST"
     });
-    
+    */
   }); 
   
   window.rest({

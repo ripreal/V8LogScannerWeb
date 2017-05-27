@@ -15,7 +15,6 @@ class ScanProfile {
     this.rgxOp       = "CURSOR_OP";
     this.userPeriod  = ["", ""];
     this.logPaths    = [];
-    this.logPathsHib = [];
   }
   
   // UTIL FUNCTIONS
