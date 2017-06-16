@@ -38,6 +38,7 @@ public class RegExpHib extends RegExp{
   @ManyToOne(targetEntity=ScanProfileHib.class)
   @JoinColumn(name="profile_id", referencedColumnName="id")
   private ScanProfileHib profile;
+  
   @Transient
   private Map<PropTypes, FilterHib> filters = new HashMap<>();
   
@@ -47,8 +48,13 @@ public class RegExpHib extends RegExp{
     super(eventType);
   }
   
-  public ScanProfileHib getProfile() {return profile;}
+  public RegExpHib(RegExp rgx){
+    super(rgx.getEventType());
+    
+  }
   
+  
+  public ScanProfileHib getProfile() {return profile;}
   public void setProfile(ScanProfileHib profile) {this.profile = profile;}
   
   @Column
@@ -56,7 +62,7 @@ public class RegExpHib extends RegExp{
   @Override
   public EventTypes getEventType() {return super.getEventType();}
   
-  @Override
+  @JsonIgnore
   public Map<PropTypes, Filter<String>> getFilters() {
     Map<PropTypes, Filter<String>> unwrapped = new HashMap<>();
     Set<PropTypes> props = filters.keySet();
@@ -64,17 +70,24 @@ public class RegExpHib extends RegExp{
       unwrapped.put(prop, filters.get(prop));
     }
     return unwrapped;
+        
   }
-  
-  @Override
+  @JsonIgnore
   public void setFilters(Map<PropTypes, Filter<String>> filters) {
     this.filters.clear();
     Set<PropTypes> props = filters.keySet();
     for(PropTypes prop : props) {
-      this.filters.put(prop, new FilterHib(filters.get(prop)));
+      this.filters.put(prop,  (FilterHib) (filters.get(prop)));
     }
   }
   
+  public Map<PropTypes, FilterHib> getFIltersHib() {
+    return filters;
+  }
+  public void setFiltersHib(Map<PropTypes, FilterHib> filters) {
+    this.filters = filters;
+  }
+
   @JsonIgnore
   @Override
   public ArrayList<PropTypes> getPropsForFiltering() {

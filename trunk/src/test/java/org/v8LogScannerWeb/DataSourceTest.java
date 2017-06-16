@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.v8LogScanner.appConfig.LogScannerConfig;
 import org.v8LogScanner.appConfig.RootConfig;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.RegExpHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.EventTypes;
@@ -122,8 +123,14 @@ public class DataSourceTest {
     profile.setRgxExp(".*test.*");
     profile.setRgxOp(RgxOpTypes.USER_OP);
     profile.setUserPeriod("16010123", "16020224");
-    profile.addRegExp(new RegExp(EventTypes.CONN));
-    profile.addRegExp(new RegExp(EventTypes.DBMSSQL));
+    
+    RegExpHib testRgx = new RegExpHib(EventTypes.CONN);
+    
+    testRgx.getFilter(PropTypes.Time).add("14:23");
+    testRgx.getFilter(PropTypes.ClientID).add("2");
+    profile.addRegExp(testRgx);
+    
+    profile.addRegExp(testRgx);
     scanProfileService.add(profile);
     
     // 2. check finding

@@ -6,7 +6,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +22,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.v8LogScanner.appConfig.LogScannerConfig;
 import org.v8LogScanner.appConfig.RootConfig;
 import org.v8LogScanner.commonly.Filter;
+import org.v8LogScanner.commonly.Filter.ComparisonTypes;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.FilterHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.LogsPathHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.RegExpHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
@@ -98,10 +102,14 @@ public class RESTClientTest {
   public void testSetProfile() throws Exception {
     
     ScanProfile tPtofile = new ScanProfileHib();
-    RegExp rgx = new RegExp(EventTypes.CONN);
+    RegExpHib rgx = new RegExpHib(EventTypes.CONN);
     
-    Filter<String> filter = rgx.getFilter(PropTypes.Time);
-    filter.add("2342");
+    Map<PropTypes, Filter<String>> filters = new HashMap<>();
+    FilterHib newFilter = new FilterHib();
+    newFilter.add("2342");
+    filters.put(PropTypes.Time, newFilter);
+    
+    //rgx.setFilters(filters);
     
     tPtofile.addLogPath("c:\test");
     tPtofile.addLogPath("c:\test2");
@@ -149,6 +157,6 @@ public class RESTClientTest {
       .contentType(MediaType.APPLICATION_JSON)
       .content(requestJson)      
       .accept(MediaType.APPLICATION_JSON))
-      .andExpect(status().isBadRequest());
+      .andExpect(status().isOk());
   }
 }

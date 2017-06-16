@@ -40,7 +40,7 @@ public class FilterHib implements Filter<String>{
   
   public FilterHib(Filter<String> filter) {
     this.elements = filter.getElements();
-    this.comparisonType = filter.comparisonType();
+    this.comparisonType = filter.getComparisonType();
   }
   
   @Override
@@ -49,11 +49,11 @@ public class FilterHib implements Filter<String>{
   public void setElements(List<String> elements) {this.elements = elements;}
 
   @Override
-  public ComparisonTypes comparisonType() {
+  public ComparisonTypes getComparisonType() {
     return this.comparisonType;
   }
   @Override
-  public void comparisonType(ComparisonTypes comparisonType) {
+  public void setComparisonType(ComparisonTypes comparisonType) {
     this.comparisonType = comparisonType;
   }
 

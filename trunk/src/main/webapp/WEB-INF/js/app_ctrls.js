@@ -22,14 +22,27 @@ Array.prototype.removeClones = function (element) {
   }
   return result;
 };
-
+// applicable only for object type values
 Map.prototype.merge = function(key, value) {
+  
   let arr = this.get(key);
-  if (arr == null){
-    arr = new Array();
+
+  if (typeof value == 'object') {
+    if (arr == null){
+      arr = new Object();
+    }
+    for (let prop in value) {
+      arr[prop] = value[prop];    
+    }
+    this.set(key, arr);
   }
-  arr.push(value);
-  this.set(key, arr);
+  else {
+    if (arr == null) {
+      arr = new Array();
+    }
+    arr.push(value);
+    this.set(key, arr);
+  }
 }
 
 window.rest = function(options) {
@@ -569,13 +582,13 @@ $.fn.eventFilter = function(functionName) {
       
       let result = {
         eventType: "ANY",
-        filters: [],
+        filters: {},
       }
       
       result.eventType = $("#eventButton", this).text();
       
       let filters = new Map();
-      filters.merge("where", {"Event": {"elements": [result.eventType]}}); // predefined prop
+      filters.merge("Event", {"elements": [result.eventType]}); // predefined prop
       $("div.filterItem", this)
       .each((index, filterItem) => {
         // WHERE, GROUP BY etc.
@@ -589,7 +602,8 @@ $.fn.eventFilter = function(functionName) {
           filters.merge(filterVal, {"comparisonType": filterMatcher, "elements": [filterInput]});
         }});
       
-      result.filters =  [...filters];
+      //result.filters =  [...filters];
+      result.filters =  filters;
       rgxList.push(result);
       
     });
