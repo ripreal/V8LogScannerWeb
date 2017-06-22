@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import java.io.IOException;
+import java.util.Map;
+
 import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -22,6 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.v8LogScanner.appConfig.LogScannerConfig;
 import org.v8LogScanner.appConfig.RootConfig;
+import org.v8LogScanner.commonly.Filter;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.RegExpHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
@@ -125,12 +128,15 @@ public class DataSourceTest {
     profile.setUserPeriod("16010123", "16020224");
     
     RegExpHib testRgx = new RegExpHib(EventTypes.CONN);
+       
+    Map<PropTypes, Filter<String>> filters = testRgx.getFilters();
+    filters.put(PropTypes.Time, testRgx.getFilter(PropTypes.Time).add("14:23"));
+    filters.put(PropTypes.ClientID, testRgx.getFilter(PropTypes.ClientID).add("2"));
     
-    testRgx.getFilter(PropTypes.Time).add("14:23");
-    testRgx.getFilter(PropTypes.ClientID).add("2");
+    testRgx.setFilters(filters);
+        
     profile.addRegExp(testRgx);
-    
-    profile.addRegExp(testRgx);
+
     scanProfileService.add(profile);
     
     // 2. check finding
@@ -146,6 +152,7 @@ public class DataSourceTest {
     assertEquals(".*test.*", persistentProfile.getRgxExp());
     assertEquals(RgxOpTypes.USER_OP, persistentProfile.getRgxOp());
     assertArrayEquals(new String[]{"16010123", "16020224"}, persistentProfile.getUserPeriod());
+    assertEquals(profile.getRgxList().get(0).getFilters().size(), persistentProfile.getRgxList().get(0).getFilters().size());
     
     RegExp rgx = persistentProfile.getRgxList().get(0);
     assertEquals(EventTypes.CONN, rgx.getEventType());

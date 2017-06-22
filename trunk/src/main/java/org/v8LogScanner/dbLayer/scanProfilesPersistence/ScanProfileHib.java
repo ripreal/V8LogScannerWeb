@@ -142,7 +142,7 @@ public class ScanProfileHib implements ScanProfile{
   }
   public void setRgxList(List<RegExp> rgxList) {
     this.rgxList.clear();
-    rgxList.forEach(rgx -> this.rgxList.add(new RegExpHib(rgx));
+    rgxList.forEach(rgx -> this.rgxList.add(new RegExpHib(rgx)));
     String t1 = "";
     t1 = "2";
   }

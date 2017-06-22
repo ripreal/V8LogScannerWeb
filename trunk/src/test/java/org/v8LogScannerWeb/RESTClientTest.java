@@ -104,12 +104,12 @@ public class RESTClientTest {
     ScanProfile tPtofile = new ScanProfileHib();
     RegExpHib rgx = new RegExpHib(EventTypes.CONN);
     
-    Map<PropTypes, Filter<String>> filters = new HashMap<>();
     FilterHib newFilter = new FilterHib();
     newFilter.add("2342");
+        
+    Map<PropTypes, Filter<String>> filters = rgx.getFilters();
     filters.put(PropTypes.Time, newFilter);
-    
-    //rgx.setFilters(filters);
+    rgx.setFilters(filters);
     
     tPtofile.addLogPath("c:\test");
     tPtofile.addLogPath("c:\test2");
@@ -125,7 +125,7 @@ public class RESTClientTest {
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
     mockMvc.perform(post("/setProfile")
       .contentType(MediaType.APPLICATION_JSON)
-      .content(requestJson)      
+      .content(requestJson)
       .accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk());
   }

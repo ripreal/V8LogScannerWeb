@@ -22,6 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.commonly.Filter;
 import org.v8LogScanner.commonly.Filter.ComparisonTypes;
 import org.v8LogScanner.rgx.RegExp;
+import org.v8LogScanner.rgx.RegExp.PropTypes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,17 +43,20 @@ public class RegExpHib extends RegExp{
   @Transient
   private Map<PropTypes, FilterHib> filters = new HashMap<>();
   
-  public RegExpHib() { super(); }
+  public RegExpHib() { 
+    super(); 
+  }
   
   public RegExpHib(EventTypes eventType){
     super(eventType);
+    filters.put(PropTypes.Event, new FilterHib(getFilter(PropTypes.Event)));
   }
   
   public RegExpHib(RegExp rgx){
     super(rgx.getEventType());
-    
+    //Map<PropTypes, Filter<String>> filters = rgx.getFilters();
+    //this.setFilters(filters);
   }
-  
   
   public ScanProfileHib getProfile() {return profile;}
   public void setProfile(ScanProfileHib profile) {this.profile = profile;}
@@ -62,7 +66,8 @@ public class RegExpHib extends RegExp{
   @Override
   public EventTypes getEventType() {return super.getEventType();}
   
-  @JsonIgnore
+  @JsonIgnore // can't construct interface type Filter<String>
+  @Override
   public Map<PropTypes, Filter<String>> getFilters() {
     Map<PropTypes, Filter<String>> unwrapped = new HashMap<>();
     Set<PropTypes> props = filters.keySet();
@@ -70,14 +75,14 @@ public class RegExpHib extends RegExp{
       unwrapped.put(prop, filters.get(prop));
     }
     return unwrapped;
-        
   }
-  @JsonIgnore
+  @JsonIgnore // can't construct interface type Filter<String>
+  @Override
   public void setFilters(Map<PropTypes, Filter<String>> filters) {
     this.filters.clear();
     Set<PropTypes> props = filters.keySet();
     for(PropTypes prop : props) {
-      this.filters.put(prop,  (FilterHib) (filters.get(prop)));
+      this.filters.put(prop,  new FilterHib(filters.get(prop)));
     }
   }
   
