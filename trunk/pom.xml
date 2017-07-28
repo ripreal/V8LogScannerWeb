@@ -54,6 +54,7 @@
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
     </dependency>
+
   </dependencies>
       
   <build>
@@ -106,17 +107,18 @@
       <url>file:///${project.basedir}/v8LogScanner/repo</url>
     </repository>
     -->
-    
+
     <repository>
       <id>v8LogScannerRepo</id>
       <name>v8LogScannerRepo</name>
-      <url>https://cdn.rawgit.com/ripreal/V8LogScanner/74f24180/repo/</url>
+      <url>https://cdn.rawgit.com/ripreal/V8LogScanner/7816589/repo/</url>
+      <!--<url>https://cdn.rawgit.com/ripreal/V8LogScanner/74f24180/repo/</url>-->
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
     </repository>
   </repositories>
-  
+
   <pluginRepositories>
     <pluginRepository>
       <id>spring-snapshots</id>
