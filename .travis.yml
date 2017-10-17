@@ -5,3 +5,5 @@ before_install:
 - cd trunk
 - chmod +x mvnw
 script: mvn test -B
+script: "sbt clean coverage test"
+after_success: "sbt coveralls"
