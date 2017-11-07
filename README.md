@@ -3,4 +3,5 @@
 
 ## Introduction
 Web application current view.
+
 ![main menu](http://infostart.ru/upload/iblock/87b/87b248c308818cef8c12ff814050268b.png)
