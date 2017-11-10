@@ -18,31 +18,31 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("org.V8LogScanner.webLayer.WebAppControllers")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-  @Bean
-  public ViewResolver viewResolver(){
-    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-    resolver.setPrefix("/WEB-INF/");
-    //resolver.setSuffix(".html");
-    resolver.setExposeContextBeansAsAttributes(true);
-    return resolver;
-  }
-  
-  @Bean
-  public ViewResolver cnViewResolver(ContentNegotiationManager cnm) {
-    ContentNegotiatingViewResolver cnvr = new ContentNegotiatingViewResolver();
-    cnvr.setContentNegotiationManager(cnm);
-    return cnvr;
-  }
-  
-  @Override
-  public void configureDefaultServletHandling(
-    DefaultServletHandlerConfigurer configurer){
-    configurer.enable();
-  }
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/");
+        //resolver.setSuffix(".html");
+        resolver.setExposeContextBeansAsAttributes(true);
+        return resolver;
+    }
 
-  @Override
-  public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-    configurer.defaultContentType(MediaType.APPLICATION_JSON);
-  }
-  
+    @Bean
+    public ViewResolver cnViewResolver(ContentNegotiationManager cnm) {
+        ContentNegotiatingViewResolver cnvr = new ContentNegotiatingViewResolver();
+        cnvr.setContentNegotiationManager(cnm);
+        return cnvr;
+    }
+
+    @Override
+    public void configureDefaultServletHandling(
+            DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.defaultContentType(MediaType.APPLICATION_JSON);
+    }
+
 }

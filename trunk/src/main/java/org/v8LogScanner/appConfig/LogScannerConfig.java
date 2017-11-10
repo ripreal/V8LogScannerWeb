@@ -10,11 +10,11 @@ import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 @Configuration
 @ComponentScan({"org.v8LogScanner.WebClients", "org.v8LogScanner.dbLayer.scanProfilesPersistence"})
 public class LogScannerConfig {
-  
-  @Bean
-  public ScanProfile profile(){
-    ScanProfile profile = new ScanProfileHib();
-    profile.setRgxOp(RgxOpTypes.CURSOR_OP);
-    return profile;
-  }
+
+    @Bean
+    public ScanProfile profile() {
+        ScanProfile profile = new ScanProfileHib();
+        profile.setRgxOp(RgxOpTypes.CURSOR_OP);
+        return profile;
+    }
 }

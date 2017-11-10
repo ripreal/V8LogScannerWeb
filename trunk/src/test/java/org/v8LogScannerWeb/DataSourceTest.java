@@ -1,13 +1,5 @@
 package org.v8LogScannerWeb;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-import java.io.IOException;
-import java.util.Map;
-
-import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.junit.Before;
@@ -37,24 +29,30 @@ import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 import org.v8LogScanner.rgx.ScanProfile.LogTypes;
 import org.v8LogScanner.rgx.ScanProfile.RgxOpTypes;
 
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Map;
+
+import static org.junit.Assert.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
-LogScannerConfig.class,
-RootConfig.class})
+        LogScannerConfig.class,
+        RootConfig.class})
 @ActiveProfiles(profiles = "test")
 public class DataSourceTest {
-  
-  @Autowired
-  private DataSource datasource;
-  @Autowired
-  private SessionFactory sessionFactory;
-  @Autowired
-  private ScanProfileService scanProfileService;
-  @Value(value = "classpath:schema.sql")
-  private Resource schemasql;
-  
-  @Before
-  public void setup() throws IOException {
+
+    @Autowired
+    private DataSource datasource;
+    @Autowired
+    private SessionFactory sessionFactory;
+    @Autowired
+    private ScanProfileService scanProfileService;
+    @Value(value = "classpath:schema.sql")
+    private Resource schemasql;
+
+    @Before
+    public void setup() throws IOException {
     /* FOR PRODUCTION PROFILE
     InputStream in =  schemasql.getInputStream();
     InputStreamReader inputreader = new InputStreamReader(in);
@@ -71,99 +69,98 @@ public class DataSourceTest {
     
     template.execute(s);
     */
-  }
-
-  @Test
-  public void dataSourceShouldNotBeNull() {
-    assertNotNull(datasource);
-  } 
-  
-  @Test
-  public void ORMSessionShouldNotBeNull() {
-    assertNotNull(sessionFactory);
-  }
-  
-  @Test
-  public void testJdbcQuery() {
-    JdbcTemplate template = new JdbcTemplate(datasource);
-    
-    try {
-      template.execute(
-        "DROP TABLE IF EXISTS h2testtable;"
-        +"CREATE TABLE h2testtable ("
-        +"id VARCHAR(30),"
-        +"name VARCHAR(20)"
-        +");"
-        +"");
-      template.execute( "INSERT INTO h2testtable VALUES ('test completeted sucessful', 'k')");
-      
-      String testVal = template.queryForObject("SELECT * FROM h2testtable", (rs, rowNum) -> {
-        return rs.getString("id");
-      });
-      
-      assertNotNull(testVal, testVal);
-      
     }
-    catch (DataAccessException e) {
-      fail(e.getMessage());
+
+    @Test
+    public void dataSourceShouldNotBeNull() {
+        assertNotNull(datasource);
     }
-  }
-  
-  @Test
-  @Transactional
-  public void testScanProfilePersistence() {
-    
-    // 1. check adding 
-    ScanProfile profile = new ScanProfileHib();
-    profile.setName("test profile");
-    profile.addLogPath("c://share");
-    profile.addLogPath("c://share2");
-    profile.setDateRange(DateRanges.LAST_HOUR);
-    profile.setLimit(10);
-    profile.setLogType(LogTypes.CLIENT);
-    profile.setSortingProp(PropTypes.ApplicationName);
-    profile.setGroupType(GroupTypes.BY_PROPS);
-    profile.setRgxExp(".*test.*");
-    profile.setRgxOp(RgxOpTypes.USER_OP);
-    profile.setUserPeriod("16010123", "16020224");
-    
-    RegExpHib testRgx = new RegExpHib(EventTypes.CONN);
-       
-    Map<PropTypes, Filter<String>> filters = testRgx.getFilters();
-    filters.put(PropTypes.Time, testRgx.getFilter(PropTypes.Time).add("14:23"));
-    filters.put(PropTypes.ClientID, testRgx.getFilter(PropTypes.ClientID).add("2"));
-    
-    testRgx.setFilters(filters);
-        
-    profile.addRegExp(testRgx);
 
-    scanProfileService.add(profile);
-    
-    // 2. check finding
-    scanProfileService.resetCache();
-    ScanProfile persistentProfile = scanProfileService.find(profile);
-   
-    assertArrayEquals(profile.getLogPaths().toArray(new String[0]), persistentProfile.getLogPaths().toArray(new String[0]));
-    assertEquals(DateRanges.LAST_HOUR, persistentProfile.getDateRange());
-    assertEquals(10, persistentProfile.getLimit());
-    assertEquals(LogTypes.CLIENT, persistentProfile.getLogType());
-    assertEquals(PropTypes.ApplicationName, persistentProfile.getSortingProp());
-    assertEquals(GroupTypes.BY_PROPS, persistentProfile.getGroupType());
-    assertEquals(".*test.*", persistentProfile.getRgxExp());
-    assertEquals(RgxOpTypes.USER_OP, persistentProfile.getRgxOp());
-    assertArrayEquals(new String[]{"16010123", "16020224"}, persistentProfile.getUserPeriod());
-    assertEquals(profile.getRgxList().get(0).getFilters().size(), persistentProfile.getRgxList().get(0).getFilters().size());
-    
-    RegExp rgx = persistentProfile.getRgxList().get(0);
-    assertEquals(EventTypes.CONN, rgx.getEventType());
+    @Test
+    public void ORMSessionShouldNotBeNull() {
+        assertNotNull(sessionFactory);
+    }
 
-    // 3. check deleting
-    scanProfileService.remove(persistentProfile);
-    Query<ScanProfileHib> query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id", 
-        ScanProfileHib.class);
-    query.setParameter("id", profile.getId());
-    assertEquals(0, query.getResultList().size());
-  }
+    @Test
+    public void testJdbcQuery() {
+        JdbcTemplate template = new JdbcTemplate(datasource);
+
+        try {
+            template.execute(
+                    "DROP TABLE IF EXISTS h2testtable;"
+                            + "CREATE TABLE h2testtable ("
+                            + "id VARCHAR(30),"
+                            + "name VARCHAR(20)"
+                            + ");"
+                            + "");
+            template.execute("INSERT INTO h2testtable VALUES ('test completeted sucessful', 'k')");
+
+            String testVal = template.queryForObject("SELECT * FROM h2testtable", (rs, rowNum) -> {
+                return rs.getString("id");
+            });
+
+            assertNotNull(testVal, testVal);
+
+        } catch (DataAccessException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    @Transactional
+    public void testScanProfilePersistence() {
+
+        // 1. check adding
+        ScanProfile profile = new ScanProfileHib();
+        profile.setName("test profile");
+        profile.addLogPath("c://share");
+        profile.addLogPath("c://share2");
+        profile.setDateRange(DateRanges.LAST_HOUR);
+        profile.setLimit(10);
+        profile.setLogType(LogTypes.CLIENT);
+        profile.setSortingProp(PropTypes.ApplicationName);
+        profile.setGroupType(GroupTypes.BY_PROPS);
+        profile.setRgxExp(".*test.*");
+        profile.setRgxOp(RgxOpTypes.USER_OP);
+        profile.setUserPeriod("16010123", "16020224");
+
+        RegExpHib testRgx = new RegExpHib(EventTypes.CONN);
+
+        Map<PropTypes, Filter<String>> filters = testRgx.getFilters();
+        filters.put(PropTypes.Time, testRgx.getFilter(PropTypes.Time).add("14:23"));
+        filters.put(PropTypes.ClientID, testRgx.getFilter(PropTypes.ClientID).add("2"));
+
+        testRgx.setFilters(filters);
+
+        profile.addRegExp(testRgx);
+
+        scanProfileService.add(profile);
+
+        // 2. check finding
+        scanProfileService.resetCache();
+        ScanProfile persistentProfile = scanProfileService.find(profile);
+
+        assertArrayEquals(profile.getLogPaths().toArray(new String[0]), persistentProfile.getLogPaths().toArray(new String[0]));
+        assertEquals(DateRanges.LAST_HOUR, persistentProfile.getDateRange());
+        assertEquals(10, persistentProfile.getLimit());
+        assertEquals(LogTypes.CLIENT, persistentProfile.getLogType());
+        assertEquals(PropTypes.ApplicationName, persistentProfile.getSortingProp());
+        assertEquals(GroupTypes.BY_PROPS, persistentProfile.getGroupType());
+        assertEquals(".*test.*", persistentProfile.getRgxExp());
+        assertEquals(RgxOpTypes.USER_OP, persistentProfile.getRgxOp());
+        assertArrayEquals(new String[]{"16010123", "16020224"}, persistentProfile.getUserPeriod());
+        assertEquals(profile.getRgxList().get(0).getFilters().size(), persistentProfile.getRgxList().get(0).getFilters().size());
+
+        RegExp rgx = persistentProfile.getRgxList().get(0);
+        assertEquals(EventTypes.CONN, rgx.getEventType());
+
+        // 3. check deleting
+        scanProfileService.remove(persistentProfile);
+        Query<ScanProfileHib> query = sessionFactory.getCurrentSession().createQuery("from ScanProfileHib AS profiles WHERE profiles.id =:id",
+                ScanProfileHib.class);
+        query.setParameter("id", profile.getId());
+        assertEquals(0, query.getResultList().size());
+    }
 }
 
 

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
 public class V8LogScannerWebApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(V8LogScannerWebApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(V8LogScannerWebApplication.class, args);
+    }
 }

@@ -1,18 +1,18 @@
 package org.v8LogScanner.webLayer.webAppControllers;
 
-public class TestProfile implements ITestProfile{
-  private int id = 0;
+public class TestProfile implements ITestProfile {
+    private int id = 0;
 
-  @Override
-  public void setId(int id) {
-    this.id = id;
-    
-  }
+    @Override
+    public void setId(int id) {
+        this.id = id;
 
-  @Override
-  public int getId() {
-    // TODO Auto-generated method stub
-    return id;
-  }
-  
+    }
+
+    @Override
+    public int getId() {
+        // TODO Auto-generated method stub
+        return id;
+    }
+
 }
