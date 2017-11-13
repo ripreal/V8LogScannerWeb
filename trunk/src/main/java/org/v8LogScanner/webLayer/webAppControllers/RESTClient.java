@@ -123,17 +123,14 @@ public class RESTClient {
 
     @RequestMapping(value = "/propTypes", method = RequestMethod.GET,
             produces = "application/json")
-    public ResponseEntity<List<PropTypes>> propTypes(@RequestParam(value = "event") String event) {
+    public List<PropTypes> propTypes(@RequestParam(value = "event") String event) {
 
         EventTypes eventType = null;
-        try {
-            eventType = EventTypes.valueOf(event);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+        eventType = EventTypes.valueOf(event);
+
         RegExp rgx = new RegExp(eventType);
 
-        return new ResponseEntity<>(rgx.getPropsForFiltering(), HttpStatus.OK);
+        return rgx.getPropsForFiltering();
     }
 
     @RequestMapping(value = "/startRgxOp", method = RequestMethod.GET)

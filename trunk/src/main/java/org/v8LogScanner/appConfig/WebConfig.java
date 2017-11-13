@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("org.V8LogScanner.webLayer.WebAppControllers")
+@ComponentScan("org.v8LogScanner.webLayer.webAppControllers")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
