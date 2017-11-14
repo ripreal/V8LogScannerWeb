@@ -176,7 +176,8 @@ public class ScanProfileHib implements ScanProfile {
     }
 
     public void addRegExp(RegExp regExp) {
-        RegExpHib rgx = (RegExpHib) regExp;
+
+        RegExpHib rgx = new RegExpHib(regExp);
         rgx.setProfile(this);
         rgxList.add(rgx);
     }

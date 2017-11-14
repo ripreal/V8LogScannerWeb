@@ -38,8 +38,8 @@ public class RegExpHib extends RegExp {
 
     public RegExpHib(RegExp rgx) {
         super(rgx.getEventType());
-        //Map<PropTypes, Filter<String>> filters = rgx.getFilters();
-        //this.setFilters(filters);
+        Map<PropTypes, Filter<String>> filters = rgx.getFilters();
+        this.setFilters(filters);
     }
 
     public ScanProfileHib getProfile() {

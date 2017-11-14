@@ -39,7 +39,7 @@ public class RESTClient {
 
     @RequestMapping(value = "/setProfile", method = RequestMethod.POST)
     public ResponseEntity<Integer> setProfile(@RequestBody ScanProfileHib profile) {
-        //scanProfileService.add(profile);
+        scanProfileService.add(profile);
         ResponseEntity<Integer> response = new ResponseEntity<>(1, HttpStatus.OK);
         return response;
     }
