@@ -37,23 +37,35 @@ public class RESTClient {
         this.scanProfileService = scanProfileService;
     }
 
-    @RequestMapping(value = "/setProfile", method = RequestMethod.POST)
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
     public ResponseEntity<Integer> setProfile(@RequestBody ScanProfileHib profile) {
-        scanProfileService.add(profile);
-        ResponseEntity<Integer> response = new ResponseEntity<>(1, HttpStatus.OK);
-        return response;
+        try {
+            int id = scanProfileService.add(profile);
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
-    @RequestMapping(value = "/getProfile", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile/{id:\\d+}", method = RequestMethod.GET)
     @Transactional
-    public ScanProfile getProfile(@RequestParam(value = "id", defaultValue = "0") int id) {
+    public ResponseEntity getProfile(@PathVariable(value = "id", required = false) final int id) {
         ScanProfile profile = scanProfileService.find(id);
-        if (profile == null) {
-            profile = new ScanProfileHib();
-        }
-        RegExp rgx = new RegExp(EventTypes.CONN);
-        profile.addRegExp(rgx);
-        return profile;
+        if (profile != null)
+            return ResponseEntity.status(HttpStatus.OK).body(profile);
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    String.format("Scan profile with id %s no found.", id));
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @Transactional
+    public ResponseEntity getProfileIfPresent() {
+        ScanProfile profile = null;
+        if ((profile = scanProfileService.findIfPresent()) != null)
+            return ResponseEntity.status(HttpStatus.OK).body(profile);
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No profiles found.");
     }
 
     @RequestMapping(value = "/groupTypes", method = RequestMethod.GET)
@@ -66,20 +78,6 @@ public class RESTClient {
     public @ResponseBody
     List<String> scanLogsInCfgFile() {
         return LogsOperations.scanLogsInCfgFile();
-    }
-
-    @RequestMapping(value = "/setLogs", method = RequestMethod.POST)
-    public ResponseEntity<String> setLogs(@RequestBody List<LogsPathHib> logsPath) {
-        //for(LogsPathHib path : logsPath) {
-        //  try {
-        //    V8LogScannerClient client = clientsManager.addClient(path.getServer(), procEvent);
-        //    client.getProfile().addLogPath(path.getPath());
-        //  }
-        //  catch (ClientsManager.LogScannerClientNotFoundServer e) {
-        //    return new ResponseEntity<>(e.getStackTrace().toString(), HttpStatus.BAD_REQUEST);
-        //  }
-        // }
-        return new ResponseEntity<>("", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/eventTypes", method = RequestMethod.GET,

@@ -3,7 +3,7 @@
 class ScanProfile {
     
   constructor () {
-    this.id          = 0;
+    this.id          = null;
     this.name        = "";
     this.dateRange   = "ANY";
     this.limit        = 20;

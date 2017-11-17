@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,9 +27,10 @@ public class HibernateRepository<T> implements DataRepository<T> {
         this.sessionFactory = sessionFactory;
     }
 
-    public void add(T data) {
-        currentSession().save(data);
+    public Serializable add(T data) {
+        Serializable id = currentSession().save(data);
         updateCache(data);
+        return id;
     }
 
     public void remove(T data) {

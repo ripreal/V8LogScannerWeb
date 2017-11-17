@@ -109,7 +109,7 @@ $(window).ready(() => {
           type: "POST",
           data: profileData,
           onreadystatechange(data) { 
-            alert("ok!");
+            window.profile.id = data;
         }});
         
         /*
@@ -194,7 +194,7 @@ $(window).ready(() => {
   }); 
   
   window.rest({
-    url: "/getProfile", 
+    url: "/profile",
     onreadystatechange(data) { 
       let t1 = "";
       window.profile = ScanProfile.create(data, window.formData());

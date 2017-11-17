@@ -4,7 +4,7 @@ import org.v8LogScanner.rgx.ScanProfile;
 
 public interface ScanProfileService {
 
-    public void add(ScanProfile profile);
+    public int add(ScanProfile profile);
 
     public void remove(ScanProfile profile);
 
@@ -15,5 +15,7 @@ public interface ScanProfileService {
     public ScanProfile find(ScanProfile profile);
 
     public ScanProfile find(int id);
+
+    public ScanProfile findIfPresent();
 
 }

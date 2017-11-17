@@ -6,8 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.v8LogScanner.dbLayer.genericRepository.DataRepository;
 import org.v8LogScanner.dbLayer.genericRepository.QuerySpecification;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.Specifications.ScanProfileHibSpecByID;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.Specifications.ScanProfileHibSpecIfPresent;
 import org.v8LogScanner.rgx.ScanProfile;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -21,22 +25,27 @@ public class ScanProfileHibService implements ScanProfileService {
         this.repository = repository;
     }
 
-    public void add(ScanProfile profile) {
-        repository.add((ScanProfileHib) profile);
+    @Override
+    public int add(ScanProfile profile) {
+        return (int) repository.add((ScanProfileHib) profile);
     }
 
+    @Override
     public void remove(ScanProfile profile) {
         repository.remove((ScanProfileHib) profile);
     }
 
+    @Override
     public void update(ScanProfile profile) {
         repository.update((ScanProfileHib) profile);
     }
 
+    @Override
     public ScanProfile find(ScanProfile profile) {
         return (ScanProfile) find(profile.getId());
     }
 
+    @Override
     public ScanProfile find(int id) {
         QuerySpecification<ScanProfileHib> spec = new ScanProfileHibSpecByID(id);
         List<ScanProfileHib> profiles = repository.query(spec);
@@ -44,6 +53,22 @@ public class ScanProfileHibService implements ScanProfileService {
             return (ScanProfile) profiles.get(0);
         else
             return null;
+    }
+
+    @Override
+    public ScanProfile findIfPresent() {
+
+        ScanProfile profile = null;
+
+        QuerySpecification<ScanProfileHib> spec = new ScanProfileHibSpecIfPresent();
+        List<ScanProfileHib> profiles = repository.query(spec);
+
+        try {
+            profile = Collections.max(profiles, Comparator.comparing(ScanProfileHib::getId));
+        } catch (RuntimeException e){
+            // no needs
+        }
+        return profile;
     }
 
     public void resetCache() {

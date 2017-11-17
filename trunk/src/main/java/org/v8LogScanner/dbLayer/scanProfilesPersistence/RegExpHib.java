@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.commonly.Filter;
 import org.v8LogScanner.commonly.Filter.ComparisonTypes;
 import org.v8LogScanner.rgx.RegExp;
+import org.v8LogScanner.rgx.ScanProfile;
 
 import javax.persistence.*;
 import java.util.*;
@@ -36,10 +37,11 @@ public class RegExpHib extends RegExp {
         filters.put(PropTypes.Event, new FilterHib(getFilter(PropTypes.Event)));
     }
 
-    public RegExpHib(RegExp rgx) {
+    public RegExpHib(RegExp rgx, ScanProfileHib profile) {
         super(rgx.getEventType());
         Map<PropTypes, Filter<String>> filters = rgx.getFilters();
         this.setFilters(filters);
+        this.profile = profile;
     }
 
     public ScanProfileHib getProfile() {

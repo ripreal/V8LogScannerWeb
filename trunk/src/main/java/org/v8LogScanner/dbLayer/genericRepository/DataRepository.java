@@ -1,10 +1,11 @@
 package org.v8LogScanner.dbLayer.genericRepository;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface DataRepository<T> {
 
-    public void add(T object);
+    public Serializable add(T object);
 
     public void remove(T object);
 

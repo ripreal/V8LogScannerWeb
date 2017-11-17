@@ -26,33 +26,33 @@ public class ScanProfileHib implements ScanProfile {
     @OneToMany(mappedBy = "profile",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.ALL})
-    private List<LogsPathHib> logPaths = new ArrayList<>();
+    private List<LogsPathHib> logPaths;
     @Enumerated(EnumType.STRING)
     @Column
-    private DateRanges dateRange = DateRanges.ANY;
+    private DateRanges dateRange;
     @Column(name = "evlimit")
-    private int limit = 100; // restriction up on amount of events  from
+    private int limit;
     @Enumerated(EnumType.STRING)
     @Column
-    private LogTypes logType = LogTypes.ANY;
+    private LogTypes logType;
     @Enumerated(EnumType.STRING)
     @Column
-    private PropTypes sortingProp = PropTypes.ANY;
+    private PropTypes sortingProp;
     @Enumerated(EnumType.STRING)
     @Column
-    private GroupTypes groupType = GroupTypes.BY_PROPS;
+    private GroupTypes groupType;
     @OneToMany(mappedBy = "profile",
             fetch = FetchType.EAGER,
             cascade = {CascadeType.ALL})
-    private List<RegExpHib> rgxList = new ArrayList<>();
+    private List<RegExpHib> rgxList;
     @Column
-    private String rgxExp = "";
+    private String rgxExp;
     @Column
-    private RgxOpTypes rgxOp = RgxOpTypes.CURSOR_OP;
+    private RgxOpTypes rgxOp;
     @Column
-    private String userStartDate = "";
+    private String userStartDate;
     @Column
-    private String userEndDate = "";
+    private String userEndDate;
 
     // Mapping for simple collections
     //@ElementCollection(fetch = FetchType.LAZY)
@@ -62,6 +62,7 @@ public class ScanProfileHib implements ScanProfile {
     //private List<String> logpaths = new ArrayList<>();
 
     public ScanProfileHib() {
+        clear();
     }
 
     public String getName() {
@@ -84,7 +85,7 @@ public class ScanProfileHib implements ScanProfile {
     public void setLogPaths(List<String> logpaths) {
         this.logPaths = new ArrayList<>();
         for (String path : logpaths) {
-            LogsPathHib pathHib = new LogsPathHib();
+            LogsPathHib pathHib = new LogsPathHib(this);
             pathHib.setServer("127.0.0.1");
             pathHib.setPath(path);
             pathHib.setProfile(this);
@@ -97,7 +98,7 @@ public class ScanProfileHib implements ScanProfile {
         List<String> logpaths = getLogPaths();
         boolean logExist = logpaths.stream().anyMatch(n -> n.compareTo(logPath) == 0);
         if (!logExist) {
-            LogsPathHib logPathHib = new LogsPathHib();
+            LogsPathHib logPathHib = new LogsPathHib(this);
             logPathHib.setPath(logPath);
             logPathHib.setServer("127.0.0.1");
             logPathHib.setProfile(this);
@@ -111,7 +112,11 @@ public class ScanProfileHib implements ScanProfile {
     }
 
     public void setLogPathsHib(List<LogsPathHib> logPathHib) {
-        this.logPaths = logPathHib;
+        this.logPaths.clear();
+        logPathHib.forEach((log) -> {
+            this.logPaths.add(log);
+            log.setProfile(this);
+        });
     }
 
     public int getId() {
@@ -170,14 +175,15 @@ public class ScanProfileHib implements ScanProfile {
 
     public void setRgxList(List<RegExp> rgxList) {
         this.rgxList.clear();
-        rgxList.forEach(rgx -> this.rgxList.add(new RegExpHib(rgx)));
-        String t1 = "";
-        t1 = "2";
+        rgxList.forEach((rgx) -> {
+            this.rgxList.add(new RegExpHib(rgx, this));
+
+        });
     }
 
     public void addRegExp(RegExp regExp) {
 
-        RegExpHib rgx = new RegExpHib(regExp);
+        RegExpHib rgx = new RegExpHib(regExp, this);
         rgx.setProfile(this);
         rgxList.add(rgx);
     }
@@ -224,6 +230,19 @@ public class ScanProfileHib implements ScanProfile {
 
     @Override
     public void clear() {
-
+        id = 0;
+        name = "";
+        logPaths = new ArrayList<>();
+        dateRange = DateRanges.ANY;
+        limit = 100; // restriction up on amount of events  from
+        logType = LogTypes.ANY;
+        sortingProp = PropTypes.ANY;
+        groupType = GroupTypes.BY_PROPS;
+        rgxList = new ArrayList<>();
+        rgxExp = "";
+        rgxOp = RgxOpTypes.CURSOR_OP;
+        userStartDate = "";
+        userEndDate = "";
+        name = "default profile";
     }
 }

@@ -22,6 +22,14 @@ public class LogsPathHib {
     @Column
     private String Path;
 
+    public LogsPathHib() {
+
+    }
+
+    public LogsPathHib(ScanProfileHib profile) {
+        this.profile = profile;
+    }
+
     public String getServer() {
         return Server;
     }
@@ -45,6 +53,5 @@ public class LogsPathHib {
     public ScanProfileHib getProfile() {
         return profile;
     }
-
 
 }

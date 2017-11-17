@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
@@ -67,19 +68,15 @@ public class RESTClientTest {
     }
 
     @Test
-    public void testGetAllGroupTypes() {
+    public void testGetAllGroupTypes() throws Exception{
 
         RESTClient client = new RESTClient(scanProfileService);
         // MockMVC test
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
-        try {
-            mockMvc.
-                    perform(get("/groupTypes")).
-                    andExpect(status().isOk());
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        mockMvc.
+                perform(get("/groupTypes")).
+                andExpect(status().isOk());
+
     }
 
     @Test
@@ -119,7 +116,7 @@ public class RESTClientTest {
         RESTClient client = new RESTClient(scanProfileService);
 
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
-        mockMvc.perform(post("/setProfile")
+        mockMvc.perform(post("/profile")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson)
                 .accept(MediaType.APPLICATION_JSON))
@@ -127,16 +124,47 @@ public class RESTClientTest {
     }
 
     @Test
-    public void testSetLogs() throws Exception {
+    public void testGetProfile() throws Exception {
 
+        ScanProfileService service = Mockito.mock(ScanProfileService.class);
+        Mockito.when(service.find(0)).thenReturn(new ScanProfileHib());
+
+        RESTClient client = new RESTClient(service);
+
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
+
+        mockMvc.
+                perform(get("/profile/0")).
+                andExpect(status().isOk());
+
+        mockMvc.
+                perform(get("/profile/1")).
+                andExpect(status().is4xxClientError());
+
+        Mockito.when(service.findIfPresent()).thenReturn(new ScanProfileHib());
+
+        mockMvc.
+                perform(get("/profile")).
+                andExpect(status().isOk());
+
+        mockMvc.
+                perform(get("/profile/")).
+                andExpect(status().isOk());
+    }
+
+    @Test
+    public void testSetLogs() throws Exception {
+        /*
         List<LogsPathHib> logsPathTable = new ArrayList<>();
 
-        LogsPathHib logsPath1 = new LogsPathHib();
+        ScanProfileHib profile = new ScanProfileHib();
+
+        LogsPathHib logsPath1 = new LogsPathHib(profile);
         logsPath1.setPath("c:\\fakePath1");
         logsPath1.setServer("127.0.0.1");
         logsPathTable.add(logsPath1);
 
-        LogsPathHib logsPath2 = new LogsPathHib();
+        LogsPathHib logsPath2 = new LogsPathHib(profile);
         logsPath2.setPath("c:\\fakePath2");
         logsPath2.setServer("192.168.0.1");
         logsPathTable.add(logsPath2);
@@ -154,5 +182,10 @@ public class RESTClientTest {
                 .content(requestJson)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+                */
     }
+
+
 }
+
+
