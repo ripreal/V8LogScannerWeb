@@ -7,9 +7,11 @@ import org.v8LogScanner.dbLayer.genericRepository.DataRepository;
 import org.v8LogScanner.dbLayer.genericRepository.QuerySpecification;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.Specifications.ScanProfileHibSpecByID;
+import org.v8LogScanner.dbLayer.scanProfilesPersistence.Specifications.ScanProfileHibSpecByName;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.Specifications.ScanProfileHibSpecIfPresent;
 import org.v8LogScanner.rgx.ScanProfile;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -42,7 +44,15 @@ public class ScanProfileHibService implements ScanProfileService {
 
     @Override
     public ScanProfile find(ScanProfile profile) {
-        return (ScanProfile) find(profile.getId());
+
+        QuerySpecification<ScanProfileHib> spec = new ScanProfileHibSpecByName(profile.getName());
+        List<ScanProfileHib> profiles = repository.query(spec);
+        if (profiles.size() > 0) {
+            ScanProfile prof = profiles.get(0);
+            return prof;
+        }
+        else
+            return null;
     }
 
     @Override
@@ -69,6 +79,17 @@ public class ScanProfileHibService implements ScanProfileService {
             // no needs
         }
         return profile;
+    }
+
+    @Override
+    public List<ScanProfile> getAll() {
+
+        QuerySpecification<ScanProfileHib> spec = new ScanProfileHibSpecIfPresent();
+        List<ScanProfileHib> profiles = repository.query(spec);
+
+        List<ScanProfile> result = new ArrayList<>();
+        profiles.forEach((el) -> result.add((ScanProfile) el));
+        return result;
     }
 
     public void resetCache() {

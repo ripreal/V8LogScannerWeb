@@ -4,7 +4,10 @@ $(window).ready(() => {
   window.formData = function formData() {
     return {
       get logPaths() {return $("#LogPathsTable").dtTable("getValues");},
-      set logPaths(val) {$("#LogPathsTable").dtTable("setValues", val);},      
+      set logPaths(val) {
+        $("#LogPathsTable").dtTable("removeAll");
+        $("#LogPathsTable").dtTable("setValues", val);
+      },      
       get rgxList() {
         return $('#Paragraph2 div.event-filter-block').eventFilter("getValues");
       },
@@ -100,29 +103,17 @@ $(window).ready(() => {
     $.modalDialog({
       title: "Saving current profile",
       inputName: "profile name",
-      inputMenu: ["my profile1"],
+      inputMenu: [window.profile.name],
       click_ok: function(event, profileName){
         ScanProfile.fill(window.profile, profileName, this.formData());
         let profileData = JSON.stringify(window.profile);
         window.rest({
-          url: "/setProfile",
-          type: "POST",
+          url: "/profile",
+          type: "PUT",
           data: profileData,
           onreadystatechange(data) { 
             window.profile.id = data;
         }});
-        
-        /*
-        $.ajax({
-          url: "/setProfile",
-          data: profileData,
-          contentType: "application/json", 
-          complete: function(xhr, status) { 
-            alert("ok!");
-          },
-          method: "POST"
-        });
-        */
     }});     
   })
   .find("span.ui-icon")  
@@ -133,7 +124,20 @@ $(window).ready(() => {
     showLabel: true
   })
   .click( function(event){
-    $.modalDialog();     
+    $.modalDialog({
+      title: "Loading profile by name",
+      inputName: "profile name",
+      tip: "latest profile",
+      inputMenu: "/profileNames",
+      click_ok: function(event, profileName){
+        window.rest({
+          url: "/profile",
+          type: "GET",
+          data: profileName,
+          onreadystatechange(data) {
+            window.profile = ScanProfile.create(data, window.formData());
+        }});
+    }});
   })
   .find("span.ui-icon")  
   .css({"background-image": "url(\"/img/icons/open.png\")"});
@@ -142,7 +146,7 @@ $(window).ready(() => {
     showLabel: true
   })
   .click( function(event){
-    $.modalDialog();     
+    window.profile = ScanProfile.clear(window.formData())
   })
   
   // 3. START
@@ -201,23 +205,3 @@ $(window).ready(() => {
   }});
   
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

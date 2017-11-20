@@ -3,18 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="73b59e8f-41d3-4e16-9c79-4f2e95765b13" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/DataRepository.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/DataRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/HibernateRepository.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/HibernateRepository.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/ScanProfileService.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/ScanProfileService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/LogsPathHib.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/LogsPathHib.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/RegExpHib.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/RegExpHib.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHib.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHib.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibService.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/RESTClient.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/RESTClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/resources/static/css/jquery-ui.css" afterPath="$PROJECT_DIR$/trunk/src/main/resources/static/css/jquery-ui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/resources/static/js/app_ctrls.js" afterPath="$PROJECT_DIR$/trunk/src/main/resources/static/js/app_ctrls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/resources/static/js/libs/jquery-ui.js" afterPath="$PROJECT_DIR$/trunk/src/main/resources/static/js/libs/jquery-ui.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/resources/static/js/page1.js" afterPath="$PROJECT_DIR$/trunk/src/main/resources/static/js/page1.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/main/resources/static/js/profiles.js" afterPath="$PROJECT_DIR$/trunk/src/main/resources/static/js/profiles.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/DataSourceTest.java" afterPath="$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/DataSourceTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java" afterPath="$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibSpecByID.java" afterPath="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecByID.java" />
     </list>
     <ignored path="$PROJECT_DIR$/trunk/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,58 +27,84 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RESTClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/RESTClient.java">
+      <file leaf-file-name="HibernateRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/HibernateRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-221">
-              <caret line="50" column="18" lean-forward="true" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+            <state relative-caret-position="222">
+              <caret line="82" column="25" lean-forward="true" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
               <folding>
-                <element signature="e#954#969#0" expanded="false" />
-                <element signature="class#1123:1233" expanded="false" />
-                <element signature="method#setProfile#0;class#RESTClient#0" expanded="false" />
-                <element signature="e#1832#1905#0" expanded="false" />
-                <element signature="method#getProfile#0;class#RESTClient#0" expanded="false" />
-                <element signature="e#2355#2418#0" expanded="false" />
-                <element signature="method#getProfileIfPresent#0;class#RESTClient#0" expanded="false" />
-                <element signature="e#2939#3050#0" expanded="false" />
-                <element signature="e#3177#3286#0" expanded="false" />
-                <element signature="e#3391#3500#0" expanded="false" />
-                <element signature="method#dateRanges#0;class#RESTClient#0" expanded="false" />
-                <element signature="e#3640#3759#0" expanded="false" />
-                <element signature="method#startDateByDateRange#0;class#RESTClient#0" expanded="false" />
-                <element signature="e#4234#4351#0" expanded="false" />
-                <element signature="method#endDateByDateRange#0;class#RESTClient#0" expanded="false" />
-                <element signature="e#4822#4930#0" expanded="false" />
-                <element signature="method#propTypes#0;class#RESTClient#0" expanded="false" />
-                <element signature="method#startRgxOp#0;class#RESTClient#0" expanded="false" />
+                <element signature="e#2588#2589#0" expanded="true" />
+                <element signature="e#2645#2646#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HibernateRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/HibernateRepository.java">
+      <file leaf-file-name="SessionFactoryImpl.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.12.Final/hibernate-core-5.2.12.Final-sources.jar!/org/hibernate/internal/SessionFactoryImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+            <state relative-caret-position="240">
+              <caret line="464" column="0" lean-forward="false" selection-start-line="464" selection-start-column="0" selection-end-line="464" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RESTClientTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java">
+      <file leaf-file-name="SpringSessionContext.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-orm/5.0.1.RELEASE/spring-orm-5.0.1.RELEASE.jar!/org/springframework/orm/hibernate5/SpringSessionContext.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="178" column="30" lean-forward="true" selection-start-line="178" selection-start-column="30" selection-end-line="178" selection-end-column="30" />
+            <state relative-caret-position="493">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransactionSynchronizationManager.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/5.0.1.RELEASE/spring-tx-5.0.1.RELEASE.jar!/org/springframework/transaction/support/TransactionSynchronizationManager.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransactionSynchronizationUtils.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/5.0.1.RELEASE/spring-tx-5.0.1.RELEASE.jar!/org/springframework/transaction/support/TransactionSynchronizationUtils.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScanProfileController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ScanProfileController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
               <folding>
-                <element signature="e#1760#1799#0" expanded="false" />
-                <element signature="method#beansInitialized#0;class#RESTClientTest#0" expanded="false" />
-                <element signature="method#testScanLogInCfg#0;class#RESTClientTest#0" expanded="false" />
-                <element signature="method#testGetAllGroupTypes#0;class#RESTClientTest#0" expanded="false" />
-                <element signature="method#testStartRgxOp#0;class#RESTClientTest#0" expanded="false" />
-                <element signature="method#testSetProfile#0;class#RESTClientTest#0" expanded="false" />
+                <element signature="e#954#969#0" expanded="false" />
+                <element signature="method#ScanProfileController#0;class#ScanProfileController#0" expanded="false" />
+                <element signature="e#2243#2316#0" expanded="false" />
+                <element signature="method#getProfile#0;class#ScanProfileController#0" expanded="false" />
+                <element signature="e#2766#2829#0" expanded="false" />
+                <element signature="method#getProfileIfPresent#0;class#ScanProfileController#0" expanded="false" />
+                <element signature="method#getProfileNames#0;class#ScanProfileController#0" expanded="false" />
+                <element signature="method#startRgxOp#0;class#ScanProfileController#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JdkDynamicAopProxy.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,84 +112,49 @@
       <file leaf-file-name="ScanProfileHibService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="173">
+              <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
               <folding>
-                <element signature="e#760#768#0" expanded="false" />
+                <element signature="e#885#893#0" expanded="false" />
+                <element signature="e#1475#1476#0" expanded="true" />
+                <element signature="e#1534#1535#0" expanded="true" />
+                <element signature="method#findIfPresent#0;class#ScanProfileHibService#0" expanded="false" />
+                <element signature="method#getAll#0;class#ScanProfileHibService#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScanProfileHibSpecByID.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecByID.java">
+      <file leaf-file-name="AopUtils.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+            <state relative-caret-position="172">
+              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding>
-                <element signature="e#506#507#0" expanded="true" />
-                <element signature="e#534#535#0" expanded="true" />
-                <element signature="e#604#605#0" expanded="true" />
-                <element signature="e#648#649#0" expanded="true" />
+                <element signature="e#3154#3155#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScanProfileHibSpecIfPresent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecIfPresent.java">
+      <file leaf-file-name="ReflectionUtils.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.0.1.RELEASE/spring-core-5.0.1.RELEASE.jar!/org/springframework/util/ReflectionUtils.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="189">
+              <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuerySpecification.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/QuerySpecification.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScanProfileHib.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHib.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="248" column="0" lean-forward="true" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
-              <folding>
-                <element signature="e#420#427#0" expanded="false" />
-                <element signature="e#565#568#0" expanded="false" />
-                <element signature="e#741#752#0" expanded="false" />
-                <element signature="e#911#939#0" expanded="false" />
-                <element signature="e#1043#1071#0" expanded="false" />
-                <element signature="e#1118#1146#0" expanded="false" />
-                <element signature="e#1198#1226#0" expanded="false" />
-                <element signature="e#1277#1387#0" expanded="false" />
-                <element signature="e#1601#1634#0" expanded="false" />
-                <element signature="method#getLogPaths#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#setLogPaths#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#addLogPath#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#setLogPathsHib#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="e#3349#3439#0" expanded="false" />
-                <element signature="method#setId#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#getRgxList#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#setRgxList#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="e#4646#4723#0" expanded="false" />
-                <element signature="method#addRegExp#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#setUserPeriod#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#clone#0;class#ScanProfileHib#0" expanded="false" />
-                <element signature="method#clear#0;class#ScanProfileHib#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -211,13 +200,17 @@
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/HibernateRepository.java" />
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/DataRepository.java" />
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibSpecByID.java" />
-        <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/ScanProfileService.java" />
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibSpecIfPresent.java" />
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecByID.java" />
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecIfPresent.java" />
+        <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/ScanProfileService.java" />
+        <option value="$PROJECT_DIR$/trunk/src/main/resources/static/js/page1.js" />
+        <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecByName.java" />
+        <option value="$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/DataSourceTest.java" />
+        <option value="$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java" />
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibService.java" />
         <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/RESTClient.java" />
-        <option value="$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java" />
+        <option value="$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ScanProfileController.java" />
       </list>
     </option>
   </component>
@@ -263,7 +256,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="992" />
-    <option name="width" value="928" />
+    <option name="width" value="926" />
     <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -285,9 +278,8 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -357,18 +349,14 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="v8LogScanner" type="462c0819:PsiDirectoryNode" />
-              <item name="dbLayer" type="462c0819:PsiDirectoryNode" />
-              <item name="scanProfilesPersistence" type="462c0819:PsiDirectoryNode" />
-              <item name="Specifications" type="462c0819:PsiDirectoryNode" />
+              <item name="webAppControllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="V8LogScannerWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="v8LogScanner" type="462c0819:PsiDirectoryNode" />
-              <item name="webAppControllers" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="V8LogScannerWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -395,6 +383,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -407,6 +396,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.v8LogScanner.dbLayer.scanProfilesPersistence.Specifications" />
       <recent name="org.v8LogScanner.dbLayer.scanProfilesPersistence" />
     </key>
   </component>
@@ -422,7 +412,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android JUnit.All tests">
+  <component name="RunManager" selected="Application.Spring app">
     <configuration name="All tests" type="AndroidJUnit" factoryName="Android JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="V8LogScannerWeb" />
@@ -484,6 +474,31 @@
       <option name="PACKAGE_NAME" value="org.v8LogScannerWeb" />
       <option name="MAIN_CLASS_NAME" value="org.v8LogScannerWeb.RESTClientTest" />
       <option name="METHOD_NAME" value="testSetProfile" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="RESTClientTest.testUpdateProfile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.v8LogScannerWeb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="V8LogScannerWeb" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.v8LogScannerWeb" />
+      <option name="MAIN_CLASS_NAME" value="org.v8LogScannerWeb.RESTClientTest" />
+      <option name="METHOD_NAME" value="testUpdateProfile" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -614,16 +629,18 @@
       <properties />
       <listeners />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Android JUnit.All tests" />
       <item index="1" class="java.lang.String" itemvalue="Application.Spring app" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testGetProfile" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testSetProfile" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testUpdateProfile" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testGetProfile" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testSetProfile" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testUpdateProfile" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testGetProfile" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.RESTClientTest.testSetProfile" />
       </list>
     </recent_temporary>
   </component>
@@ -641,39 +658,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_tests - 2017.11.17 at 11h 08m 57s.xml">
+    <history-entry file="All_tests - 2017.11.20 at 16h 59m 07s.xml">
       <configuration name="All tests" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="All_tests - 2017.11.17 at 11h 23m 34s.xml">
+    <history-entry file="All_tests - 2017.11.20 at 16h 59m 20s.xml">
       <configuration name="All tests" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="All_tests - 2017.11.17 at 13h 13m 04s.xml">
+    <history-entry file="All_tests - 2017.11.20 at 17h 05m 15s.xml">
       <configuration name="All tests" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="All_tests - 2017.11.17 at 13h 15m 19s.xml">
+    <history-entry file="All_tests - 2017.11.20 at 17h 18m 38s.xml">
       <configuration name="All tests" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="RESTClientTest_testGetProfile - 2017.11.17 at 11h 10m 08s.xml">
+    <history-entry file="RESTClientTest_testGetProfile - 2017.11.20 at 17h 00m 35s.xml">
       <configuration name="RESTClientTest.testGetProfile" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RESTClientTest_testGetProfile - 2017.11.17 at 12h 22m 37s.xml">
+    <history-entry file="RESTClientTest_testGetProfile - 2017.11.20 at 17h 01m 27s.xml">
       <configuration name="RESTClientTest.testGetProfile" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RESTClientTest_testGetProfile - 2017.11.17 at 12h 39m 01s.xml">
+    <history-entry file="RESTClientTest_testGetProfile - 2017.11.20 at 17h 05m 01s.xml">
       <configuration name="RESTClientTest.testGetProfile" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RESTClientTest_testGetProfile - 2017.11.17 at 12h 42m 10s.xml">
-      <configuration name="RESTClientTest.testGetProfile" configurationId="JUnit" />
+    <history-entry file="RESTClientTest_testUpdateProfile - 2017.11.20 at 17h 06m 32s.xml">
+      <configuration name="RESTClientTest.testUpdateProfile" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RESTClientTest_testGetProfile - 2017.11.17 at 12h 42m 46s.xml">
-      <configuration name="RESTClientTest.testGetProfile" configurationId="JUnit" />
+    <history-entry file="RESTClientTest_testUpdateProfile - 2017.11.20 at 17h 09m 28s.xml">
+      <configuration name="RESTClientTest.testUpdateProfile" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RESTClientTest_testSetProfile - 2017.11.17 at 11h 23m 16s.xml">
-      <configuration name="RESTClientTest.testSetProfile" configurationId="JUnit" />
+    <history-entry file="RESTClientTest_testUpdateProfile - 2017.11.20 at 17h 11m 24s.xml">
+      <configuration name="RESTClientTest.testUpdateProfile" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="992" y="0" width="928" height="1080" extended-state="0" />
+    <frame x="992" y="0" width="926" height="1080" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -685,25 +702,25 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33179724" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882273" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3470464" sideWeight="0.8319908" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5121163" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3675115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29792148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24856156" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.4878837" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49894515" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37130803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33938548" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5121163" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882273" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -749,10 +766,52 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java</url>
-          <line>96</line>
+          <url>file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ScanProfileController.java</url>
+          <line>60</line>
           <properties />
-          <option name="timeStamp" value="73" />
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java</url>
+          <line>137</line>
+          <properties />
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ScanProfileController.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ScanProfileController.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibService.java</url>
+          <line>47</line>
+          <properties />
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ScanProfileController.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibService.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/HibernateRepository.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -763,7 +822,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="90" />
+      <option name="time" value="117" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -781,158 +840,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/static/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-867">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/static/js/profiles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/static/page1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="507" column="0" lean-forward="false" selection-start-line="507" selection-start-column="0" selection-end-line="507" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.0.1.RELEASE/spring-core-5.0.1.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ResController.java" />
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ITestProfile.java" />
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/TestProfile.java" />
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/appConfig/WebConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/appConfig/RootConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#882#887#0" expanded="false" />
-            <element signature="method#embeddedDataSource#0;class#RootConfig#0" expanded="false" />
-            <element signature="e#1208#1213#0" expanded="false" />
-            <element signature="method#productionDataSource#0;class#RootConfig#0" expanded="false" />
-            <element signature="e#1696#1785#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/2.0.0.BUILD-SNAPSHOT/spring-boot-2.0.0.BUILD-20171110.093511-152.jar!/org/springframework/boot/SpringApplication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3202">
-          <caret line="763" column="96" lean-forward="false" selection-start-line="763" selection-start-column="96" selection-end-line="763" selection-end-column="96" />
-          <folding>
-            <element signature="method#SpringApplication#1;class#SpringApplication#0" expanded="false" />
-            <element signature="method#deduceWebApplicationType#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#deduceMainApplicationClass#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#run#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#prepareEnvironment#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#prepareContext#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#refreshContext#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#configureHeadlessProperty#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getRunListeners#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getSpringFactoriesInstances#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getSpringFactoriesInstances#1;class#SpringApplication#0" expanded="false" />
-            <element signature="method#createSpringFactoriesInstances#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getOrCreateEnvironment#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#configureEnvironment#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#configurePropertySources#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#configureProfiles#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#configureIgnoreBeanInfo#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#bindToSpringApplication#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#printBanner#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#createApplicationContext#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#postProcessApplicationContext#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#applyInitializers#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#logStartupInfo#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#logStartupProfileInfo#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getApplicationLog#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#load#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getClassLoader#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getBeanDefinitionRegistry#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#createBeanDefinitionLoader#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#refresh#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#afterRefresh#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#callRunners#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#callRunner#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#callRunner#1;class#SpringApplication#0" expanded="false" />
-            <element signature="method#handleRunFailure#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#reportFailure#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#registerLoggedException#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#handleExitCode#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getExitCodeFromException#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getExitCodeFromMappedException#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getExitCodeFromExitCodeGeneratorException#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getSpringBootExceptionHandler#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#isMainThread#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setMainApplicationClass#0;class#SpringApplication#0" expanded="false" />
-            <element signature="docComment;method#isWebEnvironment#0;class#SpringApplication#0" expanded="false" />
-            <element signature="docComment;method#setWebEnvironment#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setWebEnvironment#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setWebApplicationType#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setRegisterShutdownHook#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setAddCommandLineProperties#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setDefaultProperties#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setDefaultProperties#1;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setAdditionalProfiles#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setBeanNameGenerator#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#addPrimarySources#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setSources#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getAllSources#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setResourceLoader#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setApplicationContextClass#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#isWebApplicationContext#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setInitializers#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#addInitializers#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#getInitializers#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#setListeners#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#run#1;class#SpringApplication#0" expanded="false" />
-            <element signature="method#run#2;class#SpringApplication#0" expanded="false" />
-            <element signature="method#main#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#exit#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#close#0;class#SpringApplication#0" expanded="false" />
-            <element signature="method#asUnmodifiableOrderedSet#0;class#SpringApplication#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.1.RELEASE/spring-web-5.0.1.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.1.RELEASE/spring-webmvc-5.0.1.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -961,35 +868,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.2/jackson-databind-2.9.2.jar!/com/fasterxml/jackson/databind/ObjectWriter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="445" column="0" lean-forward="false" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/ripreal/V8LogScanner/-v.1.0-beta-g941ff61-5/V8LogScanner--v.1.0-beta-g941ff61-5.jar!/org/v8LogScanner/rgx/ScanProfile.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/DataSourceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="114" column="40" lean-forward="true" selection-start-line="114" selection-start-column="40" selection-end-line="114" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,10 +901,10 @@
         <state relative-caret-position="306">
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
-            <element signature="e#703#704#0" expanded="true" />
-            <element signature="e#741#742#0" expanded="true" />
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1105#1106#0" expanded="true" />
+            <element signature="e#703#704#0" expanded="false" />
+            <element signature="e#741#742#0" expanded="false" />
+            <element signature="e#1067#1068#0" expanded="false" />
+            <element signature="e#1105#1106#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1031,7 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1043,27 +924,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.0.1.RELEASE/spring-test-5.0.1.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunAfterTestExecutionCallbacks.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/static/js/page1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="118" column="34" lean-forward="false" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1071,7 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1079,7 +942,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1003">
           <caret line="73" column="17" lean-forward="false" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1087,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="402" column="10" lean-forward="false" selection-start-line="402" selection-start-column="10" selection-end-line="402" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1095,7 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="435" column="0" lean-forward="false" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1103,7 +963,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1059">
           <caret line="380" column="0" lean-forward="false" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/DataRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/criteria/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/criteria/CriteriaQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="282" column="32" lean-forward="true" selection-start-line="282" selection-start-column="32" selection-end-line="282" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.12.Final/hibernate-core-5.2.12.Final-sources.jar!/org/hibernate/criterion/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/OrderBy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="109" column="14" lean-forward="false" selection-start-line="109" selection-start-column="14" selection-end-line="109" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="463" column="69" lean-forward="false" selection-start-line="463" selection-start-column="69" selection-end-line="463" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/5.0.1.RELEASE/spring-tx-5.0.1.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="169" column="21" lean-forward="true" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.1.RELEASE/spring-web-5.0.1.RELEASE.jar!/org/springframework/web/bind/annotation/PathVariable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1115,60 +1033,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/DataRepository.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/ripreal/V8LogScanner/-v.1.0-beta-g941ff61-5/V8LogScanner--v.1.0-beta-g941ff61-5.jar!/org/v8LogScanner/rgx/ScanProfile.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/criteria/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        <state relative-caret-position="238">
+          <caret line="100" column="57" lean-forward="true" selection-start-line="100" selection-start-column="57" selection-end-line="100" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/criteria/CriteriaQuery.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.1.RELEASE/spring-web-5.0.1.RELEASE.jar!/org/springframework/http/ResponseEntity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="282" column="32" lean-forward="true" selection-start-line="282" selection-start-column="32" selection-end-line="282" selection-end-column="32" />
+        <state relative-caret-position="-304">
+          <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.12.Final/hibernate-core-5.2.12.Final-sources.jar!/org/hibernate/criterion/Order.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.0.1.RELEASE/spring-core-5.0.1.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state relative-caret-position="157">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/OrderBy.java">
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/static/js/app_ctrls.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="109" column="14" lean-forward="false" selection-start-line="109" selection-start-column="14" selection-end-line="109" selection-end-column="14" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Comparator.java">
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/static/js/page1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="463" column="69" lean-forward="false" selection-start-line="463" selection-start-column="69" selection-end-line="463" selection-end-column="69" />
+        <state relative-caret-position="3451">
+          <caret line="206" column="3" lean-forward="true" selection-start-line="206" selection-start-column="3" selection-end-line="206" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/ScanProfileService.java">
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecByID.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        <state relative-caret-position="391">
+          <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/run.cmd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/resources/data.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1181,18 +1113,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/5.0.1.RELEASE/spring-tx-5.0.1.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.class">
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecByName.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="169" column="21" lean-forward="true" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
+        <state relative-caret-position="306">
+          <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/DataSourceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding>
+            <element signature="e#1547#1586#0" expanded="false" />
+            <element signature="method#setup#0;class#DataSourceTest#0" expanded="false" />
+            <element signature="method#testJdbcQuery#0;class#DataSourceTest#0" expanded="false" />
+            <element signature="e#3397#3471#0" expanded="false" />
+            <element signature="e#3618#3623#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="95" column="9" lean-forward="true" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
+          <folding>
+            <element signature="e#1921#1960#0" expanded="false" />
+            <element signature="method#beansInitialized#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testScanLogInCfg#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testGetAllGroupTypes#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testStartRgxOp#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testSetProfile#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testGetProfile#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testGetProfileIfPresent#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testGetProfileNames#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="method#testUpdateProfile#0;class#RESTClientTest#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHib.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="248" column="0" lean-forward="true" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+        <state relative-caret-position="-935">
+          <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
           <folding>
             <element signature="e#420#427#0" expanded="false" />
             <element signature="e#565#568#0" expanded="false" />
@@ -1220,91 +1193,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/Specifications/ScanProfileHibSpecByID.java">
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/ScanProfileService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+        <state relative-caret-position="374">
+          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
           <folding>
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#534#535#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/RESTClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+          <folding>
+            <element signature="e#954#969#0" expanded="false" />
+            <element signature="e#1172#1283#0" expanded="false" />
+            <element signature="e#1410#1519#0" expanded="false" />
+            <element signature="e#1624#1733#0" expanded="false" />
+            <element signature="method#dateRanges#0;class#RESTClient#0" expanded="false" />
+            <element signature="e#1873#1992#0" expanded="false" />
+            <element signature="e#2469#2586#0" expanded="false" />
+            <element signature="e#3059#3167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.1.RELEASE/spring-aop-5.0.1.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+        <state relative-caret-position="172">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <element signature="e#3154#3155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.0.1.RELEASE/spring-core-5.0.1.RELEASE.jar!/org/springframework/util/ReflectionUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/scanProfilesPersistence/ScanProfileHibService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state relative-caret-position="173">
+          <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
           <folding>
-            <element signature="e#760#768#0" expanded="false" />
+            <element signature="e#885#893#0" expanded="false" />
+            <element signature="e#1475#1476#0" expanded="true" />
+            <element signature="e#1534#1535#0" expanded="true" />
+            <element signature="method#findIfPresent#0;class#ScanProfileHibService#0" expanded="false" />
+            <element signature="method#getAll#0;class#ScanProfileHibService#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.12.Final/hibernate-core-5.2.12.Final-sources.jar!/org/hibernate/internal/SessionFactoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="464" column="0" lean-forward="false" selection-start-line="464" selection-start-column="0" selection-end-line="464" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-orm/5.0.1.RELEASE/spring-orm-5.0.1.RELEASE.jar!/org/springframework/orm/hibernate5/SpringSessionContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/5.0.1.RELEASE/spring-tx-5.0.1.RELEASE.jar!/org/springframework/transaction/support/TransactionSynchronizationManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/5.0.1.RELEASE/spring-tx-5.0.1.RELEASE.jar!/org/springframework/transaction/support/TransactionSynchronizationUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/dbLayer/genericRepository/HibernateRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.1.RELEASE/spring-web-5.0.1.RELEASE.jar!/org/springframework/web/bind/annotation/PathVariable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/RESTClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-221">
-          <caret line="50" column="18" lean-forward="true" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+        <state relative-caret-position="222">
+          <caret line="82" column="25" lean-forward="true" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
           <folding>
-            <element signature="e#954#969#0" expanded="false" />
-            <element signature="class#1123:1233" expanded="false" />
-            <element signature="method#setProfile#0;class#RESTClient#0" expanded="false" />
-            <element signature="e#1832#1905#0" expanded="false" />
-            <element signature="method#getProfile#0;class#RESTClient#0" expanded="false" />
-            <element signature="e#2355#2418#0" expanded="false" />
-            <element signature="method#getProfileIfPresent#0;class#RESTClient#0" expanded="false" />
-            <element signature="e#2939#3050#0" expanded="false" />
-            <element signature="e#3177#3286#0" expanded="false" />
-            <element signature="e#3391#3500#0" expanded="false" />
-            <element signature="method#dateRanges#0;class#RESTClient#0" expanded="false" />
-            <element signature="e#3640#3759#0" expanded="false" />
-            <element signature="method#startDateByDateRange#0;class#RESTClient#0" expanded="false" />
-            <element signature="e#4234#4351#0" expanded="false" />
-            <element signature="method#endDateByDateRange#0;class#RESTClient#0" expanded="false" />
-            <element signature="e#4822#4930#0" expanded="false" />
-            <element signature="method#propTypes#0;class#RESTClient#0" expanded="false" />
-            <element signature="method#startRgxOp#0;class#RESTClient#0" expanded="false" />
+            <element signature="e#2588#2589#0" expanded="true" />
+            <element signature="e#2645#2646#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/test/java/org/v8LogScannerWeb/RESTClientTest.java">
+    <entry file="file://$PROJECT_DIR$/trunk/src/main/java/org/v8LogScanner/webLayer/webAppControllers/ScanProfileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="178" column="30" lean-forward="true" selection-start-line="178" selection-start-column="30" selection-end-line="178" selection-end-column="30" />
+        <state relative-caret-position="139">
+          <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
           <folding>
-            <element signature="e#1760#1799#0" expanded="false" />
-            <element signature="method#beansInitialized#0;class#RESTClientTest#0" expanded="false" />
-            <element signature="method#testScanLogInCfg#0;class#RESTClientTest#0" expanded="false" />
-            <element signature="method#testGetAllGroupTypes#0;class#RESTClientTest#0" expanded="false" />
-            <element signature="method#testStartRgxOp#0;class#RESTClientTest#0" expanded="false" />
-            <element signature="method#testSetProfile#0;class#RESTClientTest#0" expanded="false" />
+            <element signature="e#954#969#0" expanded="false" />
+            <element signature="method#ScanProfileController#0;class#ScanProfileController#0" expanded="false" />
+            <element signature="e#2243#2316#0" expanded="false" />
+            <element signature="method#getProfile#0;class#ScanProfileController#0" expanded="false" />
+            <element signature="e#2766#2829#0" expanded="false" />
+            <element signature="method#getProfileIfPresent#0;class#ScanProfileController#0" expanded="false" />
+            <element signature="method#getProfileNames#0;class#ScanProfileController#0" expanded="false" />
+            <element signature="method#startRgxOp#0;class#ScanProfileController#0" expanded="false" />
           </folding>
         </state>
       </provider>

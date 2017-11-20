@@ -741,7 +741,7 @@ $.modalDialog = function(options) {
   .autocomplete({          
     minLength: 0,
     options: {minLength: 0}})
-  .autocomplete("build", settings.tip, settings.inputMenu);
+  .autocomplete("build", settings.tip, settings.inputMenu, settings.inputSource);
     
   var dialog = element.dialog({
 	autoOpen: false,

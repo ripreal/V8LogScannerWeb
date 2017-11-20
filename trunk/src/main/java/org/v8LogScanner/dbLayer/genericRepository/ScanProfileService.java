@@ -2,6 +2,8 @@ package org.v8LogScanner.dbLayer.genericRepository;
 
 import org.v8LogScanner.rgx.ScanProfile;
 
+import java.util.List;
+
 public interface ScanProfileService {
 
     public int add(ScanProfile profile);
@@ -17,5 +19,7 @@ public interface ScanProfileService {
     public ScanProfile find(int id);
 
     public ScanProfile findIfPresent();
+
+    public List<ScanProfile> getAll();
 
 }

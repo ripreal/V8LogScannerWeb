@@ -35,6 +35,14 @@ class ScanProfile {
     }   
     return profile;
   }
+
+  static clear(formData) {
+    let profile = new ScanProfile();
+    for (let prop in profile) {
+      formData[prop] = profile[prop];
+    }   
+    return profile;
+  }
 }
 
 

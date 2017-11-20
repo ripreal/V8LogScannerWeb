@@ -25,6 +25,7 @@ import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
 import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.webLayer.webAppControllers.RESTClient;
+import org.v8LogScanner.webLayer.webAppControllers.ScanProfileController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ import java.util.Map;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -58,7 +60,7 @@ public class RESTClientTest {
     @Test
     public void testScanLogInCfg() throws Exception {
 
-        RESTClient client = new RESTClient(scanProfileService);
+        RESTClient client = new RESTClient();
         // MockMVC test
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
         mockMvc.
@@ -70,7 +72,7 @@ public class RESTClientTest {
     @Test
     public void testGetAllGroupTypes() throws Exception{
 
-        RESTClient client = new RESTClient(scanProfileService);
+        RESTClient client = new RESTClient();
         // MockMVC test
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
         mockMvc.
@@ -82,7 +84,7 @@ public class RESTClientTest {
     @Test
     public void testStartRgxOp() throws Exception {
 
-        RESTClient client = new RESTClient(scanProfileService);
+        ScanProfileController client = new ScanProfileController(scanProfileService);
 
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
         mockMvc.perform(get("/startRgxOp")
@@ -113,7 +115,7 @@ public class RESTClientTest {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson = ow.writeValueAsString(tPtofile);
 
-        RESTClient client = new RESTClient(scanProfileService);
+        ScanProfileController client = new ScanProfileController(scanProfileService);
 
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
         mockMvc.perform(post("/profile")
@@ -129,7 +131,7 @@ public class RESTClientTest {
         ScanProfileService service = Mockito.mock(ScanProfileService.class);
         Mockito.when(service.find(0)).thenReturn(new ScanProfileHib());
 
-        RESTClient client = new RESTClient(service);
+        ScanProfileController client = new ScanProfileController(service);
 
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
 
@@ -153,38 +155,68 @@ public class RESTClientTest {
     }
 
     @Test
-    public void testSetLogs() throws Exception {
-        /*
-        List<LogsPathHib> logsPathTable = new ArrayList<>();
+    public void testGetProfileIfPresent() throws Exception {
 
-        ScanProfileHib profile = new ScanProfileHib();
+        ScanProfileService service = Mockito.mock(ScanProfileService.class);
 
-        LogsPathHib logsPath1 = new LogsPathHib(profile);
-        logsPath1.setPath("c:\\fakePath1");
-        logsPath1.setServer("127.0.0.1");
-        logsPathTable.add(logsPath1);
+        ScanProfileController client = new ScanProfileController(scanProfileService);
 
-        LogsPathHib logsPath2 = new LogsPathHib(profile);
-        logsPath2.setPath("c:\\fakePath2");
-        logsPath2.setServer("192.168.0.1");
-        logsPathTable.add(logsPath2);
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
+
+        mockMvc.
+                perform(get("/profile")).
+                andExpect(status().isOk());
+    }
+
+    @Test
+    public void testGetProfileNames() throws Exception {
+
+        ScanProfileService service = Mockito.mock(ScanProfileService.class);
+
+        ScanProfileController client = new ScanProfileController(scanProfileService);
+
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
+
+        mockMvc.
+                perform(get("/profileNames")).
+                andExpect(status().isOk());
+    }
+
+    @Test
+    public void testUpdateProfile() throws Exception {
+
+        ScanProfile tPtofile = new ScanProfileHib();
+        tPtofile.setName("seeking");
+        RegExpHib rgx = new RegExpHib(EventTypes.CONN);
+
+        FilterHib newFilter = new FilterHib();
+        newFilter.add("2342");
+
+        Map<PropTypes, Filter<String>> filters = rgx.getFilters();
+        filters.put(PropTypes.Time, newFilter);
+        rgx.setFilters(filters);
+
+        tPtofile.addLogPath("c:\test");
+        tPtofile.addLogPath("c:\test2");
+        tPtofile.addRegExp(rgx);
+
+        scanProfileService.add(tPtofile);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-        String requestJson = ow.writeValueAsString(logsPathTable);
+        String requestJson = ow.writeValueAsString(tPtofile);
 
-        RESTClient client = new RESTClient(scanProfileService);
+        ScanProfileController client = new ScanProfileController(scanProfileService);
 
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(client).build();
-        mockMvc.perform(post("/setLogs")
+        mockMvc.perform(put("/profile")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-                */
+                .andExpect(status().isOk())
+                .andReturn();
     }
-
 
 }
 

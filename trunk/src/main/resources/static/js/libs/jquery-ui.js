@@ -7634,7 +7634,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 				menu.attr( "aria-labelledby", item.attr( "id" ) );
 			} );
 
-		this._addClass( newSubmenus, "ui-menu", "ui-widget ui-widget-content ui-front" );
+		this._addClass( newSubmenus, "ui-menu", "ui-widget ui-widget-content ui-front2" );
 
 		menus = submenus.add( this.element );
 		items = menus.find( this.options.items );
@@ -8195,7 +8195,7 @@ $.widget( "ui.autocomplete", {
 			.hide()
 			.menu( "instance" );
 
-		this._addClass( this.menu.element, "ui-autocomplete", "ui-front" );
+		this._addClass( this.menu.element, "ui-autocomplete", "ui-front2" );
 		this._on( this.menu.element, {
 			mousedown: function( event ) {
 
@@ -8347,7 +8347,7 @@ $.widget( "ui.autocomplete", {
 		}
 
 		if ( !element || !element[ 0 ] ) {
-			element = this.element.closest( ".ui-front, dialog" );
+			element = this.element.closest( ".ui-front2, dialog" );
 		}
 
 		if ( !element.length ) {
@@ -12893,7 +12893,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 		// Wrap menu
 		this.menuWrap = $( "<div>" ).append( this.menu );
-		this._addClass( this.menuWrap, "ui-selectmenu-menu", "ui-front" );
+		this._addClass( this.menuWrap, "ui-selectmenu-menu", "ui-front2" );
 		this.menuWrap.appendTo( this._appendTo() );
 
 		// Initialize menu widget
@@ -16067,7 +16067,7 @@ $.widget( "ui.tooltip", {
 	},
 
 	_appendTo: function( target ) {
-		var element = target.closest( ".ui-front, dialog" );
+		var element = target.closest( ".ui-front2, dialog" );
 
 		if ( !element.length ) {
 			element = this.document[ 0 ].body;
