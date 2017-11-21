@@ -27,8 +27,6 @@ import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.webLayer.webAppControllers.RESTClient;
 import org.v8LogScanner.webLayer.webAppControllers.ScanProfileController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;

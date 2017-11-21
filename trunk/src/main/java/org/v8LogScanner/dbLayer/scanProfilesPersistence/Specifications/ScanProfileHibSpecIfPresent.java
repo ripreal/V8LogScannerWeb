@@ -1,10 +1,8 @@
 package org.v8LogScanner.dbLayer.scanProfilesPersistence.Specifications;
 
-import org.hibernate.criterion.Order;
 import org.v8LogScanner.dbLayer.genericRepository.QuerySpecification;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
 
-import javax.persistence.OrderBy;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;

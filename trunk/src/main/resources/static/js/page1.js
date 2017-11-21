@@ -15,13 +15,15 @@ $(window).ready(() => {
         $('#Paragraph2 div.event-filter-block').eventFilter("getValues");
       },
       get rgxOp() { return $("article").attr("data-rgxOp");},
-      set rgxOp(val) {},
+      set rgxOp(val) {
+        //return $("article").attr("data-rgxOp", val);
+      },
       get dateRange() {return $("#LogDateRange").dateRangeSet("getDateRange");},
-      set dateRange(val){},
+      set dateRange(val){ $("#LogDateRange").dateRangeSet("setDateRange", val)},
       get userPeriod() {return $("#LogDateRange").dateRangeSet("getUserPeriod");},
       set userPeriod(val) {},
       get limit() {return $("#LogLimit > input").val()},
-      set limit(val){},
+      set limit(val){$("#LogLimit > input").val(val)},
     };
   };
   

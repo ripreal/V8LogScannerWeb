@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.v8LogScanner.commonly.Filter;
 import org.v8LogScanner.commonly.Filter.ComparisonTypes;
 import org.v8LogScanner.rgx.RegExp;
-import org.v8LogScanner.rgx.ScanProfile;
 
 import javax.persistence.*;
 import java.util.*;

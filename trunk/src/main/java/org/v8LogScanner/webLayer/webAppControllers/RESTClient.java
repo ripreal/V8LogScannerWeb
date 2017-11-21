@@ -1,11 +1,8 @@
 package org.v8LogScanner.webLayer.webAppControllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.v8LogScanner.commonly.ProcessEvent;
 import org.v8LogScanner.dbLayer.genericRepository.ScanProfileService;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.LogsPathHib;
 import org.v8LogScanner.dbLayer.scanProfilesPersistence.ScanProfileHib;
@@ -13,11 +10,9 @@ import org.v8LogScanner.logs.LogsOperations;
 import org.v8LogScanner.rgx.RegExp;
 import org.v8LogScanner.rgx.RegExp.EventTypes;
 import org.v8LogScanner.rgx.RegExp.PropTypes;
-import org.v8LogScanner.rgx.ScanProfile;
 import org.v8LogScanner.rgx.ScanProfile.DateRanges;
 import org.v8LogScanner.rgx.ScanProfile.GroupTypes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

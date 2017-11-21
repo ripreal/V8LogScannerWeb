@@ -771,13 +771,13 @@ $.modalDialog = function(options) {
 };
 
 // WIDGET FOR DATE RANGE SET
-$.fn.dateRangeSet = function(functionName) {
+$.fn.dateRangeSet = function(functionName, ...args) {
 
   let func = $.fn.dateRangeSet[functionName];  
   if (typeof func == 'function' ) {
-    return func.call(this);
+    return func.call(this, args);
   }  
-  
+ 
   var this$ = this;
   
   this$.addClass("standartPadding");
@@ -852,6 +852,10 @@ $.fn.dateRangeSet = function(functionName) {
     return $("select :selected", this$).val();
   };
   
+  $.fn.dateRangeSet.setDateRange = function(val) {
+    $("div.dateRangesInput", this).val(...val);
+  };
+
   $.fn.dateRangeSet.getUserPeriod = function() {    
     let startDate = this$.find('div[name="dateRange1"] > input').val();
     let endDate = this$.find('div[name="dateRange2"] > input').val();
