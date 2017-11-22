@@ -1,6 +1,6 @@
 ## V8 Log Scanner Web
 [![Build Status](https://travis-ci.org/ripreal/V8LogScannerWeb.svg?branch=master)](https://travis-ci.org/ripreal/V8LogScannerWeb)
-![Docker Status](https://dockerbuildbadges.quelltext.eu/status.svg?organization=niccokunzmann&repository=dockerhub-build-status-image)
+[![Docker Status](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ripreal&repository=v8logscannerweb)](https://hub.docker.com/r/ripreal/v8logscannerweb/builds/)]
 [![Join the chat at https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage](https://badges.gitter.im/V8LogScannerWEB/V8LogScannerWEB.svg)](https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage) 
 ## Introduction
 Web application current view.
