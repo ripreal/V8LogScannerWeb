@@ -1,9 +1,21 @@
+sudo: required
+
 language: java
 jdk:
   - oraclejdk8
+
+ services:
+  - docker
+  
 before_install:
 - cd trunk
 - chmod +x mvnw
 script: mvn test -B
 after_success:
-  — test “$TRAVIS_BRANCH” = “master” && sh deploy_heroku.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push ripreal/v8logscannerweb;
+    docker build -t registry.heroku.com/v8logscannerweb/web;
+    docker push registry.heroku.com/v8logscannerweb/web;
+    fi
+  — sh deploy_heroku.sh
