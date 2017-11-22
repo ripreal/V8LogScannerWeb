@@ -16,4 +16,3 @@ after_success:
     docker build -t registry.heroku.com/v8logscannerweb/web;
     docker push registry.heroku.com/v8logscannerweb/web;
     fi
-  — sh deploy_heroku.sh
