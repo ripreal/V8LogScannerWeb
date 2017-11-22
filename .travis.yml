@@ -2,9 +2,6 @@ language: java
 jdk:
   - oraclejdk8
 
- services:
-  - docker
-  
 before_install:
 - cd trunk
 - chmod +x mvnw
