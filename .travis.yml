@@ -5,5 +5,4 @@ before_install:
 - cd trunk
 - chmod +x mvnw
 script: mvn test -B
-after_success:
-  - sh deploy_dockerhub.sh
+
