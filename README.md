@@ -6,7 +6,7 @@
 This repository contain CD pipeline that includes the next integration steps:
 - bulding jar and testing using Travis
 - creating docker container using DockerHub
-- deploying container and publishing web app using Heroku
+- deploying1 container and publishing web app using Heroku
 
 Web application current view you may find by passing to the link https://v8logscannerweb.herokuapp.com/
 
