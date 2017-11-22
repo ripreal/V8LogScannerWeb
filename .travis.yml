@@ -11,7 +11,7 @@ before_install:
 script: mvn test -B
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker login -u "$DOCKER_USER" -p "$DOCKER_PASS";
     docker push ripreal/v8logscannerweb;
     docker build -t registry.heroku.com/v8logscannerweb/web;
     docker push registry.heroku.com/v8logscannerweb/web;
