@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/trunk/V8LogScannerWeb.iml" filepath="$PROJECT_DIR$/trunk/V8LogScannerWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v8logscannerweb.iml" filepath="$PROJECT_DIR$/v8logscannerweb.iml" />
     </modules>
   </component>
 </project>

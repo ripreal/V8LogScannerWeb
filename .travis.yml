@@ -6,10 +6,11 @@ services:
   - docker
 
 before_install:
-- cd trunk
+#- cd trunk
 - chmod +x mvnw
 script: mvn test -B
-after_success: sh deploy_heroku.sh
+#after_success:
+# -sh deploy_heroku.sh
   #  docker login -u "$DOCKER_USER" -p "$DOCKER_PASS";
   #  docker push ripreal/v8logscannerweb;
  #   docker build -t registry.heroku.com/v8logscannerweb/web;

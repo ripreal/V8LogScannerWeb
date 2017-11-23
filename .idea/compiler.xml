@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="V8LogScannerWeb" />
+        <module name="v8logscannerweb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="V8LogScannerWeb" target="1.8" />
+      <module name="v8logscannerweb" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
