@@ -5,9 +5,9 @@
 [![Join the chat at https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage](https://badges.gitter.im/V8LogScannerWEB/V8LogScannerWEB.svg)](https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage) 
 ## Introduction
 This repository contain CD pipeline that includes the next integration steps:
-- bulding jar and testing using Travis
-- creating docker container using DockerHub
-- deploying1 container and publishing web app using Heroku
+- bulding jar and testing using [Travis](https://travis-ci.org/ripreal/V8LogScannerWeb)
+- creating docker container using [DockerHub](https://hub.docker.com/r/ripreal/v8logscannerweb/builds/)
+- deploying1 container and publishing web app using [Heroku](https://dashboard.heroku.com/apps/v8logscannerweb)
 
 Web application current view you may find by passing to the link https://v8logscannerweb.herokuapp.com/
 
