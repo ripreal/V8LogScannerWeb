@@ -3,6 +3,9 @@
 [![Docker Status](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ripreal&repository=v8logscannerweb)](https://hub.docker.com/r/ripreal/v8logscannerweb/builds/)
 [![Heroku](http://heroku-badge.herokuapp.com/?app=v8logscannerweb&style=flat&svg=1)](https://v8logscannerweb.herokuapp.com/)
 [![Join the chat at https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage](https://badges.gitter.im/V8LogScannerWEB/V8LogScannerWEB.svg)](https://gitter.im/V8LogScannerWeb/Lobby?source=orgpage) 
+
+## [About V8 Log Scanner (infostart article in russian)](https://infostart.ru/public/695546/)
+
 ## Introduction
 This repository contain CD pipeline that includes the next integration steps:
 - bulding jar and testing using [Travis](https://travis-ci.org/ripreal/V8LogScannerWeb)
